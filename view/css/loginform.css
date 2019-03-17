@@ -358,4 +358,39 @@ html * {
     display: block;
   }
   
+  /* form profile */
  
+  #formprofile{
+    display: flex;
+    flex-flow: row wrap;
+  }
+  #formprofile div.divpro{
+    width: 50%;
+    padding: 0 1em 0 1em;
+  }
+
+  #formprofile div.cien{
+    width: 100%;
+  }
+
+  .dropzone{
+    min-height: 125px;
+  }
+  select.full-width{
+    width: 100%;
+    padding: 15px 20px 15px 20px;
+    border: 1px solid #d2d8d8;
+    background-color: white;
+    color: #929292;
+    /* -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none; */
+  }
+  
+  select.has-border:focus {
+    border-color: #343642;
+    box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+    outline: none;
+  }

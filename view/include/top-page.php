@@ -16,24 +16,24 @@
 		<link rel="stylesheet" href="view/js/jqwidgets/styles/jqx.base.css" type="text/css" />
 		<link rel="stylesheet" href="view/js/jqwidgets/styles/jqx.ui-lightness.css" type="text/css" />
 		<script type="text/javascript" src="view/js/jqwidgets/jqx-all.js"></script>
-
+		<!-- dropzone -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css">
        <!-- toastr -->
 	   <link rel="stylesheet" href="https:////cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 	   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-		<!-- mis links -->
+		<!-- mis links css-->
 		<link rel="stylesheet" href="view/css/form.css">
 		<link rel="stylesheet" href="view/css/style.css">
 		<link rel="stylesheet" href="view/css/loginform.css">
-		
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-		<link href="view/js/exclude.html" rel="import"/>
 		
 		<!-- general js -->
 		<script src="view/js/lang/lang2.js"></script>
 		<script src="view/js/functions.js"></script>
 		<script src="view/js/exclude.js"></script>
-		<script src="view/js/dropzone.min.js"></script>
-		<link rel="stylesheet" href="view/css/dropzone.min.css">
+		<!-- <script src="view/js/dropzone.min.js"></script>
+		<link rel="stylesheet" href="view/css/dropzone.min.css"> -->
 		
 		<!-- components js -->
 		<script src="components/apis/clubrural/clubrural.js"></script>

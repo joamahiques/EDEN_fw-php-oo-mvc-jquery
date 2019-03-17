@@ -26,7 +26,7 @@
 					</p>
 					<p>
 						<!-- <label for="provincia">Provincia:</label> -->
-						<select  name="provincia" id="provincia" placeholder="Provincia">
+						<select  name="provincia" id="provinciaini" placeholder="Provincia">
 							<!-- <option disabled selected>Provincia</option>-->
 						</select> 
 					</p>

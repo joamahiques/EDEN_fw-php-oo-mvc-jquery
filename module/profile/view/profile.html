@@ -7,7 +7,61 @@
         </ul>
         <div class="tab-container">
                 <div id='myprofile' class="tab_content">
-                                <form action="/file-upload"class="dropzone"id="my-awesome-dropzone"></form>
+                        <form class="cd-form" name="formprofile"" id="formprofile"><!--name="formregister" id="formregister"-->
+                           <div class="divpro">
+                                <p class="fieldset">
+                                        <label class="image-replace cd-username" for="signup-username">Username</label>
+                                        <input class="full-width has-padding has-border" id="proname" name="user"type="text" placeholder="Username">
+                                        <span class="cd-error-message"></span>
+                                </p>
+                
+                                <p class="fieldset">
+                                        <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                                        <input class="full-width has-padding has-border" id="proemail" name="mail" type="text" placeholder="E-mail">
+                                        <span class="cd-error-message"></span>
+                                        <span id="error_register"><span class="cd-error-message"></span></span>
+                                </p>
+                
+                                <p class="fieldset">
+                                        <label class="image-replace cd-password" for="signup-password">Password</label>
+                                        <input class="full-width has-padding has-border" id="propassword" name="password" type="text"  placeholder="Password">
+                                        <a href="#0" class="hide-password">Hide</a>
+                                        <span class="cd-error-message"></span>
+                                </p>
+                
+                                <p class="fieldset">
+                                        <label class="image-replace cd-password" for="signup-rpassword">Repeat Password</label>
+                                        <input class="full-width has-padding has-border" name="rpassword" id="propassword" type="text"  placeholder="Password">
+                                        <a href="#0" class="hide-password">Hide</a>
+                                        <span class="cd-error-message"></span>
+                                </p>
+                            </div>
+                            <div class="divpro">
+                                <p class="fieldset">
+                                        <select class="full-width has-padding has-border" name="selprovince" id="provinciaini">
+                                                <!-- <option selected>Select Province</option> -->
+                                        </select>
+                                        <span class="cd-error-message"></span>
+                                </p>
+                                <p class="fieldset">
+                                        <select class="full-width has-padding has-border" name="selcity" id="selcity">
+                                                <!-- <option selected>Select City</option> -->
+                                        </select>
+                                        <span class="cd-error-message"></span>
+                                </p>
+                                <p class="divpro">
+                                        <!-- <p>Arrastra aquí tu foto:</p> -->
+                                        <div id="dropzone" class="dropzone"></div>
+                                        <span class="cd-error-message"></span>
+                                </p>
+                            </div>  
+                            <div class="cien">
+                                <p class="fieldset">
+                                        <button type="submit" class="full-width">Update account</button>
+                                </p>
+                            </div>
+                        </form>
+                        
                 </div>
                 <div id='myfavorites' class="tab_content">
                 </div>

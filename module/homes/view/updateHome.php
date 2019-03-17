@@ -24,7 +24,7 @@
     </p>
     <p>
         <label for="provincia" class="update">Provincia</label>
-        <select  name="provincia" id="provincia">
+        <select  name="provincia" id="provinciaini">
             <!-- <option <?php  //if  ( $home['provincia']=="Alava")  echo  'selected'  ;  ?> value="Alava">Álava</option>
             <option <?php  //if  ( $home['provincia']=="Albacete")  echo  'selected'  ;  ?> value="Albacete">Albacete</option >
             <option <?php  //if  ( $home['provincia']=="Alicante")  echo  'selected'  ;  ?> value="Alicante"> Alicante</option>-->
