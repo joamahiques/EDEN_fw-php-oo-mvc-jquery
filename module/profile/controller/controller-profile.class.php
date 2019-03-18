@@ -33,6 +33,27 @@
             //echo json_decode($result);
             
         break;
+        case 'load_data_user':///////////////////datos del ususario desde bd
+                $jsondata = array();
+                if(($_SESSION['mail'])) {
+                $user = $_SESSION['mail'];
+                // echo json_encode($user);
+                // die;
+                $arrValue = false;
+                $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
+                $arrValue = loadModel($path_model, "profile_model", "select_user", $user);
+                //echo json_encode($arrValue);
+                //die();
+            
+                if ($arrValue){
+                    $message = "User load";
+                }else{
+                    $message = "Dont find user";
+                }
+            }
+            echo json_encode($arrValue);
+        break;
+
         case 'load_data'://////////para que si hay algun error no se vacie el formulario
             // echo json_encode('controller');
             // exit;

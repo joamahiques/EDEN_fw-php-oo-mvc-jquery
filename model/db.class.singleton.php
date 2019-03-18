@@ -4,7 +4,6 @@
         private $user;
         private $password;
         private $database;
-        private $port;
         private $link;
         private $stmt;
         private $array;
@@ -23,7 +22,6 @@
             $this->database = $conf->_db;
             $this->user = $conf->_userdb;
             $this->password = $conf->_passdb;
-            $this->port = $conf->_port;
         }
 
         private function __clone() {
@@ -36,7 +34,7 @@
         }
 
         private function conectar() {
-            $this->link = new mysqli($this->server, $this->user, $this->password, $this->port);
+            $this->link = new mysqli($this->server, $this->user, $this->password);
             $this->link->select_db($this->database);
         }
 
