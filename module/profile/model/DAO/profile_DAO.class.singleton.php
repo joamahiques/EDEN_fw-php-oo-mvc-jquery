@@ -23,6 +23,13 @@ class profileDAO {
         $stmp = $db->ejecutar($sql);
         return $db->listar($stmp);
     }
+    public function select_user_fav_DAO($db, $user){
+        $userMail = $user;
+        // $sql = "SELECT * FROM favoritos1 WHERE email = '$userMail'";
+        $sql = "SELECT nombre,localidad,provincia,capacidad,entera FROM casas, favoritos1 WHERE ID =home_id and user_id = ( SELECT id FROM users WHERE email='$userMail')";
+        $stmp = $db->ejecutar($sql);
+        return $db->listar($stmp);
+    }
       public function update_user_DAO($db, $arrArgument){
         $username = $arrArgument['name'];
         $useremail = $arrArgument['mail'];

@@ -14,6 +14,14 @@
             include("module/profile/view/profile.html");
             
         break;
+        case 'update_profile':
+            $jsondata = array();
+            $profileJSON =$_POST["update_profile_json"];
+            echo json_encode($profileJSON);
+            die;
+            $result=validateregister();
+            
+        break;
         case 'uploadimg':
 
             $result_prodpic = upload_files();
@@ -42,6 +50,26 @@
                 $arrValue = false;
                 $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
                 $arrValue = loadModel($path_model, "profile_model", "select_user", $user);
+                //echo json_encode($arrValue);
+                //die();
+            
+                if ($arrValue){
+                    $message = "User load";
+                }else{
+                    $message = "Dont find user";
+                }
+            }
+            echo json_encode($arrValue);
+        break;
+        case 'load_data_favorites':///////////////////datos de favoritos del ususario desde bd
+                $jsondata = array();
+                if(($_SESSION['mail'])) {
+                $user = $_SESSION['mail'];
+                // echo json_encode($user);
+                // die;
+                $arrValue = false;
+                $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
+                $arrValue = loadModel($path_model, "profile_model", "select_user_fav", $user);
                 //echo json_encode($arrValue);
                 //die();
             

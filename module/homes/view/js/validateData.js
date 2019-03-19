@@ -1,6 +1,6 @@
 function validate_nombre(nombre) {
     if (nombre.value.length > 0) {
-        console.log('hola25');
+        //console.log('hola25');
         var expreg = new RegExp( /^[a-z-A-Z\D]+$/);
         //console.log(expreg.test(nombre.value));
         return expreg.test(nombre.value);//retorna true or false

@@ -2,8 +2,8 @@ Dropzone.autoDiscover = false;
 ///////////validate update profile
 function valide_update_profile(){
 	var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+	var phoneval = /^(\+34|0034|34)?[6|7|9][0-9]{8}$/;
 	
-	//console.log("valide_register");
 	//User
 	if(document.formprofile.user.value.length === 0){
 		$('#proname').addClass('has-error').next('span').addClass('is-visible').html("EL USER ES REQUERIDO");;
@@ -29,21 +29,21 @@ function valide_update_profile(){
 	}
 	$('#proemail').removeClass('has-error').next('span').removeClass('is-visible');
 
-	//Password
-	if(document.formprofile.tf.value.length === 0){
-		$('#protf').addClass('has-error').next('span').addClass('is-visible').html("EL TF ES REQUERIDO");
-		document.formprofile.tf.focus();
-		return 0;
-	}
-	$('#protf').removeClass('has-error').next('span').removeClass('is-visible');
-
-	// if(document.formprofile.password.value.length < 6){
-	// 	$('#signup-password').addClass('has-error').next().next('span').addClass('is-visible').html("MÁS DE 6 CARACTERES");
-	// 	document.formprofile.password.focus();
+	//tf
+	// if(document.formprofile.tf.value.length === 0){
+	// 	$('#protf').addClass('has-error').next('span').addClass('is-visible').html("EL TF ES REQUERIDO");
+	// 	document.formprofile.tf.focus();
 	// 	return 0;
 	// }
-	// $('#signup-password').removeClass('has-error').next().next('span').removeClass('is-visible');
-
+	// $('#protf').removeClass('has-error').next('span').removeClass('is-visible');
+	if(document.formprofile.tf.value.length != 0){
+		if(!phoneval.test(document.formprofile.tf.value)){
+			$('#protf').addClass('has-error').next('span').addClass('is-visible').html("FORMATO NO VÁLIDO");
+			document.formprofile.password.focus();
+			return 0;
+		}
+		$('#protf').removeClass('has-error').next('span').removeClass('is-visible');
+	}
 	//Password
 	if(document.formprofile.propassword.value.length === 0){
 		$('#propassword').addClass('has-error').next().next('span').addClass('is-visible').html("LA CONTRASEÑA ES REQUERIDA");
@@ -58,7 +58,7 @@ function valide_update_profile(){
 		return 0;
 	}
 	$('#propassword').removeClass('has-error').next().next('span').removeClass('is-visible');
-	///terms
+	
 	
 }
 ///////////////// coger datos del ususarios de la bd y pintarlos
@@ -76,6 +76,46 @@ function myprofile(){
         },
         error: function (data){
           console.log("not user");
+          console.log(data);
+        }
+      })
+}
+function myprofilefavorites(){
+	$.ajax({
+        type:"GET",
+        url:"module/profile/controller/controller-profile.class.php?op=load_data_favorites",
+        dataType:"json",
+        success: function(data) {
+		  console.log(data);
+		  $('#myfavorites').html('<table width=100% id="tableFavorites">'+
+                '<thead>'+
+                    '<tr>'+
+                        '<td><b>Nombre</b></th>'+
+                        '<td><b>Localidad</b></th>'+
+                        '<td><b>Provincia</b></th>'+
+                        '<td><b>Capacidad</b></th>'+
+                        '<td><b>Completa</b></th>'+
+                    	'<td><b>Eliminar</b></th>'+
+                    '</tr>'+
+               ' </thead>'+
+				'<tbody id="bodyfavo">'+
+
+				'</tbody>'+'</table>')
+				for (var i in data) {
+					var item = data[i];
+					var row = "<tr><td id='name'>" + item.nombre + "</td>"+
+								"<td id='localidad'>" +item.localidad + "</td>"+
+								 "<td id='provincia'>" +item.provincia+"</td>"+
+								 "<td id='capacidad'>" +item.capacidad+"</td>"+
+								 "<td id='completa'>" +item.entera+"</td>"+
+								 "<td><a onclick='deletefavorite(" + i + ")'><i class='fas fa-check'></i></a></td>";
+					$("#bodyfavo").append(row);
+			
+				}
+         
+        },
+        error: function (data){
+          console.log("not favorites");
           console.log(data);
         }
       })
@@ -99,6 +139,9 @@ $(document).ready(function(){
 
 		if (activeTab==='#myfavorites'){
 			$('#myfavorites').html(' <h2 class="flex1"> My Favorites </h2>');
+			myprofilefavorites()
+			setTimeout(function(){$('#tableFavorites').DataTable();}, 50);
+			
 		}
 		if (activeTab==='#mypurchases'){
 			$('#mypurchases').html(' <h2 class="flex1"> My Purchases </h2><p>Hello hello my name is Federico</p>');
@@ -156,12 +199,56 @@ $(document).ready(function(){
                 }
             });
         }
-    });//End dropzone
+	});//End dropzone
+/////////////////////////envio formulario update profile
     $("#formprofile").submit(function (e) {
-        console.log('superprofile!!')
+        //console.log('superprofile!!')
         e.preventDefault();
-        valide_update_profile();
-    })
+		if(valide_update_profile() != 0){
+		////////////////////////////////////////////////
+			var data = $("#formprofile").serialize();
+			//var data_profile_JSON = JSON.stringify(data);
+			console.log(data);
+			//console.log(data_profile_JSON);
+			$.post('module/profile/controller/controller-profile.class.php?op=update_profile',
+          		{update_profile_json:data},
+      		function (response){
+        		console.log(response);//Aqui muestra los resultados de PHP
+        		console.log(response.user);
+        
+    		},"json").fail(function(xhr, textStatus, errorThrown){console.log(xhr)})
+			// $.ajax({
+			// 	type : 'POST',
+			// 	url  : "module/profile/controller/controller-profile.class.php?op=update_profile&"+data,
+			// 	data :data,
+			// 	dataType: 'json',
+			// 	beforeSend: function(){	
+			// 		$("#error_login").fadeOut();
+			// 	}
+			// })
+			// .done(function(data){			
+			// 	console.log(data)		
+				// if(data!=""){
+					
+				// }else if(data=="No coinciden los datos") {
+				// 	console.log("error-login fallo logeandote");
+				// 		$("#error_update").fadeIn(1000, function(){						
+				// 			$("#error_update").addClass('has-error').children('span').addClass('is-visible').html(data);
+
+				// 		});
+				// }///end if
+			// })
+			// .fail(function( data, textStatus, jqXHR ) {
+				//console.log(data);
+				// $("#error_update").fadeIn(1000, function(){						
+				// 	$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("EL USUARIO YA EXISTE");
+
+				// });
+	// 			console.log("fallo update login");
+	// 		});
+	 	};///end if
+	 });
+   
 ///////////////////////////para que no se vacie el formulario
 		// $.get("module/profile/controller/controller-profile.class.php?op=load_data",
 		// function(response){

@@ -31,6 +31,9 @@ class profile_bll{
     public function update_user_BLL($arrArgument) {
         return $this->dao->update_user_DAO($this->db, $arrArgument);
     }
+    public function select_user_fav_BLL($user){
+        return $this->dao->select_user_fav_DAO($this->db, $user);
+      }
     // public function create_profile_BLL($arrArgument){
     //   return $this->dao->create_profile_DAO($this->db, $arrArgument);
     // }

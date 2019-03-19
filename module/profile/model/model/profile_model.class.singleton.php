@@ -28,6 +28,10 @@ class profile_model {
     public function update_user($arrArgument) {
         return $this->bll->update_user_BLL($arrArgument);
     }
+    public function select_user_fav($user) {
+        return $this->bll->select_user_fav_BLL($user);
+    }
+    
 
     // public function obtain_countries($url){
     //     return $this->bll->obtain_countries_BLL($url);
