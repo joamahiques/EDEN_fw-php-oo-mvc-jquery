@@ -25,8 +25,14 @@ class profileDAO {
     }
     public function select_user_fav_DAO($db, $user){
         $userMail = $user;
-        // $sql = "SELECT * FROM favoritos1 WHERE email = '$userMail'";
         $sql = "SELECT nombre,localidad,provincia,capacidad,entera FROM casas, favoritos1 WHERE ID =home_id and user_id = ( SELECT id FROM users WHERE email='$userMail')";
+        $stmp = $db->ejecutar($sql);
+        return $db->listar($stmp);
+    }
+    public function select_user_pur_DAO($db, $user){
+        $userMail = $user;
+        $sql = "SELECT codigo, (SELECT nombre from casas where compras.id_product = casas.ID) as nombre ,fecha, cantidad,precio,total 
+                 FROM compras WHERE id_user =(SELECT id FROM users WHERE email='$userMail') ";
         $stmp = $db->ejecutar($sql);
         return $db->listar($stmp);
     }
@@ -38,6 +44,14 @@ class profileDAO {
         $userprovince = $arrArgument['province'];
         $usercity = $arrArgument['city'];
         $sql = "SELECT * FROM users WHERE email = '$userMail'";
+        
+        return $db->ejecutar($sql);
+         
+    }
+    public function delete_favo_DAO($db, $arrArgument){
+        $user = $arrArgument['user'];
+        $home = $arrArgument['home'];
+        $sql = $sql="DELETE FROM `favoritos1` WHERE user_id=(SELECT id FROM users WHERE email='$user') and home_id=(SELECT ID FROM casas WHERE nombre='$home')";
         
         return $db->ejecutar($sql);
          

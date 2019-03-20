@@ -31,7 +31,12 @@ class profile_model {
     public function select_user_fav($user) {
         return $this->bll->select_user_fav_BLL($user);
     }
-    
+    public function select_user_pur($user) {
+        return $this->bll->select_user_pur_BLL($user);
+    }
+    public function delete_favo($arrArgument) {
+        return $this->bll->delete_favo_BLL($arrArgument);
+    }
 
     // public function obtain_countries($url){
     //     return $this->bll->obtain_countries_BLL($url);

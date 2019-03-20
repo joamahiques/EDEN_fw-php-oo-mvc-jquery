@@ -34,6 +34,12 @@ class profile_bll{
     public function select_user_fav_BLL($user){
         return $this->dao->select_user_fav_DAO($this->db, $user);
       }
+    public function select_user_pur_BLL($user){
+        return $this->dao->select_user_pur_DAO($this->db, $user);
+      }
+    public function delete_favo_BLL($arrArgument) {
+        return $this->dao->delete_favo_DAO($this->db, $arrArgument);
+    }
     // public function create_profile_BLL($arrArgument){
     //   return $this->dao->create_profile_DAO($this->db, $arrArgument);
     // }

@@ -68,11 +68,23 @@ function myprofile(){
         url:"module/profile/controller/controller-profile.class.php?op=load_data_user",
         dataType:"json",
         success: function(data) {
-          console.log(data);
+		  //console.log(data[0].province);
+		//  data[0].province='VALENCIA';
+		//   data[0].city='XÀTIVA';
           $('#proname').attr('value', data[0].name);
-          $('#proemail').attr('value', data[0].email);
-          $('#provinciaini').attr('value', data[0].province);
-          $('#selcity').attr('value', data[0].city);
+		  $('#proemail').attr('value', data[0].email);
+		  setTimeout(function(){
+			if (typeof data[0].province != 'undefined' && data[0].province) {
+				console.log('provi');
+				$("#provinciaini").val(data[0].province);
+				$("#provinciaini").trigger('change');
+				}}, 550);
+		  setTimeout(function(){
+				if (typeof data[0].city != 'undefined' && data[0].city) {
+				  console.log('citi');
+				$("#selcity").val(data[0].city);	
+				}
+			}, 850);
         },
         error: function (data){
           console.log("not user");
@@ -86,7 +98,7 @@ function myprofilefavorites(){
         url:"module/profile/controller/controller-profile.class.php?op=load_data_favorites",
         dataType:"json",
         success: function(data) {
-		  console.log(data);
+		  //console.log(data);
 		  $('#myfavorites').html('<table width=100% id="tableFavorites">'+
                 '<thead>'+
                     '<tr>'+
@@ -101,17 +113,14 @@ function myprofilefavorites(){
 				'<tbody id="bodyfavo">'+
 
 				'</tbody>'+'</table>')
-				for (var i in data) {
-					var item = data[i];
-					var row = "<tr><td id='name'>" + item.nombre + "</td>"+
-								"<td id='localidad'>" +item.localidad + "</td>"+
-								 "<td id='provincia'>" +item.provincia+"</td>"+
-								 "<td id='capacidad'>" +item.capacidad+"</td>"+
-								 "<td id='completa'>" +item.entera+"</td>"+
-								 "<td><a onclick='deletefavorite(" + i + ")'><i class='fas fa-check'></i></a></td>";
-					$("#bodyfavo").append(row);
-			
-				}
+				$.each(data, function(index, list) {
+					$("#bodyfavo").append("<tr><td>" + list.nombre + "</td>"+
+									"<td id='localidad'>" +list.localidad + "</td>"+
+									 "<td id='provincia'>" +list.provincia+"</td>"+
+									 "<td id='capacidad'>" +list.capacidad+"</td>"+
+									 "<td id='completa'>" +list.entera+"</td>"+
+									 "<td class='center'><a class='deletefavorite' id='" + list.nombre + "'><i class='fas fa-check'></i></a></td>")					 
+				});
          
         },
         error: function (data){
@@ -120,31 +129,74 @@ function myprofilefavorites(){
         }
       })
 }
+
+function myprofilepurchases(){
+	$.ajax({
+        type:"GET",
+        url:"module/profile/controller/controller-profile.class.php?op=load_data_purchases",
+        dataType:"json",
+        success: function(data) {
+		  console.log(data);
+		  $('#mypurchases').html('<table width=100% id="tablePurchases">'+
+                '<thead>'+
+                    '<tr>'+
+                        '<td><b>Código</b></th>'+
+                        '<td><b>Nombre</b></th>'+
+                        '<td><b>Fecha</b></th>'+
+                        '<td><b>Cantidad</b></th>'+
+                        '<td><b>Precio</b></th>'+
+                    	'<td><b>Total</b></th>'+
+                    '</tr>'+
+               ' </thead>'+
+				'<tbody id="bodypur">'+
+
+				'</tbody>'+'</table>')
+				for (var i in data) {
+					var item = data[i];
+					var row = "<tr><td>" + item.codigo + "</td>"+
+								"<td>" +item.nombre + "</td>"+
+								 "<td>" +item.fecha+"</td>"+
+								 "<td>" +item.cantidad+"</td>"+
+								 "<td>" +item.precio+"€</td>"+
+								 "<td class='center'>" +item.total+"€</td>";
+					$("#bodypur").append(row);
+			
+				}
+		},
+        error: function (data){
+          console.log("not purchases");
+          console.log(data);
+        }
+      })
+}
+
 $(document).ready(function(){
 ////////////////////////////////tabs
 	$(".tab_content").hide(); //Hide all content
 	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
 	$(".tab_content:first").show(); //Show first tab content
 	///my profile
-	//$('#myprofile').html(' <h2 class="flex1"> My Profile </h2>');
 	myprofile();
 	//change tabs
+	var $activeTab;
 	$("ul.tabs li").click(function() {
-
+		
 		$("ul.tabs li").removeClass("active"); //Remove any "active" class
 		$(this).addClass("active"); //Add "active" class to selected tab
 		$(".tab_content").hide(); //Hide all tab content
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value  
-		$(activeTab).fadeIn(); //Fade in the active ID content
-
-		if (activeTab==='#myfavorites'){
-			$('#myfavorites').html(' <h2 class="flex1"> My Favorites </h2>');
+		$activeTab = $(this).find("a").attr("href"); //Find the href attribute value  
+		$($activeTab).fadeIn(); //Fade in the active ID content
+		console.log($activeTab);
+		if ($activeTab==='#myfavorites'){
 			myprofilefavorites()
 			setTimeout(function(){$('#tableFavorites').DataTable();}, 50);
 			
 		}
-		if (activeTab==='#mypurchases'){
+		if ($activeTab==='#mypurchases'){
+			
 			$('#mypurchases').html(' <h2 class="flex1"> My Purchases </h2><p>Hello hello my name is Federico</p>');
+			myprofilepurchases()
+			setTimeout(function(){$('#tablePurchases').DataTable();}, 50);
 		}
 		
 	});
@@ -200,7 +252,51 @@ $(document).ready(function(){
             });
         }
 	});//End dropzone
-/////////////////////////envio formulario update profile
+
+/////////////////////CHange Password
+//show change-password form 
+	$('#changepass').on('click', function(event){
+		event.preventDefault();
+		console.log("change");
+
+		$('.cd-pass-modal').addClass('is-visible');
+
+	});
+	$('.cd-pass-modal').on('click', function(event){
+		if( $(event.target).is($('.cd-pass-modal')) || $(event.target).is($('#closepass') )) {
+			console.log('close');
+			$('.cd-pass-modal').removeClass('is-visible');
+		}	
+	});
+	//close modal when clicking the esc keyboard button
+	$(document).keyup(function(event){
+    	if(event.which=='27'){
+    		$('.cd-pass-modal').removeClass('is-visible');
+	    }
+	});
+
+//////////////////////////////delete favorites
+	$(document).on('click','.deletefavorite',function(){
+		console.log('delete');
+		var nombre = this.getAttribute('id');
+		console.log(nombre);
+			$.ajax({
+				type:"GET",
+				url:"module/profile/controller/controller-profile.class.php?op=delete_favorites&nombre="+nombre,
+				dataType:"json",
+				success: function(data) {
+				console.log(data);
+				location.reload();/////////mejor almacenar favoritos en un array e ir eliminando como en cart
+				
+				},
+				error: function (data){
+				console.log("not delete");
+				console.log(data);
+				}
+			})
+	})
+
+/////////////////////////SEND FORM update profile
     $("#formprofile").submit(function (e) {
         //console.log('superprofile!!')
         e.preventDefault();
@@ -267,6 +363,3 @@ $(document).ready(function(){
 		// }, "json");
 
 })
-
-
-

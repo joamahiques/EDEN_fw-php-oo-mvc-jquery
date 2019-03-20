@@ -1,7 +1,7 @@
 
 ///////////////////////////////FAVORITOS
 
-console.log("Favorites");   
+//console.log("Favorites");   
 
 $(document).ready(function () {
 

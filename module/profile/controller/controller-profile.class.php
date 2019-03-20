@@ -1,4 +1,5 @@
 <?php
+    echo json_decode('controller');
     
     $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
     session_start();
@@ -42,7 +43,7 @@
             
         break;
         case 'load_data_user':///////////////////datos del ususario desde bd
-                $jsondata = array();
+                //$jsondata = array();
                 if(($_SESSION['mail'])) {
                 $user = $_SESSION['mail'];
                 // echo json_encode($user);
@@ -62,21 +63,54 @@
             echo json_encode($arrValue);
         break;
         case 'load_data_favorites':///////////////////datos de favoritos del ususario desde bd
-                $jsondata = array();
+                //$jsondata = array();
                 if(($_SESSION['mail'])) {
                 $user = $_SESSION['mail'];
-                // echo json_encode($user);
-                // die;
+            
                 $arrValue = false;
                 $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
                 $arrValue = loadModel($path_model, "profile_model", "select_user_fav", $user);
-                //echo json_encode($arrValue);
-                //die();
+              
             
                 if ($arrValue){
-                    $message = "User load";
+                    $message = "Favorites load";
                 }else{
-                    $message = "Dont find user";
+                    $message = "Dont find favorites";
+                }
+            }
+            echo json_encode($arrValue);
+        break;
+        case 'load_data_purchases':///////////////////datos de compras del ususario desde bd
+                //$jsondata = array();
+                if(($_SESSION['mail'])) {
+                $user = $_SESSION['mail'];
+                $arrValue = false;
+                $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
+                $arrValue = loadModel($path_model, "profile_model", "select_user_pur", $user);
+                if ($arrValue){
+                    $message = "Purchase load";
+                }else{
+                    $message = "Dont find purchase";
+                }
+            }
+            echo json_encode($arrValue);
+        break;
+        case 'delete_favorites':///////////////////borrar favorites
+                //$jsondata = array();
+                if(($_SESSION['mail'])) {
+                    $user = $_SESSION['mail'];
+                    $name = $_GET['nombre'];
+                    $arrArgument = array(
+                        'user'=>$user,
+                        'home'=>$name
+                    );
+                $arrValue = false;
+                $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
+                $arrValue = loadModel($path_model, "profile_model", "delete_favo", $arrArgument);
+                if ($arrValue){
+                    $message = "Purchase load";
+                }else{
+                    $message = "Dont find purchase";
                 }
             }
             echo json_encode($arrValue);
