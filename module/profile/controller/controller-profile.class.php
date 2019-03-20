@@ -16,11 +16,23 @@
             
         break;
         case 'update_profile':
-            $jsondata = array();
-            $profileJSON =$_POST["update_profile_json"];
-            echo json_encode($profileJSON);
-            die;
-            $result=validateregister();
+            $nombre =$_POST["user"];
+            $mail =$_POST["mail"];
+            $tf = $_POST["tf"];
+            $province = $_POST["selprovince"];
+            $city = $_POST["selcity"];
+            //$result=validateregister();
+            $arrArgument = array(
+                'name' => $nombre,
+                'email'=>$mail,
+                'tf'=>$tf,
+                'province'=>$province,
+                'city'=>$city
+                
+              );
+            $arrValue = false;
+            $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
+            $arrValue = loadModel($path_model, "profile_model", "update_user", $arrArgument);
             
         break;
         case 'uploadimg':

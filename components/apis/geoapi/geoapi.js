@@ -16,7 +16,7 @@ $(document).ready(function () {
             
             $('#provinciaini').empty();
             //console.log(data);
-            $("#provinciaini").append('<option disabled selected>Provincia</option>');
+            $("#provinciaini").append('<option disabled selected> Selecciona Provincia</option>');
             $.each(data.data, function(index, list) {
                 $("#provinciaini").append(
                      ' <option id="'+list.CPRO+'" value="'+list.PRO+'">'+list.PRO+'</option> '
@@ -31,7 +31,7 @@ $(document).ready(function () {
         console.log("HELLOOOOO FAIL");
         load_provinces_xml();
     })
-$("#selcity").append('<option value="" selected="selected">Selecciona Municipio</option>');
+$("#selcity").append('<option disabled selected>Selecciona Municipio</option>');
 ////////////////////// API SELECT municipios GEOAPI
 $("#provinciaini").on("change", function () {
          var valPro = $(this).children(":selected").attr("id");
@@ -49,7 +49,7 @@ $("#provinciaini").on("change", function () {
                         load_cities_xml(valPro);
                     }else{
                     $("#selcity").empty();
-                    $("#selcity").append("<option>" + "Selecciona Municipio" + "</option>");
+                    $("#selcity").append("<option disabled selected>Selecciona Municipio</option>");
             
                         $.each(data.data, function(i, item) {///bucle para rellenar el dropdown1
                         // console.log( item);

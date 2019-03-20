@@ -248,7 +248,7 @@ $(document).ready(function(){
 
 	//close modal
 	$('.cd-user-modal').on('click', function(event){
-		console.log(localStorage.getItem('type'));
+		//console.log(localStorage.getItem('type'));
 		if( $(event.target).is($form_modal) || $(event.target).is('.cd-close-form') ) {
 			$form_modal.removeClass('is-visible');
 			

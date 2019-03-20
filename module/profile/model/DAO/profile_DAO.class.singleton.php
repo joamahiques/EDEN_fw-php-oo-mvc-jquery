@@ -38,12 +38,12 @@ class profileDAO {
     }
       public function update_user_DAO($db, $arrArgument){
         $username = $arrArgument['name'];
-        $useremail = $arrArgument['mail'];
-        $userpass = $arrArgument['pass'];
+        $useremail = $arrArgument['email'];
         $usertf = $arrArgument['tf'];
         $userprovince = $arrArgument['province'];
         $usercity = $arrArgument['city'];
-        $sql = "SELECT * FROM users WHERE email = '$userMail'";
+        $sql = $sql = " UPDATE users SET name='$username', tf='$usertf', province='$userprovince', city='$usercity'
+                         WHERE email='$useremail'";;
         
         return $db->ejecutar($sql);
          
@@ -57,63 +57,7 @@ class profileDAO {
          
     }
 
-    // public function create_profile_DAO($db, $arrArgument) {
-    //     $prodname = $arrArgument['prodname'];
-    //     $prodref = $arrArgument['prodref'];
-    //     $prodprice = $arrArgument['prodprice'];
-    //     $date_reception = $arrArgument['date_reception'];
-    //     $date_expiration = $arrArgument['date_expiration'];
-    //     $category = $arrArgument['category'];
-    //     $packaging = $arrArgument['packaging'];
-    //     $country = $arrArgument['country'];
-    //     $province = $arrArgument['province'];
-    //     $city = $arrArgument['city'];
-    //     $proddesc = $arrArgument['proddesc'];
-    //     $prodpic = $arrArgument['prodpic'];
-
-    //     $cat1=0;
-    //     $cat2=0;
-    //     $cat3=0;
-    //     $cat4=0;
-
-    //     foreach ($category as $indice) {
-    //         if ($indice === 'cat1')
-    //             $cat1 = 1;
-    //         if ($indice === 'cat2')
-    //             $cat2 = 1;
-    //         if ($indice === 'cat3')
-    //             $cat3 = 1;
-    //         if ($indice === 'cat4')
-    //             $cat4 = 1;
-    //     }
-        
-    //     $sql = "INSERT INTO products (prodname, prodref, prodprice, date_reception,"
-    //             . " date_expiration, cat1, cat2, cat3, cat4, packaging, country, province,"
-    //             . " city, proddesc, prodpic) VALUES ('$prodname', '$prodref',"
-    //             . " '$prodprice', '$date_reception', '$date_expiration', '$cat1', "
-    //             . " '$cat2', '$cat3', '$cat4', '$packaging', '$country', '$province',"
-    //             . " '$city', '$proddesc', '$prodpic')";
-
-    //     return $db->ejecutar($sql);
-    // }
-
-    // public function obtain_countries_DAO($url){
-    //       $ch = curl_init();
-    //       curl_setopt ($ch, CURLOPT_URL, $url);
-    //       curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-    //       curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    //       $file_contents = curl_exec($ch);
-
-    //       $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    //       curl_close($ch);
-    //       $accepted_response = array(200, 301, 302);
-    //       if(!in_array($httpcode, $accepted_response)){
-    //         return FALSE;
-    //       }else{
-    //         return ($file_contents) ? $file_contents : FALSE;
-    //       }
-    // }
-
+   
     // public function obtain_provinces_DAO(){
     //       $json = array();
     //       $tmp = array();

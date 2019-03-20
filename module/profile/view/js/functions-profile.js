@@ -69,26 +69,27 @@ function myprofile(){
         dataType:"json",
         success: function(data) {
 		  //console.log(data[0].province);
-		//  data[0].province='VALENCIA';
-		//   data[0].city='XÀTIVA';
+					//  data[0].province='VALENCIA';
+					//   data[0].city='XÀTIVA';
           $('#proname').attr('value', data[0].name);
-		  $('#proemail').attr('value', data[0].email);
-		  setTimeout(function(){
-			if (typeof data[0].province != 'undefined' && data[0].province) {
-				console.log('provi');
-				$("#provinciaini").val(data[0].province);
-				$("#provinciaini").trigger('change');
-				}}, 550);
-		  setTimeout(function(){
-				if (typeof data[0].city != 'undefined' && data[0].city) {
-				  console.log('citi');
-				$("#selcity").val(data[0].city);	
-				}
-			}, 850);
+					$('#proemail').attr('value', data[0].email);
+					$('#protf').attr('value', data[0].tf);
+		  		setTimeout(function(){
+						if (typeof data[0].province != 'undefined' && data[0].province) {///si no es null ni undefined ni esta vacio....
+							//console.log('provi');
+							$("#provinciaini").val(data[0].province);
+							$("#provinciaini").trigger('change');////activar auto la funcion on change
+							}}, 500);
+		  		setTimeout(function(){
+						if (typeof data[0].city != 'undefined' && data[0].city) {
+							//	console.log('citi');
+							$("#selcity").val(data[0].city);	
+							}
+							}, 850);
         },
         error: function (data){
-          console.log("not user");
-          console.log(data);
+          console.log("not user, load_data_user");
+          //console.log(data);
         }
       })
 }
@@ -98,34 +99,36 @@ function myprofilefavorites(){
         url:"module/profile/controller/controller-profile.class.php?op=load_data_favorites",
         dataType:"json",
         success: function(data) {
-		  //console.log(data);
-		  $('#myfavorites').html('<table width=100% id="tableFavorites">'+
-                '<thead>'+
-                    '<tr>'+
-                        '<td><b>Nombre</b></th>'+
-                        '<td><b>Localidad</b></th>'+
-                        '<td><b>Provincia</b></th>'+
-                        '<td><b>Capacidad</b></th>'+
-                        '<td><b>Completa</b></th>'+
-                    	'<td><b>Eliminar</b></th>'+
-                    '</tr>'+
-               ' </thead>'+
-				'<tbody id="bodyfavo">'+
+		  			//console.log(data);
+						$('#myfavorites').html('<table width=100% id="tableFavorites">'+
+											'<thead>'+
+													'<tr>'+
+															'<td><b>Nombre</b></th>'+
+															'<td><b>Localidad</b></th>'+
+															'<td><b>Provincia</b></th>'+
+															'<td><b>Capacidad</b></th>'+
+															'<td><b>Completa</b></th>'+
+														'<td><b>Eliminar</b></th>'+
+													'</tr>'+
+										' </thead>'+
+							'<tbody id="bodyfavo">'+
 
-				'</tbody>'+'</table>')
-				$.each(data, function(index, list) {
-					$("#bodyfavo").append("<tr><td>" + list.nombre + "</td>"+
-									"<td id='localidad'>" +list.localidad + "</td>"+
-									 "<td id='provincia'>" +list.provincia+"</td>"+
-									 "<td id='capacidad'>" +list.capacidad+"</td>"+
-									 "<td id='completa'>" +list.entera+"</td>"+
-									 "<td class='center'><a class='deletefavorite' id='" + list.nombre + "'><i class='fas fa-check'></i></a></td>")					 
-				});
+							'</tbody>'+'</table>')
+							$("#bodyfavo").empty();
+							$.each(data, function(index, list) {
+								$("#bodyfavo").append("<tr><td>" + list.nombre + "</td>"+
+												"<td id='localidad'>" +list.localidad + "</td>"+
+												"<td id='provincia'>" +list.provincia+"</td>"+
+												"<td id='capacidad'>" +list.capacidad+"</td>"+
+												"<td id='completa'>" +list.entera+"</td>"+
+												"<td class='center'><a class='deletefavorite' id='" + list.nombre + "'><i class='fas fa-check'></i></a></td>")					 
+							});
+							setTimeout(function(){$('#tableFavorites').DataTable();}, 20);
          
         },
         error: function (data){
           console.log("not favorites");
-          console.log(data);
+          //console.log(data);
         }
       })
 }
@@ -136,33 +139,34 @@ function myprofilepurchases(){
         url:"module/profile/controller/controller-profile.class.php?op=load_data_purchases",
         dataType:"json",
         success: function(data) {
-		  console.log(data);
-		  $('#mypurchases').html('<table width=100% id="tablePurchases">'+
-                '<thead>'+
-                    '<tr>'+
-                        '<td><b>Código</b></th>'+
-                        '<td><b>Nombre</b></th>'+
-                        '<td><b>Fecha</b></th>'+
-                        '<td><b>Cantidad</b></th>'+
-                        '<td><b>Precio</b></th>'+
-                    	'<td><b>Total</b></th>'+
-                    '</tr>'+
-               ' </thead>'+
-				'<tbody id="bodypur">'+
+		  //console.log(data);
+					$('#mypurchases').html('<table width=100% id="tablePurchases">'+
+										'<thead>'+
+												'<tr>'+
+														'<td><b>Código</b></th>'+
+														'<td><b>Nombre</b></th>'+
+														'<td><b>Fecha</b></th>'+
+														'<td><b>Cantidad</b></th>'+
+														'<td><b>Precio</b></th>'+
+													'<td><b>Total</b></th>'+
+												'</tr>'+
+									' </thead>'+
+						'<tbody id="bodypur">'+
 
-				'</tbody>'+'</table>')
-				for (var i in data) {
-					var item = data[i];
-					var row = "<tr><td>" + item.codigo + "</td>"+
-								"<td>" +item.nombre + "</td>"+
-								 "<td>" +item.fecha+"</td>"+
-								 "<td>" +item.cantidad+"</td>"+
-								 "<td>" +item.precio+"€</td>"+
-								 "<td class='center'>" +item.total+"€</td>";
-					$("#bodypur").append(row);
-			
-				}
-		},
+						'</tbody>'+'</table>')
+						for (var i in data) {
+							var item = data[i];
+							var row = "<tr><td>" + item.codigo + "</td>"+
+										"<td>" +item.nombre + "</td>"+
+										"<td>" +item.fecha+"</td>"+
+										"<td>" +item.cantidad+"</td>"+
+										"<td>" +item.precio+"€</td>"+
+										"<td class='center'>" +item.total+"€</td>";
+							$("#bodypur").append(row);
+					
+						}
+						setTimeout(function(){$('#tablePurchases').DataTable();}, 50);
+				},
         error: function (data){
           console.log("not purchases");
           console.log(data);
@@ -171,12 +175,13 @@ function myprofilepurchases(){
 }
 
 $(document).ready(function(){
-////////////////////////////////tabs
+////////////////////////////////tabs Profile
 	$(".tab_content").hide(); //Hide all content
 	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
 	$(".tab_content:first").show(); //Show first tab content
 	///my profile
 	myprofile();
+	
 	//change tabs
 	var $activeTab;
 	$("ul.tabs li").click(function() {
@@ -186,17 +191,15 @@ $(document).ready(function(){
 		$(".tab_content").hide(); //Hide all tab content
 		$activeTab = $(this).find("a").attr("href"); //Find the href attribute value  
 		$($activeTab).fadeIn(); //Fade in the active ID content
-		console.log($activeTab);
+		//console.log($activeTab);
 		if ($activeTab==='#myfavorites'){
 			myprofilefavorites()
-			setTimeout(function(){$('#tableFavorites').DataTable();}, 50);
-			
+			// setTimeout(function(){$('#tableFavorites').DataTable();}, 50);	
 		}
-		if ($activeTab==='#mypurchases'){
-			
-			$('#mypurchases').html(' <h2 class="flex1"> My Purchases </h2><p>Hello hello my name is Federico</p>');
+		if ($activeTab==='#mypurchases'){	
+			$('#mypurchases').html(' <h2 class="flex1"> My Purchases </h2><p>No tienes compras todavía</p>');
 			myprofilepurchases()
-			setTimeout(function(){$('#tablePurchases').DataTable();}, 50);
+			//setTimeout(function(){$('#tablePurchases').DataTable();}, 50);
 		}
 		
 	});
@@ -230,7 +233,7 @@ $(document).ready(function(){
         },
         removedfile: function (file, serverFileName) {
             var name = file.name;
-            console.log(name);
+           // console.log(name);
             $.ajax({
                 type: "POST",
                 url: "module/profile/controller/controller-profile.class.php?op=delete",
@@ -253,18 +256,17 @@ $(document).ready(function(){
         }
 	});//End dropzone
 
-/////////////////////CHange Password
+/////////////////////SHOW AND CLOSE Change Password
 //show change-password form 
 	$('#changepass').on('click', function(event){
 		event.preventDefault();
-		console.log("change");
-
+		//console.log("change");
 		$('.cd-pass-modal').addClass('is-visible');
 
 	});
 	$('.cd-pass-modal').on('click', function(event){
 		if( $(event.target).is($('.cd-pass-modal')) || $(event.target).is($('#closepass') )) {
-			console.log('close');
+		//	console.log('close');
 			$('.cd-pass-modal').removeClass('is-visible');
 		}	
 	});
@@ -286,8 +288,8 @@ $(document).ready(function(){
 				dataType:"json",
 				success: function(data) {
 				console.log(data);
-				location.reload();/////////mejor almacenar favoritos en un array e ir eliminando como en cart
-				
+				myprofilefavorites()
+				//location.reload();/////////
 				},
 				error: function (data){
 				console.log("not delete");
@@ -300,66 +302,33 @@ $(document).ready(function(){
     $("#formprofile").submit(function (e) {
         //console.log('superprofile!!')
         e.preventDefault();
-		if(valide_update_profile() != 0){
-		////////////////////////////////////////////////
-			var data = $("#formprofile").serialize();
-			//var data_profile_JSON = JSON.stringify(data);
-			console.log(data);
-			//console.log(data_profile_JSON);
-			$.post('module/profile/controller/controller-profile.class.php?op=update_profile',
-          		{update_profile_json:data},
-      		function (response){
-        		console.log(response);//Aqui muestra los resultados de PHP
-        		console.log(response.user);
-        
-    		},"json").fail(function(xhr, textStatus, errorThrown){console.log(xhr)})
-			// $.ajax({
-			// 	type : 'POST',
-			// 	url  : "module/profile/controller/controller-profile.class.php?op=update_profile&"+data,
-			// 	data :data,
-			// 	dataType: 'json',
-			// 	beforeSend: function(){	
-			// 		$("#error_login").fadeOut();
-			// 	}
-			// })
-			// .done(function(data){			
-			// 	console.log(data)		
-				// if(data!=""){
+				if(valide_update_profile() != 0){
+				////////////////////////////////////////////////
+						var data = $("#formprofile").serialize();
+						//console.log(data);
+						$.ajax({
+							type : 'POST',
+							url  : 'module/profile/controller/controller-profile.class.php?op=update_profile&' + data,
+							data : data,
+								beforeSend: function(){	
+									//console.log(data)
+									//$("#error_update").fadeOut();
+								}
+							})
+							.done(function( response, textStatus, jqXHR ) {
+								//console.log(response);
+								myprofile();
+								toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
+							})
+							.fail(function( data, textStatus, jqXHR ) {
+								//console.log(data);
+								// $("#error_update").fadeIn(1000, function(){						
+								// 	$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("EL USUARIO YA EXISTE");
+								// });
+					 			console.log("fallo update");
+							});
 					
-				// }else if(data=="No coinciden los datos") {
-				// 	console.log("error-login fallo logeandote");
-				// 		$("#error_update").fadeIn(1000, function(){						
-				// 			$("#error_update").addClass('has-error').children('span').addClass('is-visible').html(data);
-
-				// 		});
-				// }///end if
-			// })
-			// .fail(function( data, textStatus, jqXHR ) {
-				//console.log(data);
-				// $("#error_update").fadeIn(1000, function(){						
-				// 	$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("EL USUARIO YA EXISTE");
-
-				// });
-	// 			console.log("fallo update login");
-	// 		});
-	 	};///end if
-	 });
+					};///end if
+	 });/// submit update
    
-///////////////////////////para que no se vacie el formulario
-		// $.get("module/profile/controller/controller-profile.class.php?op=load_data",
-		// function(response){
-		//   if(response.profile===""){
-		// 	  console.log('aqui1');
-			
-		//   }else{
-		// 	console.log('aqui2');
-		// 	$("#proname").val(response.profile.proname);
-		// 	$("#proemail").val(response.profile.proemail);
-		// 	$("#propassword").val(response.profile.propassword);
-		// 	$("#provinciaini").val(response.profile.province);
-		// 	$('#selcity').val(response.profile.city);
-			
-		//   }
-		// }, "json");
-
-})
+})///document ready
