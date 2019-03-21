@@ -101,7 +101,9 @@ function upload_files() {
             return $return=array('result'=>true,'error'=>$error,'data'=>$upfile);
         }
     }else{
-        return $return=array('result'=>false,'error'=>$error,'data'=>"");
+        $return=array('result'=>false,'error'=>$error,'data'=>"");
+        return $return;
+
     }
 }//End upload_files
 

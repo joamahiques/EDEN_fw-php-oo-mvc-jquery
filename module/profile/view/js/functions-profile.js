@@ -68,12 +68,14 @@ function myprofile(){
         url:"module/profile/controller/controller-profile.class.php?op=load_data_user",
         dataType:"json",
         success: function(data) {
-		  //console.log(data[0].province);
 					//  data[0].province='VALENCIA';
 					//   data[0].city='XÀTIVA';
           $('#proname').attr('value', data[0].name);
 					$('#proemail').attr('value', data[0].email);
 					$('#protf').attr('value', data[0].tf);
+					localStorage.setItem("user", data[0].name);
+					localStorage.setItem("avatar", data[0].avatar);
+
 		  		setTimeout(function(){
 						if (typeof data[0].province != 'undefined' && data[0].province) {///si no es null ni undefined ni esta vacio....
 							//console.log('provi');
@@ -173,7 +175,9 @@ function myprofilepurchases(){
         }
       })
 }
+// function removefileimg(){
 
+// }
 $(document).ready(function(){
 ////////////////////////////////tabs Profile
 	$(".tab_content").hide(); //Hide all content
@@ -192,6 +196,7 @@ $(document).ready(function(){
 		$activeTab = $(this).find("a").attr("href"); //Find the href attribute value  
 		$($activeTab).fadeIn(); //Fade in the active ID content
 		//console.log($activeTab);
+		
 		if ($activeTab==='#myfavorites'){
 			myprofilefavorites()
 			// setTimeout(function(){$('#tableFavorites').DataTable();}, 50);	
@@ -213,23 +218,41 @@ $(document).ready(function(){
         acceptedFiles: 'image/*,.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.rar,application/pdf,.psd',
         init: function () {
             this.on("success", function (file, response) {
-                //alert(response);
-                $("#progress").show();
-                $("#bar").width('100%');
-                $("#percent").html('100%');
-                $('.msg').text('').removeClass('msg_error');
-                $('.msg').text('Success Upload image!!').addClass('msg_ok').animate({'right': '300px'}, 300);
-                console.log(file.name);
-                console.log("Response: "+response);
-            });
+                
+								// console.log(file.name);
+								// console.log(file);
+								//console.log(response);
+								var obj = JSON.parse(response);
+								// console.log(obj.result);
+
+								if(obj.result == false){
+									$("#error_img").fadeIn(1000, function(){						
+									$("#error_img").addClass('has-error').children('span').addClass('is-visible').html("Error subiendo el archivo " + file.name + "<br>"+ obj.error);
+								});
+								$(document).on('click', function(){
+										// console.log('out');
+										$("#error_img").fadeOut(500);
+									}	);
+										var element2;
+                    if ((element2 = file.previewElement) !== null) {
+												element2.parentNode.removeChild(file.previewElement,1000);
+												$('.dropzone.dz-started .dz-message').show();
+                    } else {
+                        return false;
+                    }
+								}
+								
+						});
+						
         },
         complete: function (file) {
+					
             // if(file.status == "success"){
             // alert("El archivo se ha subido correctamente: " + file.name);
             // }
         },
         error: function (file) {
-            // alert("Error subiendo el archivo " + file.name);
+            alert("Error subiendo el archivo " + file.name);
         },
         removedfile: function (file, serverFileName) {
             var name = file.name;
@@ -240,11 +263,6 @@ $(document).ready(function(){
                 data: "filename=" + name,
                 success: function (data) {
                   console.log(data);
-                    $("#progress").hide();
-                    $('.msg').text('').removeClass('msg_ok');
-                    $('.msg').text('').removeClass('msg_error');
-                    $("#e_avatar").html("");
-                    
                     var element2;
                     if ((element2 = file.previewElement) !== null) {
                         element2.parentNode.removeChild(file.previewElement);
@@ -319,6 +337,7 @@ $(document).ready(function(){
 								//console.log(response);
 								myprofile();
 								toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
+								location.reload();
 							})
 							.fail(function( data, textStatus, jqXHR ) {
 								//console.log(data);

@@ -19,26 +19,26 @@ function getQueryVariable(variable) {
     return num;
     }
 
-    function protecturl() {
-        /////////protect url
-        $.ajax({
-          type : 'GET',
-          //url  : 'model/functions.php?op=controluser',
-          url  : 'components/login/controller/controller-login.php?&op=controluser',
-          //dataType: 'json',
+  function protecturl() {
+      /////////protect url
+      $.ajax({
+        type : 'GET',
+        //url  : 'model/functions.php?op=controluser',
+        url  : 'components/login/controller/controller-login.php?&op=controluser',
+        //dataType: 'json',
+    })
+      .done(function(data){			
+        console.log(data)		
+        if(data=="okay"){
+            setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
+        }else if (data=="ok"){
+          loginauto();
+              //setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
+              
+          }
       })
-        .done(function(data){			
-          console.log(data)		
-          if(data=="okay"){
-              setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
-          }else if (data=="ok"){
-            loginauto();
-                //setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
-                
-            }
-        })
-        .fail( function(response){console.log(response)	});
-        }
+      .fail( function(response){console.log(response)	});
+      }
 
 $(document).ready(function(){
     
@@ -92,7 +92,7 @@ toastr.options = {
   if (document.getElementById('btnprofile')){
     $('#menuprofile').prepend(localStorage.getItem("user"));
     $('#avatar').attr("src", localStorage.getItem("avatar"));
-    console.log(localStorage.getItem("avatar"));
+    //console.log(localStorage.getItem("avatar"));
     //   console.log("profile");
     //   console.log(localStorage.getItem("user"));
       $('#menuprofile').on('click', function(){

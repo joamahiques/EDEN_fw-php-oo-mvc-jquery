@@ -1,5 +1,5 @@
 <?php
-//echo json_encode("products_dao.class.singleton.php");
+//echo json_encode("profile_dao.class.singleton.php");
 //exit;
 
 class profileDAO {
@@ -42,7 +42,8 @@ class profileDAO {
         $usertf = $arrArgument['tf'];
         $userprovince = $arrArgument['province'];
         $usercity = $arrArgument['city'];
-        $sql = $sql = " UPDATE users SET name='$username', tf='$usertf', province='$userprovince', city='$usercity'
+        $useravatar = $arrArgument['prodpic'];
+        $sql = $sql = " UPDATE users SET name='$username', tf='$usertf', province='$userprovince', city='$usercity', avatar='$useravatar'
                          WHERE email='$useremail'";;
         
         return $db->ejecutar($sql);

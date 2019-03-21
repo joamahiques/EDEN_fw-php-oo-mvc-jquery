@@ -10,12 +10,14 @@
    
     
     switch($_GET['op']){
-    ////////////LIST   
-        case 'view':
-            include("module/profile/view/profile.html");
-            
-        break;
+
         case 'update_profile':
+
+            if (empty($_SESSION['result_prodpic'])){
+                $_SESSION['result_prodpic'] = array('result' => true, 'error' => "", "data" => $_SESSION['avatar']);
+            }
+
+            $result_prodpic = $_SESSION['result_prodpic'];
             $nombre =$_POST["user"];
             $mail =$_POST["mail"];
             $tf = $_POST["tf"];
@@ -27,12 +29,20 @@
                 'email'=>$mail,
                 'tf'=>$tf,
                 'province'=>$province,
-                'city'=>$city
+                'city'=>$city,
+                'prodpic' => $result_prodpic['data']
                 
               );
             $arrValue = false;
             $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
             $arrValue = loadModel($path_model, "profile_model", "update_user", $arrArgument);
+
+            if ($arrValue){
+                $message = "User updated";
+            }else{
+                $message = "Dont updated";
+            }
+            echo json_encode($message);
             
         break;
         case 'uploadimg':
@@ -51,7 +61,7 @@
             }else{
             echo json_encode(array("res" => false));
             }
-            //echo json_decode($result);
+            echo json_decode($result);
             
         break;
         case 'load_data_user':///////////////////datos del ususario desde bd
@@ -66,11 +76,6 @@
                 //echo json_encode($arrValue);
                 //die();
             
-                if ($arrValue){
-                    $message = "User load";
-                }else{
-                    $message = "Dont find user";
-                }
             }
             echo json_encode($arrValue);
         break;
@@ -83,12 +88,6 @@
                 $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
                 $arrValue = loadModel($path_model, "profile_model", "select_user_fav", $user);
               
-            
-                if ($arrValue){
-                    $message = "Favorites load";
-                }else{
-                    $message = "Dont find favorites";
-                }
             }
             echo json_encode($arrValue);
         break;
@@ -99,11 +98,7 @@
                 $arrValue = false;
                 $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
                 $arrValue = loadModel($path_model, "profile_model", "select_user_pur", $user);
-                if ($arrValue){
-                    $message = "Purchase load";
-                }else{
-                    $message = "Dont find purchase";
-                }
+                
             }
             echo json_encode($arrValue);
         break;
@@ -120,12 +115,12 @@
                 $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
                 $arrValue = loadModel($path_model, "profile_model", "delete_favo", $arrArgument);
                 if ($arrValue){
-                    $message = "Purchase load";
+                    $message = "Favorite delete";
                 }else{
-                    $message = "Dont find purchase";
+                    $message = "Dont find favorite";
                 }
             }
-            echo json_encode($arrValue);
+            echo json_encode($message);
         break;
 
         case 'load_data'://////////para que si hay algun error no se vacie el formulario

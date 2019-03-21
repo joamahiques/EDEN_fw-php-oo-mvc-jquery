@@ -64,7 +64,7 @@
 					$value = get_object_vars($rlt);
 					$_SESSION['type'] = $value['type'];
 					//$_SESSION['user'] = $value['name'];
-					//$_SESSION['avatar'] = $value['avatar'];
+					$_SESSION['avatar'] = $value['avatar'];
 					$_SESSION['mail'] = $value['email'];
 					$_SESSION['tiempo'] = time();
 					echo json_encode($value);
@@ -93,7 +93,7 @@
 							
 						$_SESSION['type'] = $value['type'];
 						//$_SESSION['user'] = $value['name'];
-						//$_SESSION['avatar'] = $value['avatar'];
+						$_SESSION['avatar'] = $value['avatar'];
 						$_SESSION['mail'] = $value['email'];
 						$_SESSION['tiempo'] = time();
 						//echo 'ok';
@@ -111,7 +111,7 @@
 					error_reporting(0);
 					session_unset($_SESSION['type']);
 					//session_unset($_SESSION['user']);
-					//session_unset($_SESSION['avatar']);
+					session_unset($_SESSION['avatar']);
 					session_unset($_SESSION['mail']);
 					session_unset($_SESSION['tiempo']);
 					session_destroy();

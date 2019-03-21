@@ -22,10 +22,7 @@
 			case "controller-cart";
 				include("module/cart/controller/".$_GET['page'].".php");
 				break;
-			case "controller-login";
-				include("module/login/view/login.html");
-				break;
-			case "controller-profile";
+			case "profile";
 				include("module/profile/view/profile.html");
 				break;
 			case "404";

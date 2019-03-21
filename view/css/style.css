@@ -47,7 +47,9 @@ input {
 img {
 	max-width: 100%;
 }
-
+img#avatar{
+    max-width: 40px;
+}
 
 
 /****Heads****/
@@ -651,6 +653,7 @@ footer {
     width: 100%;
     background: #fff;
     border-radius: 0 0 .25em .25em;
+    min-height: 400px;
 }
 .tabs{
     display: flex;

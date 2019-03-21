@@ -38,12 +38,12 @@
             $this->link->select_db($this->database);
         }
 
-        public function ejecutar($sql) {  ////para querys true or false???
+        public function ejecutar($sql) {  ////para querys true or false
             $this->stmt = $this->link->query($sql);
             return $this->stmt;
         }
 
-        public function listar($stmt) {  ///para querys select??
+        public function listar($stmt) {  ///para querys select
             $this->array = array();
             while ($row = $stmt->fetch_array(MYSQLI_ASSOC)) {
                 array_push($this->array, $row);
