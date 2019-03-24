@@ -155,7 +155,7 @@ function myprofilepurchases(){
 									' </thead>'+
 						'<tbody id="bodypur">'+
 
-						'</tbody>'+'</table>')
+						'</tbody>'+'</table>'+'<p id="pdf" class="profile-form-bottom-message"><a  href="#0">Descargar PDF</a></p>')
 						for (var i in data) {
 							var item = data[i];
 							var row = "<tr><td>" + item.codigo + "</td>"+
@@ -315,7 +315,18 @@ $(document).ready(function(){
 				}
 			})
 	})
+	$(document).on('click','#pdf',function(){
+		
+				var doc = new jsPDF();
+				doc.text(20,20,"Mis Compras");
+        doc.autoTable({
+					html: '#tablePurchases', startY: 30});
+				// doc.output("dataurlnewwindow");
+				doc.save('mypurchases.pdf');
 
+
+
+	})
 /////////////////////////SEND FORM update profile
     $("#formprofile").submit(function (e) {
         //console.log('superprofile!!')

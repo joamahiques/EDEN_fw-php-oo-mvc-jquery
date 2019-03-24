@@ -32,6 +32,8 @@
 		<script src="view/js/lang/lang2.js"></script>
 		<script src="view/js/functions.js"></script>
 		<script src="view/js/exclude.js"></script>
+		<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+		<script src="https://unpkg.com/jspdf-autotable@3.0.13/dist/jspdf.plugin.autotable.js"></script>
 		<!-- <script src="view/js/dropzone.min.js"></script>
 		<link rel="stylesheet" href="view/css/dropzone.min.css"> -->
 		
