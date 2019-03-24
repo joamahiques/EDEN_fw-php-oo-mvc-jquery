@@ -6,6 +6,7 @@
     // include ($path . "/module/profile/utils/functions-profile.inc.php");
     include ($path . "/utils/upload.php");
     include ($path . "/utils/common.inc.php");
+    include ($path . "/module/profile/utils/functions-profile.inc.php");
     
    
     
@@ -13,37 +14,45 @@
 
         case 'update_profile':
 
-            if (empty($_SESSION['result_prodpic'])){
-                $_SESSION['result_prodpic'] = array('result' => true, 'error' => "", "data" => $_SESSION['avatar']);
+            if ((empty($_SESSION['result_prodpic']))&&(empty($_SESSION['avatar']))){
+                $hashavatar= md5( strtolower( trim( $email ) ) );
+		        $avatar="https://www.gravatar.com/avatar/$hashavatar?s=40&d=identicon";
+                $_SESSION['result_prodpic'] = array('result' => true, 'error' => "", "data" => $avatar);
             }
+            $result=validate_profile();
+            //echo ($result);
+    
+           if ($result=='ok'){
+                    //echo ($result);
+                    $result_prodpic = $_SESSION['result_prodpic'];
+                    $nombre =$_POST["user"];
+                    $mail =$_POST["mail"];
+                    $tf = $_POST["tf"];
+                    $province = $_POST["selprovince"];
+                    $city = $_POST["selcity"];
+                    $arrArgument = array(
+                        'name' => $nombre,
+                        'email'=>$mail,
+                        'tf'=>$tf,
+                        'province'=>$province,
+                        'city'=>$city,
+                        'prodpic' => $result_prodpic['data']
+                        
+                    );
+                    $arrValue = false;
+                    $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
+                    $arrValue = loadModel($path_model, "profile_model", "update_user", $arrArgument);
 
-            $result_prodpic = $_SESSION['result_prodpic'];
-            $nombre =$_POST["user"];
-            $mail =$_POST["mail"];
-            $tf = $_POST["tf"];
-            $province = $_POST["selprovince"];
-            $city = $_POST["selcity"];
-            //$result=validateregister();
-            $arrArgument = array(
-                'name' => $nombre,
-                'email'=>$mail,
-                'tf'=>$tf,
-                'province'=>$province,
-                'city'=>$city,
-                'prodpic' => $result_prodpic['data']
-                
-              );
-            $arrValue = false;
-            $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/profile/model/model/';
-            $arrValue = loadModel($path_model, "profile_model", "update_user", $arrArgument);
-
-            if ($arrValue){
-                $message = "User updated";
-            }else{
-                $message = "Dont updated";
+                    if ($arrValue){
+                        $message = "User updated";
+                    }else{
+                        $message = "Dont updated";
+                    }
+                    echo json_encode($message);
+            }else if ($result!='ok'){
+                $message2="bad";
+                echo($message2);
             }
-            echo json_encode($message);
-            
         break;
         case 'uploadimg':
 

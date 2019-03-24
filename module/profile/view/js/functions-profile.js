@@ -321,7 +321,7 @@ $(document).ready(function(){
         //console.log('superprofile!!')
         e.preventDefault();
 				if(valide_update_profile() != 0){
-				////////////////////////////////////////////////
+				
 						var data = $("#formprofile").serialize();
 						//console.log(data);
 						$.ajax({
@@ -330,21 +330,26 @@ $(document).ready(function(){
 							data : data,
 								beforeSend: function(){	
 									//console.log(data)
-									//$("#error_update").fadeOut();
+									$("#error_update").fadeOut();
 								}
 							})
 							.done(function( response, textStatus, jqXHR ) {
-								//console.log(response);
-								myprofile();
-								toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
-								location.reload();
+								console.log(response);
+								if (response=='bad'){
+									console.log('badbad')
+									$("#error_update").fadeIn(1000, function(){						
+											$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("LA CONSTRASEÑA NO ES VÁLIDA");
+										});
+								}else{
+									console.log('actualizado??');
+									myprofile();
+									toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
+									location.reload();
+								}
 							})
 							.fail(function( data, textStatus, jqXHR ) {
 								//console.log(data);
-								// $("#error_update").fadeIn(1000, function(){						
-								// 	$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("EL USUARIO YA EXISTE");
-								// });
-					 			console.log("fallo update");
+								toastr["info"]("NO SE HAN PODIDO ACTUALIZAR LOS DATOS, PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
 							});
 					
 					};///end if
