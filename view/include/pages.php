@@ -4,8 +4,9 @@
 		
 		switch($_GET['page']){
 			
-			case "controllerhome";
-				include("module/home/controller/".$_GET['page'].".php");
+			case "home";
+				//include("module/home/controller/".$_GET['page'].".php");
+				include("module/home/view/home.php");
 				break;
 			case "controller_homes";
 				include("module/homes/controller/".$_GET['page'].".php");

@@ -218,10 +218,6 @@ $(document).ready(function(){
         acceptedFiles: 'image/*,.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.rar,application/pdf,.psd',
         init: function () {
             this.on("success", function (file, response) {
-                
-								// console.log(file.name);
-								// console.log(file);
-								//console.log(response);
 								var obj = JSON.parse(response);
 								// console.log(obj.result);
 

@@ -2,12 +2,7 @@
 ///////////////////////////////FAVORITOS
 
 //console.log("Favorites");   
-
-$(document).ready(function () {
-
-   
-    setTimeout(function(){
-    ////leemos favoritos para que aparezcan los corazones pintados
+function readmyfavorites(){
     if(localStorage.getItem("user")!=null){
         $.ajax({
                 
@@ -28,9 +23,17 @@ $(document).ready(function () {
 
         });  
     }
-///añadir o borrar de favoritos
-    $(".corazon").on("click", function () {//cuando hacemos clic en el corazón
+}
+$(document).ready(function () {
 
+   
+    setTimeout(function(){
+    ////leemos favoritos para que aparezcan los corazones pintados
+    readmyfavorites();
+    
+///añadir o borrar de favoritos
+   
+    $(document).on("click",".corazon", function () {
         if(localStorage.getItem("user")===null){
             
                     var $form_modal = $('.cd-user-modal'),
@@ -39,10 +42,10 @@ $(document).ready(function () {
                     $form_forgot_password = $form_modal.find('#cd-reset-password'),
                     $form_modal_tab = $('.cd-switcher'),
                     $tab_login = $form_modal_tab.children('li').eq(0).children('a'),
-                    $tab_signup = $form_modal_tab.children('li').eq(1).children('a'),
-                    $forgot_password_link = $form_login.find('.cd-form-bottom-message a'),
-                    $back_to_login_link = $form_forgot_password.find('.cd-form-bottom-message a'),
-                    $main_nav = $('.main-nav');
+                    $tab_signup = $form_modal_tab.children('li').eq(1).children('a');
+                    // $forgot_password_link = $form_login.find('.cd-form-bottom-message a'),
+                    // $back_to_login_link = $form_forgot_password.find('.cd-form-bottom-message a'),
+                    // $main_nav = $('.main-nav');
                     
                     $("#formregister")[0].reset();
                     $("#formlogin")[0].reset();

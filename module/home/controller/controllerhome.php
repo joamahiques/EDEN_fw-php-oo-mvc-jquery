@@ -3,148 +3,54 @@
    
     include($path ."module/home/model/DAOhome.php");
     @session_start();
-        switch($_GET['op']){
-            
-            case 'list':
-                if(isset($_POST['provinciaini'])){
-                    $proini = $_POST["provinciaini"];
-                    try{
-                        $DAOhome = new DAOhome();
-                        $rdo = $DAOhome->select_all_homes_and_order($proini);
-                     }catch (Exception $e){
-                        $callback = 'index.php?page=503';
-                        die('<script>window.location.href="'.$callback .'";</script>');
-                    }
-                }else{
-                    try{
-                        $DAOhome = new DAOhome();
-                        $rdo = $DAOhome->select_all_homes();
-                    }catch (Exception $e){
-                        $callback = 'index.php?page=503';
-                        die('<script>window.location.href="'.$callback .'";</script>');
-                    }
+    $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/home/model/model/';
+    include ($path . "/utils/common.inc.php");
+       
+    switch($_GET['op']){
+            case 'lis':
+                $totalResults = loadModel($path_model, "home_model", "count");/// to count the total of houses
+                if( isset( $_POST['p'] ) ){
+                    $page					=	intval( $_POST['p'] );
+                    $current_page			=	$page - 1;
+                    $records_per_page		=	6; // records to show per page
+                    $start					=	$current_page * $records_per_page;
+                    $arrArgument = array(
+                        'start'=>$start,
+                        'records'=>$records_per_page
+                    );
+                    $arrValue = loadModel($path_model, "home_model", "select_scroll", $arrArgument);
+                    $result= array('totalcount'=>$totalResults,'results' => $arrValue);
+                    echo json_encode($result);
                 }
-                if(!$rdo){
-                    $callback = 'index.php?page=503';
-                    die('<script>window.location.href="'.$callback .'";</script>');
-                }else{
-                    include("module/home/view/home.php");
-                }
-                break;
-           
-            // case 'favorites':
-            //     try{
-            //         $DAOhome = new DAOhome();
-            //         $rdo = $DAOhome->insertFavorites($_GET['id']);
-        
-            //     }catch (Exception $e){
-            //         $callback = 'index.php?page=503';
-            //         die('<script>window.location.href="'.$callback .'";</script>');
-            //     }
-            //     break;
-            
-            // case 'readfavorites':
-            //     try{
-            //         $DAOhome = new DAOhome();
-            //         $rdo = $DAOhome->readFavorites();
-        
-            //     }catch (Exception $e){
-            //         echo json_encode("error");
-            //         exit;
-            //     }
-            //     if(!$rdo){
-            //         echo json_encode("error");
-            //         exit;
-            //     }else{
-            //         $favor = array();///inicializamos el array
-            //         foreach ($rdo as $row) {
-            //             array_push($favor, $row);//lo rellenamos con array_push
-            //         }
-            //         echo json_encode($favor);///lo pasamos a json
-            //         exit;
-            //     }
-            //      break;
-            
-            // case 'favoritesDelete':
-            
-            //    try{
-            //        $DAOhome = new DAOhome();
-            //        $rdo = $DAOhome->deleteFavorites($_GET['id']);
-            //    }catch (Exception $e){
-            //        //echo ("conexion");
-            //        $callback = 'index.php?page=503';
-            //        die('<script>window.location.href="'.$callback .'";</script>');
-            //    }
-            //     break;
-    ///BUSCADOR
-            // case 'firstdrop':
-            
-            //     try{
-            //         $DAOhome = new DAOhome();
-            //         $rdo = $DAOhome->readProvince();
-        
-            //     }catch (Exception $e){
-            //         echo json_encode("error");
-            //         exit;
-            //     }
-            //     if(!$rdo){
-            //         echo json_encode("error");
-            //         exit;
-            //     }else{
-            //         $favor = array();///inicializamos el array
-            //         foreach ($rdo as $row) {
-            //             array_push($favor, $row);//lo rellenamos con array_push
-            //         }
-            //         echo json_encode($favor);///lo pasamos a json
-            //         exit;
-            //     }
-            //     break;
-                
-            // case 'seconddrop':
-            
-            //     try{
-            //         $DAOhome = new DAOhome();
-            //         $rdo = $DAOhome->readMuni($_GET['id']);
-        
-            //     }catch (Exception $e){
-            //         echo json_encode("error");
-            //         exit;
-            //     }
-            //     if(!$rdo){
-            //         echo json_encode("error");
-            //         exit;
-            //     }else{
-            //         $favor = array();///inicializamos el array
-            //         foreach ($rdo as $row) {
-            //             array_push($favor, $row);//lo rellenamos con array_push
-            //         }
-            //         echo json_encode($favor);///lo pasamos a json
-            //         exit;
-            //     }
-            //     break;
-            
-            // case 'autocomplete':
+            break;
+            // case 'list':
+            //     if(isset($_POST['provinciaini'])){
+            //         $proini = $_POST["provinciaini"];
             //         try{
             //             $DAOhome = new DAOhome();
-            //             $rdo = $DAOhome->autocomplete();
+            //             $rdo = $DAOhome->select_all_homes_and_order($proini);
+            //          }catch (Exception $e){
+            //             $callback = 'index.php?page=503';
+            //             die('<script>window.location.href="'.$callback .'";</script>');
+            //         }
+            //     }else{
+            //         try{
+            //             $DAOhome = new DAOhome();
+            //             $rdo = $DAOhome->select_all_homes();
             //         }catch (Exception $e){
-            //             echo json_encode("error");
-            //             exit;
+            //             $callback = 'index.php?page=503';
+            //             die('<script>window.location.href="'.$callback .'";</script>');
             //         }
-            //         if(!$rdo){
-            //             echo json_encode("error");
-            //             exit;
-            //         }else{
-            //             foreach ($rdo as $row) {
-            //                     echo 
-            //                     '<div class="autoelement">
-                                 
-            //                         <a  class="element" data="'.$row['provincia'].'" id="'.$row['nombre'].'">'.utf8_encode($row['nombre']).'</a>
-            //                     </div>';
-            //             }
-            //             exit;
-            //         }
-            //         break;
+            //     }
+            //     if(!$rdo){
+            //         $callback = 'index.php?page=503';
+            //         die('<script>window.location.href="'.$callback .'";</script>');
+            //     }else{
+            //         include("module/home/view/home.php");
+            //     }
+            //     break;
+           
+            
                 
             default:
                 include("view/inc/error/error404.php");

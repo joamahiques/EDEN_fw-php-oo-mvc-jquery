@@ -9,7 +9,7 @@
     <div id="header">    	
     	<?php
 
-			if ((!isset($_GET['page'])) || ($_GET['page']==="controllerhome") ){
+			if ((!isset($_GET['page'])) || ($_GET['page']==="home") ){
 				include("view/include/header-home.php");///si estamos en homepage
 			}else{
 				include("view/include/header.php");

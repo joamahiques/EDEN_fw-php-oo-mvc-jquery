@@ -51,7 +51,17 @@ img#avatar{
     max-width: 40px;
 }
 
-
+.load {
+    height: auto;
+    width: 100%;
+    text-align: center;
+    display: none;
+    padding-bottom: 18px !important;
+}
+.load img{
+    margin: 0 auto;
+    height: 70px;
+}
 /****Heads****/
 
 
