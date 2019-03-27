@@ -31,7 +31,10 @@
 		 
     </div>	
     <div id="">
-    	<?php 
+		<?php 
+		if (!isset($_GET['page'])){
+			$_GET['page']='home';
+		}
 			include("view/include/pages.php"); 
 			include("components/login/view/login.html")//modal login
 		?>        

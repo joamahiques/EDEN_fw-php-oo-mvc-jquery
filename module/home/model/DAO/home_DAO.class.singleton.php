@@ -1,5 +1,5 @@
 <?php
-//echo json_encode("profile_dao.class.singleton.php");
+//echo json_encode("home_dao.class.singleton.php");
 //exit;
 
 class homeDAO {

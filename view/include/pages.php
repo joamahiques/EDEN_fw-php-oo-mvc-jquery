@@ -14,8 +14,9 @@
 			case "favorites";
 				include("module/userfavorites/view/".$_GET['page'].".php");
 				break;
-			case "controllershop";
-				include("module/shop/controller/".$_GET['page'].".php");
+			case "shop";
+				// include("module/shop/controller/".$_GET['page'].".php");
+				include("module/shop/view/shop.php");
 				break;
 			case "controller-contact";
 				include("module/contact/controller/".$_GET['page'].".php");

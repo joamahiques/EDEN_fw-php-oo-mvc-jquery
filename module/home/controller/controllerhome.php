@@ -9,11 +9,11 @@
     switch($_GET['op']){
             case 'lis':
                 $totalResults = loadModel($path_model, "home_model", "count");/// to count the total of houses
-                if( isset( $_POST['p'] ) ){
-                    $page					=	intval( $_POST['p'] );
+                if( isset($_POST['p']) ){
+                    $page					=	intval($_POST['p']);//number of page
                     $current_page			=	$page - 1;
                     $records_per_page		=	6; // records to show per page
-                    $start					=	$current_page * $records_per_page;
+                    $start					=	$current_page * $records_per_page;//first limit to search
                     $arrArgument = array(
                         'start'=>$start,
                         'records'=>$records_per_page
@@ -23,35 +23,7 @@
                     echo json_encode($result);
                 }
             break;
-            // case 'list':
-            //     if(isset($_POST['provinciaini'])){
-            //         $proini = $_POST["provinciaini"];
-            //         try{
-            //             $DAOhome = new DAOhome();
-            //             $rdo = $DAOhome->select_all_homes_and_order($proini);
-            //          }catch (Exception $e){
-            //             $callback = 'index.php?page=503';
-            //             die('<script>window.location.href="'.$callback .'";</script>');
-            //         }
-            //     }else{
-            //         try{
-            //             $DAOhome = new DAOhome();
-            //             $rdo = $DAOhome->select_all_homes();
-            //         }catch (Exception $e){
-            //             $callback = 'index.php?page=503';
-            //             die('<script>window.location.href="'.$callback .'";</script>');
-            //         }
-            //     }
-            //     if(!$rdo){
-            //         $callback = 'index.php?page=503';
-            //         die('<script>window.location.href="'.$callback .'";</script>');
-            //     }else{
-            //         include("module/home/view/home.php");
-            //     }
-            //     break;
-           
-            
-                
+               
             default:
                 include("view/inc/error/error404.php");
                 break;

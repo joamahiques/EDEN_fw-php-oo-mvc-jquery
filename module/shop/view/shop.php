@@ -4,10 +4,10 @@
 
             <h2> Resultados de tu búsqueda </h2>
             <div id="inicioshop" class="flex1"></div>
+            <div id="pagination"></div>
             <div class='club'>
                  <h2 id="h2club"></h2> 
                 <div id ="shopclub"></div>
-                
             </div>
         </div>
     </div>

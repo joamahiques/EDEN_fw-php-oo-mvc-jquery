@@ -5,7 +5,7 @@
     if (file_exists($model)) {///si existe la clase 'model' que pedimos
         include_once($model);
         $modelClass = $model_name;//por ejemplo profile_model
-
+            
         if (!method_exists($modelClass, $function)){
             throw new Exception();
         }

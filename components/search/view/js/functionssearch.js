@@ -98,7 +98,8 @@
                     
                 }else{
                     
-                    window.location.href = 'index.php?page=controllershop&op=view&provi=' + drop + '&local=' + drop2 + '&val=' + auto;
+                    //window.location.href = 'index.php?page=shop&provi=' + drop + '&local=' + drop2 + '&val=' + auto;
+                    window.location.href = 'index.php?page=shop';
     
                 }
                 

@@ -11,6 +11,7 @@ $(document).ready(function(){
         dataType:"json",
         data:'p='+current_page,
         success: function(data) {///array: totalcount and results
+            console.log(data);
             //total:
             total_pages=Math.ceil(parseInt(data.totalcount[0].totalcasas) / parseInt(6))//total pages=round total houses/6
             //results
@@ -31,16 +32,16 @@ $(document).ready(function(){
         },
         error: function (data,response){
             console.log(data);
-            console.log(response);
+            //console.log(response);
             console.log("not nooo noo");
-            //console.log(data);
           }
 	
     });
+    if(document.getElementById('inicio')){
     $(window).scroll(function() {
 		if($(window).scrollTop() + $(window).height() == $(document).height()){
         // if( $(window).scrollTop() > oldscroll ){ //if we are scrolling down
-        console.log(current_page);
+        //console.log(current_page);
 			if( ($(window).scrollTop() + $(window).height() >= $(document).height()  ) && (current_page <= total_pages) ) {
 				    if( ! loading ){
                         loading = true;
@@ -64,7 +65,7 @@ $(document).ready(function(){
                                     "<a  class='read'  id='"+list.nombre+"'>READ MORE</a>"+'&nbsp;'+'</div>')
                                     
                                 });
-                                console.log(casas);
+                                //console.log(casas);
                                 $(casas).hide().appendTo('#inicio').fadeIn(2000);
                                 readmyfavorites();
 								current_page++;
@@ -75,6 +76,7 @@ $(document).ready(function(){
 				    }
 			}
 		}
-	});
+    });
+}//end if
 });
 

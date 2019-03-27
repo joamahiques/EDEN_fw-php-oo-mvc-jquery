@@ -712,3 +712,39 @@ border-bottom: 1px solid #fff;
 ul.tabs li.active a{
     background: #fff;
 }
+
+
+.bootpag {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  
+  .bootpag li {
+    display: block;
+    padding: 0.5rem 1rem;
+    /* border: 1px solid #495055;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem; */
+  }
+  
+  .bootpag li:hover, .bootpag li:focus {
+    text-decoration: none;
+  }
+
+  .bootpag li.disabled {
+    color: #495055;
+    pointer-events: none;
+    cursor: default;
+  }
+  .bootpag li.disabled a{
+    color: #495055;
+  }
+  .bootpag li.active a{
+    color: #f0e262;
+  }
