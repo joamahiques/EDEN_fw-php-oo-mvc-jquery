@@ -37,7 +37,6 @@
 		<script src="https://unpkg.com/jspdf-autotable@3.0.13/dist/jspdf.plugin.autotable.js"></script>
 		<!-- pagination -->
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-bootpag/1.0.4/jquery.bootpag.min.js'></script>
-		<!-- <script src="view/js/jquery.bootpag.min.js"></script> -->
 		<!-- components js -->
 		<script src="components/apis/clubrural/clubrural.js"></script>
 		<script src="components/modal/view/modal2.js"></script>	

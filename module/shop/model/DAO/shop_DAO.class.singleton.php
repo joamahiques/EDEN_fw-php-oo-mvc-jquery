@@ -15,62 +15,104 @@ class shopDAO {
         }
         return self::$_instance;
     }
-
-    public function select_pagination_DAO($db, $data){
-        $start = $data['start'];
-        $records_per_page = $data['records'];
-        $sql = "SELECT * from casas ORDER BY provincia ASC LIMIT $start, $records_per_page";
+    
+    
+    public function count_DAO($db, $data) {
+        $provi=$data['provi'];
+        $local=$data['local'];
+        $val=$data['val'];
         
-        $stmp = $db->ejecutar($sql);
-        return $db->listar($stmp);
-    }
-
-    public function count_DAO($db) {
-        $sql = "SELECT count(*) as totalcasas FROM casas";
+        if ($val=='null'){
+            $val='';
+        }
+        if ($provi=='null'){
+            $provi='';
+        }
+        if ($local=='null'){
+            $local='';
+        }
+        //$sql = "SELECT count(*) as totalcasas FROM casas";
+        $sql = "SELECT count(*)as total FROM casas WHERE provincia LIKE '%" . $provi . "%' AND localidad like '%" . $local . "%' AND nombre LIKE '%" . $val . "%'";
+        // echo($sql);
+        // exit;
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
         
     }
-    public function selectProvi_DAO($db, $data){
-        $provi=$data['provi'];
-        $start = $data['start'];
-        $records_per_page = $data['records'];
-        
-        $sql = "SELECT * FROM casas WHERE provincia='$provi' ORDER BY localidad ASC,capacidad ASC LIMIT $start, $records_per_page";
-        
-        $stmp = $db->ejecutar($sql);
-        return $db->listar($stmp);
-    }
-    public function selectProviYLoca_DAO($db, $data){
-        $provi=$data['provi'];
-        $local=$data['local'];
-        $start = $data['start'];
-        $records_per_page = $data['records'];
 
-        $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' ORDER BY capacidad ASC LIMIT $start, $records_per_page";
-
-        $stmp = $db->ejecutar($sql);
-        return $db->listar($stmp);
-    }
     public function alldrops_DAO($db, $data){ //$provi,$local,$val
         $provi=$data['provi'];
         $local=$data['local'];
         $val=$data['val'];
         $start = $data['start'];
         $records_per_page = $data['records'];
-        $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' AND nombre LIKE '".$val. "%' LIMIT $start, $records_per_page";
-
+        if ($val=='null'){
+            $val='';
+        }
+        if ($provi=='null'){
+            $provi='';
+        }
+        if ($local=='null'){
+            $local='';
+        }
+        $sql = "SELECT * FROM casas WHERE provincia LIKE '%" . $provi . "%' AND localidad like '%" . $local . "%' AND nombre LIKE '%" . $val . "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC LIMIT $start, $records_per_page";
+        // $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' AND nombre LIKE '".$val."%'";
+        // if(($provi=='null')&&($local=='null')&&($val=='null')){//sacar todo
+        //     $sql = "SELECT * from casas ORDER BY provincia ASC LIMIT $start, $records_per_page";
+        // }else if(($local=='null') && ($val=='null')&& ($provi!='null')){//provincia
+        //     $sql = "SELECT * FROM casas WHERE provincia='$provi' ORDER BY localidad ASC,capacidad ASC ";//LIMIT $start, $records_per_page";
+        // }else if(($provi!='null')&&($local!='null') && ($val=='null')){//provincia y localidad
+        //     $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' ORDER BY capacidad ASC ";//LIMIT $start, $records_per_page";
+        // }else if (($provi!='null')&&($local!='null') &&($val!='null')){///busqueda por los 3 campos
+        //     $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' AND nombre LIKE '".$val."%'";// LIMIT $start, $records_per_page";
+        // }else if(($provi=='null') &&($local=='null') && ($val!='null')){//por valor del autocomplete
+        //     $sql = "SELECT * FROM casas WHERE nombre LIKE '".$val. "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC";// LIMIT $start, $records_per_page";
+        // }
+       
+        
         $stmp = $db->ejecutar($sql);
         return $db->listar($stmp);
     }
 
-    public function search_DAO($db,$data){
-        $val=$data['val'];
-        $start = $data['start'];
-        $records_per_page = $data['records'];
-        $sql = "SELECT * FROM casas WHERE nombre LIKE '".$val. "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC LIMIT $start, $records_per_page";
+    // public function select_pagination_DAO($db, $data){
+    //     $start = $data['start'];
+    //     $records_per_page = $data['records'];
+    //     $sql = "SELECT * from casas ORDER BY provincia ASC LIMIT $start, $records_per_page";
+        
+    //     $stmp = $db->ejecutar($sql);
+    //     return $db->listar($stmp);
+    // }
 
-        $stmp = $db->ejecutar($sql);
-        return $db->listar($stmp);
-    }
+    // public function selectProvi_DAO($db, $data){
+    //     $provi=$data['provi'];
+    //     $start = $data['start'];
+    //     $records_per_page = $data['records'];
+        
+    //     $sql = "SELECT * FROM casas WHERE provincia='$provi' ORDER BY localidad ASC,capacidad ASC LIMIT $start, $records_per_page";
+        
+    //     $stmp = $db->ejecutar($sql);
+    //     return $db->listar($stmp);
+    // }
+    // public function selectProviYLoca_DAO($db, $data){
+    //     $provi=$data['provi'];
+    //     $local=$data['local'];
+    //     $start = $data['start'];
+    //     $records_per_page = $data['records'];
+
+    //     $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' ORDER BY capacidad ASC LIMIT $start, $records_per_page";
+
+    //     $stmp = $db->ejecutar($sql);
+    //     return $db->listar($stmp);
+    // }
+    
+
+    // public function search_DAO($db,$data){
+    //     $val=$data['val'];
+    //     $start = $data['start'];
+    //     $records_per_page = $data['records'];
+    //     $sql = "SELECT * FROM casas WHERE nombre LIKE '".$val. "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC LIMIT $start, $records_per_page";
+
+    //     $stmp = $db->ejecutar($sql);
+    //     return $db->listar($stmp);
+    // }
 }

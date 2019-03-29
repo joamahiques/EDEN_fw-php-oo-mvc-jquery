@@ -22,23 +22,23 @@ class shop_model {
         }
         return self::$_instance;
     }
-    public function select_pagination($data) {
-        return $this->bll->select_pagination_BLL($data);
-    }
-    public function count() {
-        return $this->bll->count_BLL();
+    // public function select_pagination($data) {
+    //     return $this->bll->select_pagination_BLL($data);
+    // }
+    public function count($data) {
+        return $this->bll->count_BLL($data);
     }
 
-    public function selectProvi($data){
-        return $this->bll->selectProvi_BLL($data);
-    }
-    public function selectProviYLoca($data){
-        return $this->bll->selectProviYLoca_BLL($data);
-    }
+    // public function selectProvi($data){
+    //     return $this->bll->selectProvi_BLL($data);
+    // }
+    // public function selectProviYLoca($data){
+    //     return $this->bll->selectProviYLoca_BLL($data);
+    // }
     public function alldrops($data){
         return $this->bll->alldrops_BLL($data);
     }
-    public function search($data){
-        return $this->bll->search_BLL($data);
-    }
+    // public function search($data){
+    //     return $this->bll->search_BLL($data);
+    // }
 }
