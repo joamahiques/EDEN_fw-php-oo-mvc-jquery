@@ -59,39 +59,5 @@ class profileDAO {
     }
 
    
-    // public function obtain_provinces_DAO(){
-    //       $json = array();
-    //       $tmp = array();
-
-    //       $provincias = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/15_profile/1_profile/resources/provinciasypoblaciones.xml');
-    //       $result = $provincias->xpath("/lista/provincia/nombre | /lista/provincia/@id");
-    //       for ($i=0; $i<count($result); $i+=2) {
-    //         $e=$i+1;
-    //         $provincia=$result[$e];
-
-    //         $tmp = array(
-    //           'id' => (string) $result[$i], 'nombre' => (string) $provincia
-    //         );
-    //         array_push($json, $tmp);
-    //       }
-    //           return $json;
-
-    // }
-
-    // public function obtain_cities_DAO($arrArgument){
-    //       $json = array();
-    //       $tmp = array();
-
-    //       $filter = (string)$arrArgument;
-    //       $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/15_profile/1_profile/resources/provinciasypoblaciones.xml');
-    //       $result = $xml->xpath("/lista/provincia[@id='$filter']/localidades");
-
-    //       for ($i=0; $i<count($result[0]); $i++) {
-    //           $tmp = array(
-    //             'poblacion' => (string) $result[0]->localidad[$i]
-    //           );
-    //           array_push($json, $tmp);
-    //       }
-    //       return $json;
-    // }
-}//End productDAO
+    
+}//End DAO

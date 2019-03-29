@@ -53,6 +53,7 @@ $("#provinciaini").on("change", function () {
             
                         $.each(data.data, function(i, item) {///bucle para rellenar el dropdown1
                         // console.log( item);
+                        item.DMUN50=quitaAcentos(item.DMUN50);
                             $("#selcity").append("<option value='"+item.DMUN50+"'>" + item.DMUN50 + "</option>")
                         });
                     }
@@ -72,7 +73,7 @@ function load_provinces_xml() {
 
         $(xml).find("provincia").each(function () {
             var id = $(this).attr('id');
-            var name = $(this).find('nombre').text();
+            var name = $(this).find('nombre').text().toUpperCase();
             $("#provinciaini").append("<option id='" + id + "' value='" + name + "'>" + name + "</option>");
         });
     })
@@ -87,7 +88,7 @@ function load_cities_xml(prov) {
 
 		$(xml).find('provincia[id=' + prov + ']').each(function(){
     		$(this).find('localidad').each(function(){
-    			 $("#selcity").append("<option value='" + $(this).text() + "'>" + $(this).text() + "</option>");
+    			 $("#selcity").append("<option value='" + $(this).text().toUpperCase() + "'>" + $(this).text().toUpperCase() + "</option>");
     		});
         });
 	})

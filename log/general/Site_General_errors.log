@@ -1,0 +1,39 @@
+29/03/19 08:40:06 PM | ERROR: [8] Undefined index: va
+Notice on line 31 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | home_model | response 200
+29/03/19 08:40:06 PM | ERROR: [8] Constant SITE_ROOT already defined
+Notice on line 8 in file /opt/lampp/htdocs/www/EDEN/module/shop/model/model/shop_model.class.singleton.php
+ | shop_model | response 200
+29/03/19 08:58:40 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 08:59:26 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:00:51 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:01:06 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:02:28 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:02:43 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:03:37 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:03:45 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:03:54 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:04:01 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200
+29/03/19 09:04:11 PM | ERROR: [8] Undefined index: prov
+Notice on line 32 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controllershop.php
+ | shop | response 200

@@ -39,7 +39,27 @@ function getQueryVariable(variable) {
       })
       .fail( function(response){console.log(response)	});
       }
-
+ ///////////eliminar acentos     
+ function quitaAcentos(str){ 
+        for (var i=0;i<str.length;i++){ 
+        //Sustituye "á é í ó ú" 
+        //console.log(str.charAt(i));
+        if (str.charAt(i)=="á") str = str.replace("á","a"); 
+        if (str.charAt(i)=="à") str = str.replace("à","a"); 
+        if (str.charAt(i)=="é") str = str.replace(/é/,"e"); 
+        if (str.charAt(i)=="í") str = str.replace(/í/,"i"); 
+        if (str.charAt(i)=="ó") str = str.replace(/ó/,"o"); 
+        if (str.charAt(i)=="ú") str = str.replace(/ú/,"u"); 
+        if (str.charAt(i)=="Á") str = str.replace("Á","A"); 
+        if (str.charAt(i)=="À") str = str.replace("À","A"); 
+        if (str.charAt(i)=="É") str = str.replace(/É/,"E"); 
+        if (str.charAt(i)=="Í") str = str.replace(/Í/,"I"); 
+        if (str.charAt(i)=="Ó") str = str.replace(/Ó/,"O"); 
+        if (str.charAt(i)=="Ú") str = str.replace(/Ú/,"U"); 
+        } 
+        //console.log(str);
+        return str; 
+  } 
 $(document).ready(function(){
     
     // function datePic() {
@@ -115,5 +135,7 @@ toastr.options = {
 				}
 			}
 		});
-	}, 120000);
+  }, 120000);
+  
+  
 });/////////end ready

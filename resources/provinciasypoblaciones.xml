@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lista>
 	<provincia id="01">
-		<nombre><![CDATA[Alava]]></nombre>
+		<nombre><![CDATA[Álava]]></nombre>
 		<localidades>
 			<localidad c="0"><![CDATA[Aberasturi]]></localidad>
 			<localidad c="0"><![CDATA[Abetxuko]]></localidad>
@@ -2060,7 +2060,7 @@
 		</localidades>
 	</provincia>
 		<provincia id="04">
-		<nombre><![CDATA[Almeria]]></nombre>
+		<nombre><![CDATA[Almería]]></nombre>
 		<localidades>
 				<localidad c="0"><![CDATA[Abejuela]]></localidad>
 			<localidad c="0"><![CDATA[Abla]]></localidad>

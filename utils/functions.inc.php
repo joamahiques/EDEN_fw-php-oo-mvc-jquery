@@ -4,7 +4,7 @@
         print_r($array);
         echo "</pre><br>";
     }
-    /////callback   window.href de js
+    /////callback  
     function redirect($url){
         die('<script>top.location.href="'.$url.'";</script>');
     }

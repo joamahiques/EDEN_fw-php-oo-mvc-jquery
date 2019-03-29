@@ -75,19 +75,23 @@ function myprofile(){
 					$('#protf').attr('value', data[0].tf);
 					localStorage.setItem("user", data[0].name);
 					localStorage.setItem("avatar", data[0].avatar);
-
+					
 		  		setTimeout(function(){
 						if (typeof data[0].province != 'undefined' && data[0].province) {///si no es null ni undefined ni esta vacio....
-							//console.log('provi');
-							$("#provinciaini").val(data[0].province);
+							console.log(data[0].province);
+							
+							$("#provinciaini option[value="+ data[0].province +"]").attr("selected",true);
 							$("#provinciaini").trigger('change');////activar auto la funcion on change
-							}}, 500);
+							 }
+					 }, 200);
 		  		setTimeout(function(){
 						if (typeof data[0].city != 'undefined' && data[0].city) {
-							//	console.log('citi');
-							$("#selcity").val(data[0].city);	
+								data[0].city=quitaAcentos(data[0].city);
+								console.log(data[0].city);
+								$("#selcity option[value="+ data[0].city +"]").attr("selected",true);
+							//$("#selcity").val(data[0].city);	
 							}
-							}, 850);
+					}, 500);
         },
         error: function (data){
           console.log("not user, load_data_user");

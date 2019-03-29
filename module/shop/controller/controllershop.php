@@ -1,10 +1,15 @@
 <?php
     @session_start();
-	$path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
+    $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
     $path_model = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/module/shop/model/model/';
-    include($path . "module/shop/model/DAOShop.php");
+    //include($path . "module/shop/model/DAOShop.php");
     include($path . "/utils/common.inc.php");
-	////tiempo para logout
+    include ($path . 'paths.php');
+    include ($path . 'classes/Log.class.singleton.php');
+    include ($path. 'utils/errors.inc.php');
+    
+    
+    ////tiempo para logout
     if (isset($_SESSION["tiempo"])) {  
 	    $_SESSION["tiempo"] = time(); //Devuelve la fecha actual
 	}
@@ -17,6 +22,8 @@
             // exit;
             
             if( isset($_GET['page_num']) ){
+                set_error_handler('ErrorHandler');
+                try{
                 $page					=	intval($_GET['page_num']);//number of page
                 $current_page			=	$page - 1;
                 $records_per_page		=	6; // records to show per page
@@ -34,10 +41,18 @@
                 
                 $totalResults = loadModel($path_model, "shop_model", "count", $arrArgument);/// to count the total of houses
                 $arrValue = loadModel($path_model, "shop_model", "alldrops", $arrArgument);
-                //$totalResults=count($arrValue);
                 $result= array('totalcount'=>$totalResults,'results' => $arrValue);
-                echo json_encode($result);
-                // echo json_encode($arrValue);
+                
+                }catch(Exception $e) {echo json_encode('ERROR CONTROLLERSHOP');}
+                restore_error_handler();
+                //$totalResults=count($arrValue);
+                if(($totalResults)&&($arrValue)){
+                    // $result= array('totalcount'=>$totalResults,'results' => $arrValue);
+                    echo json_encode($result);
+                }else{
+                    echo json_encode($result);
+                }
+               
             }
             
             break;
