@@ -5,7 +5,7 @@
 				<div id="rel">
                 <div id="contenedor-slider" class="contenedor-slider">
                		 <h1>
-						<a href="index.php?page=controllerhome&op=list">
+						<a href="?module=home&function=list">
 							<img src="view/img/logo.png" alt="Eden">
 						</a>
 					</h1>

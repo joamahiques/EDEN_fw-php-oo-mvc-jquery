@@ -5,7 +5,7 @@
 
 
 $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
-define('SITE_ROOT', $path);
+// define('SITE_ROOT', $path);
 require(SITE_ROOT . "module/home/model/BLL/home_BLL.class.singleton.php");
 
 class home_model {

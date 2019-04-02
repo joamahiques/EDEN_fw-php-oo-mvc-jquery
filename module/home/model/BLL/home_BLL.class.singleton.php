@@ -4,7 +4,7 @@
 
 $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
 // define('SITE_ROOT', $path);
-define('MODEL_PATH', SITE_ROOT . 'model/');
+// define('MODEL_PATH', SITE_ROOT . 'model/');
 
 require(MODEL_PATH . "db.class.singleton.php");
 require(SITE_ROOT . "module/home/model/DAO/home_DAO.class.singleton.php");

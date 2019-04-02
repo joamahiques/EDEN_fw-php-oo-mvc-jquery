@@ -7,7 +7,8 @@ $(document).ready(function(){
     $('.load').fadeIn(500);
     $.ajax({
         type:"post",
-        url:"module/home/controller/controllerhome.php?op=lis",
+        // url:"module/home/controller/controller_home.php?op=lis",
+        url:"index.php?module=home&function=scroll_home",
         dataType:"json",
         data:'p='+current_page,
         success: function(data) {///array: totalcount and results
@@ -32,6 +33,7 @@ $(document).ready(function(){
         },
         error: function (data,response){
             console.log(data);
+            console.log(response);
             //console.log(response);
             console.log("not nooo noo");
           }
@@ -48,7 +50,8 @@ $(document).ready(function(){
 						$('.load').fadeIn(500);
 						$.ajax({
 							type:"post",
-                            url:"module/home/controller/controllerhome.php?op=lis",
+                            // url:"module/home/controller/controller_home.php?op=lis",
+                            url:"index.php?module=home&function=scroll_home",
                             dataType:"json",
                             data:'p='+current_page,
 							success:function(data){
