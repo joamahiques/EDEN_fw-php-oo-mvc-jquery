@@ -3,25 +3,21 @@ $(document).ready(function(){
 
 ///////////////  AJAX FOR ALL SEARCH
      function ajaxForSearch(durl) {
-         var url=durl;
-        //  console.log(url);
+         var data=durl;
+          //console.log(data);
          $.ajax({
             
-            type: "GET",
+            type: "POST",
             dataType: "json",
-            url:url,
-            data:'page_num=1',
+            //url:url,
+            url:'../../shop/products',
+            data:'page_num=1'+data,
         })
         .done(function( data, textStatus, jqXHR ) {
-            // console.log(data);
-            // if(!data.totalcount[0]){
-            //     total_pages=Math.ceil(parseInt(data.totalcount) / parseInt(6))//total pages=round total houses/6
-                
-            // }else{
+             //console.log(data);
+            
             total_pages=Math.ceil(parseInt(data.totalcount[0].total) / parseInt(6))
-            //    //total_pages=Math.ceil(parseInt(data.length) / parseInt(6))//total pages=round total houses/6
-            // }
-            //console.log(data.length);
+           
             if(total_pages<2){
                 $("#pagination").hide();
             }
@@ -29,7 +25,7 @@ $(document).ready(function(){
                 $('#inicioshop').empty();
                 $('<div><h3>Su búsqueda no dió resultados.</h3></div>').attr('id','list').appendTo('#inicioshop');
            }else{
-                console.log(data);
+                //console.log(data);
                 $('#inicioshop').empty();
                 $.each(data.results, function(index, list) {
                     // console.log(data);
@@ -57,13 +53,13 @@ $(document).ready(function(){
                         prev: '<<',
                         // href: '#result-page-{{number}}'
                     }).on("page", function (e, num) {
-                        console.log(num);
+                        //console.log(num);
                         e.preventDefault();
                         $.ajax({
             
-                            type: "GET",
+                            type: "post",
                             dataType: "json",
-                            url:url,
+                            url:'../../shop/products',
                             data:'page_num='+ num,
                         })
                         .done(function( data, textStatus, jqXHR ) {
@@ -100,8 +96,8 @@ $(document).ready(function(){
                  }//end if
                         
             })//end done
-        .fail(function( data, textStatus, jqXHR ) {
-            console.log("HELLOOOOO FAIL"+data);
+        .fail(function( data, response, jqXHR ) {
+            console.log(data);
         })
 
      }//end function
@@ -131,7 +127,8 @@ $(document).ready(function(){
                 drop=null;
             }
            
-            ajaxForSearch("module/shop/controller/controllershop.php?op=searchComplete&provi=" + drop + '&local=' + drop1 + '&val=' + drop2);
+             ajaxForSearch('&provi=' + drop + '&local=' + drop1 + '&val=' + drop2);
+            //ajaxForSearch('&provi=valencia&local=null&val=null');
         // ajaxForSearch("module/shop/controller/controllershop.php?op=list");
     //         if ((!drop && !drop1 && !drop2) || (drop==='null' && drop1==='null' && drop2==='null')){
     //             console.log("vengo de menú");

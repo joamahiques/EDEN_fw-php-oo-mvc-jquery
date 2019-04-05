@@ -1,6 +1,6 @@
 <?php
     
-    $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
+    // $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
     // define('SITE_ROOT', $path);
     // define('MODEL_PATH',SITE_ROOT.'model/');
 

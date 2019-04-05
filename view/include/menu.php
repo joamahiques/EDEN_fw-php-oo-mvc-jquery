@@ -5,10 +5,11 @@
 						<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 							<ul class="sf-menu">
 								<!-- <li><a href="index.php?page=home" data-tr="Inicio"></a></li> -->
-								<li><a href="?module=home&function=list" data-tr="Inicio"></a></li>								
+								<li><a href="<?php amigable('?module=home&function=list_home'); ?>" data-tr="Inicio"></a></li>								
 								
 								<!-- <li><a href="index.php?page=favorites" data-tr="Favoritos"></a></li> -->
-								<li><a href="index.php?page=shop"" data-tr="Tienda" id="btnshop"></a></li>
+								<!-- <li><a href="index.php?page=shop"" data-tr="Tienda" id="btnshop"></a></li> -->
+								<li><a href="<?php amigable('?module=shop&function=list_shop'); ?>" data-tr="Tienda"></a></li>
 								<li><a href="index.php?page=controller-contact&op=list" data-tr="Contacto"></a></li>
 								<!-- <li><a href="index.php?page=controller-login&op=view" data-tr="Login"></a></li> --> 
 								<li><a data-tr="Login" class="main-nav"></a></li>

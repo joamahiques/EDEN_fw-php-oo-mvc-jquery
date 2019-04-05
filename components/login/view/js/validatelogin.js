@@ -234,7 +234,7 @@ $(document).ready(function(){
 		
 		
 			
-			//clean before open
+			// clean before open
 			$("#formregister")[0].reset();
 			$("#formlogin")[0].reset();
 			$(".has-error").removeClass('has-error');

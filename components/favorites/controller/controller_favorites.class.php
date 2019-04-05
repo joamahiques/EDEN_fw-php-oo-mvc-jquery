@@ -8,9 +8,15 @@
             
             case 'favorites':
                 try{
-                    $DAOFavorites = new DAOFavorites();
-                    $rdo = $DAOFavorites->insertFavorites($_GET['id'],$_GET['email']);//$_SESSION['mail]
-        
+                    $arrArgument = array(
+                        'home'=>$_GET['id'],
+                        'email'=>$_GET['email']
+                    );
+                    // $DAOFavorites = new DAOFavorites();
+                    // $rdo = $DAOFavorites->insertFavorites($_GET['id'],$_GET['email']);//$_SESSION['mail]
+                    $arrValue = loadModel(MODEL_FAVORITES, "favorites_model", "insertFavorites", $arrArgument);
+                    echo json_encode($arrValue);
+                    exit;
                 }catch (Exception $e){
                     $callback = 'index.php?page=503';
                     die('<script>window.location.href="'.$callback .'";</script>');

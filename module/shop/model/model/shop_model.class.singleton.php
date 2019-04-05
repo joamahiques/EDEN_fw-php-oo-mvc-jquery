@@ -4,9 +4,9 @@
 
 
 
-$path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
-//define('SITE_ROOT', $path);
-require(SITE_ROOT . "module/shop/model/BLL/shop_BLL.class.singleton.php");
+// $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
+// //define('SITE_ROOT', $path);
+// require(SITE_ROOT . "module/shop/model/BLL/shop_BLL.class.singleton.php");
 
 class shop_model {
     private $bll;

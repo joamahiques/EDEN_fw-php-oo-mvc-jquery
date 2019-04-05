@@ -381,7 +381,8 @@ div#map{
     
   }
   .fotohome{
-    background: url(../img/masqi-predeter.jpg) center  no-repeat;
+    /* background: url(../img/masqi-predeter.jpg) center  no-repeat; */
+    background: url(http://localhost/www/EDEN/view/img/masqi-predeter.jpg)center  no-repeat;
     background-size: cover;
     min-height: 500px;
     width: 100%;
@@ -491,7 +492,8 @@ header h1 a img {
 
     /*header*/
 header.header {
-    background: url(../img/masqi-predeter.jpg) center  no-repeat;
+    /* background: url(../img/masqi-predeter.jpg) center  no-repeat; */
+    background: url(http://localhost/www/EDEN/view/img/masqi-predeter.jpg)center  no-repeat;
 	display: block;
     /* overflow: hidden; */
     /* padding: 42px 0 0; */
@@ -713,6 +715,7 @@ ul.tabs li.active a{
     background: #fff;
 }
 
+/* pagination */
 
 .bootpag {
     display: -ms-flexbox;

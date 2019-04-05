@@ -7,6 +7,8 @@ class controller_home {
     }
 
     function list_home() {
+        // echo json_encode("yeess list home");
+        // exit;
         require_once(VIEW_PATH_INC . "top-page.php");
         require_once(VIEW_PATH_INC . "header-home.php");
         require_once(VIEW_PATH_INC . "menu.php");
@@ -19,6 +21,8 @@ class controller_home {
     }
 
 function scroll_home() {
+    // echo json_encode("yeess scroll home");
+    //         exit;
     $totalResults = loadModel(MODEL_HOME, "home_model", "count");/// to count the total of houses
         if( isset($_POST['p']) ){
             $page					=	intval($_POST['p']);//number of page

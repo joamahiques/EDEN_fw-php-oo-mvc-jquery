@@ -1,18 +1,24 @@
 //variable initialization 
 var current_page	=	1;
 var loading			=	false;
-var oldscroll		=	0;
-
+var url1             =   '';
+//console.log(window.location.href);
 $(document).ready(function(){
+
+    if(window.location.href=='http://localhost/www/EDEN/'){
+        url1='home/scroll_home';
+    }else if(window.location.href=='http://localhost/www/EDEN/home/list_home/'){
+        url1='../../home/scroll_home';
+    }
+
     $('.load').fadeIn(500);
     $.ajax({
         type:"post",
-        // url:"module/home/controller/controller_home.php?op=lis",
-        url:"index.php?module=home&function=scroll_home",
+        url:url1,
         dataType:"json",
         data:'p='+current_page,
         success: function(data) {///array: totalcount and results
-            console.log(data);
+            // console.log(data);
             //total:
             total_pages=Math.ceil(parseInt(data.totalcount[0].totalcasas) / parseInt(6))//total pages=round total houses/6
             //results
@@ -32,6 +38,8 @@ $(document).ready(function(){
             current_page++;
         },
         error: function (data,response){
+            $("#inicio").hide().append('<div><h3>Error cargando los productos</h3></div>').fadeIn(1000);
+            $('.load').fadeOut(500);
             console.log(data);
             console.log(response);
             //console.log(response);
@@ -42,16 +50,14 @@ $(document).ready(function(){
     if(document.getElementById('inicio')){
     $(window).scroll(function() {
 		if($(window).scrollTop() + $(window).height() == $(document).height()){
-        // if( $(window).scrollTop() > oldscroll ){ //if we are scrolling down
-        //console.log(current_page);
 			if( ($(window).scrollTop() + $(window).height() >= $(document).height()  ) && (current_page <= total_pages) ) {
 				    if( ! loading ){
+                        //console.log(url1);
                         loading = true;
 						$('.load').fadeIn(500);
 						$.ajax({
 							type:"post",
-                            // url:"module/home/controller/controller_home.php?op=lis",
-                            url:"index.php?module=home&function=scroll_home",
+                            url:url1,
                             dataType:"json",
                             data:'p='+current_page,
 							success:function(data){
@@ -70,7 +76,7 @@ $(document).ready(function(){
                                 });
                                 //console.log(casas);
                                 $(casas).hide().appendTo('#inicio').fadeIn(2000);
-                                readmyfavorites();
+                                // readmyfavorites();
 								current_page++;
 								$('.load').fadeOut(500);
 								loading = false;

@@ -5,7 +5,7 @@
 				<div id="rel">
                 <div id="contenedor-slider" class="contenedor-slider">
                		 <h1>
-						<a href="?module=home&function=list">
+						<a href="="<?php amigable('?module=home&function=list_home'); ?>">
 							<img src="view/img/logo.png" alt="Eden">
 						</a>
 					</h1>

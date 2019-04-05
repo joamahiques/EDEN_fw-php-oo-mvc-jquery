@@ -139,8 +139,8 @@ function geolocation(id) {
             var longitude=position.coords.longitude;
             //console.log("Found your location nLat : "+latitude+" nLang :"+longitude);
             url="https://api.clubrural.com/api.php?claveapi="+keyclub+"&type=gmaps&lat="+latitude+"&lng="+longitude+"&limitkm="+numeroAleatorio(1,80);
-            console.log(url);
-            console.log('geolocation');
+            // console.log(url);
+            // console.log('geolocation');
         
             $.ajax({
                 type: "GET",

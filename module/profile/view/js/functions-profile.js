@@ -94,7 +94,7 @@ function myprofile(){
 					}, 500);
         },
         error: function (data){
-          console.log("not user, load_data_user");
+          //console.log("not user, load_data_user");
           //console.log(data);
         }
       })

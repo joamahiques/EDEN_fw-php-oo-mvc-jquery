@@ -2,12 +2,12 @@
 // echo json_encode("shop_bll.class.singleton.php");
 // exit;
 
-$path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
-// define('SITE_ROOT', $path);
-define('MODEL_PATH', SITE_ROOT . 'model/');
+// $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
+// // define('SITE_ROOT', $path);
+// define('MODEL_PATH', SITE_ROOT . 'model/');
 
-require(MODEL_PATH . "db.class.singleton.php");
-require(SITE_ROOT . "module/shop/model/DAO/shop_DAO.class.singleton.php");
+// require(MODEL_PATH . "db.class.singleton.php");
+// require(SITE_ROOT . "module/shop/model/DAO/shop_DAO.class.singleton.php");
 
 class shop_bll{
     private $dao;
@@ -15,8 +15,8 @@ class shop_bll{
     static $_instance;
 
     private function __construct() {
-        $this->dao = shopDAO::getInstance();
-        $this->db = Db::getInstance();
+        $this->dao = shop_dao::getInstance();
+        $this->db = db::getInstance();
     }
 
     public static function getInstance() {

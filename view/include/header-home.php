@@ -5,17 +5,17 @@
 				<div id="rel">
                 <div id="contenedor-slider" class="contenedor-slider">
                		 <h1>
-						<a href="?module=home&function=list">
-							<img src="view/img/logo.png" alt="Eden">
+						<a href="<?php amigable('?module=home&function=list_home'); ?>">
+							<img src="<?php echo IMG_PATH ?>logo.png" alt="Eden">
 						</a>
 					</h1>
 					
                     <div id="slider" class="slider">
-                        <section class="slider__section"><img src="view/img/masqi-predeter.jpg" class="slider__img"></section>
-                        <section class="slider__section"><img src="view/img/panoramica.jpg" class="slider__img"></section>
-                        <section class="slider__section"><img src="view/img/casa1.jpg" class="slider__img"></section>
-                        <section class="slider__section"><img src="view/img/masqi.jpg" class="slider__img"></section>
-						<section class="slider__section"><img src="view/img/masqi2.png" class="slider__img"></section>
+                        <section class="slider__section"><img src="<?php echo IMG_PATH ?>masqi-predeter.jpg" class="slider__img"></section>
+                        <section class="slider__section"><img src="<?php echo IMG_PATH ?>panoramica.jpg" class="slider__img"></section>
+                        <section class="slider__section"><img src="<?php echo IMG_PATH ?>casa1.jpg" class="slider__img"></section>
+                        <section class="slider__section"><img src="<?php echo IMG_PATH ?>masqi.jpg" class="slider__img"></section>
+						<section class="slider__section"><img src="<?php echo IMG_PATH ?>masqi2.png" class="slider__img"></section>
 
                     </div>
                     <div id="btn-prev" class="btn-prev">&#60;</div>

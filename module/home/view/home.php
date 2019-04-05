@@ -8,7 +8,7 @@
             <div id="inicio">
     	
             </div>
-            <div class='load'><img src='view/img/Ellipsis-1s-91px.gif'></div>
+            <div class='load'><img src='<?php echo IMG_PATH ?>Ellipsis-1s-91px.gif'></div>
             <div class='club'>
                 <h2>Ofertas cerca de tí</h2>
                 <div id ="inicioclub"></div>
