@@ -4,15 +4,17 @@ $(document).ready(function () {
     
     $('body').on("click",".read", function () {
         var id = this.getAttribute('id');
-        
+        console.log("modaljs");
         $.ajax({
             // En data puedes utilizar un objeto JSON, un array o un query string
             //data: {"parametro1" : "valor1"},
-            type: "GET",//Cambiar a type: POST si necesario
+            type: "post",//Cambiar a type: POST si necesario
             // Formato
             dataType: "json",
             // URL
-           url: "components/modal/controller/controllerModal.php?op=read_modal&modal=" + id,
+        url: "components/modal/controller/controller_modal.php?op=read_modal&modal=" + id,
+           //url:'../../module/modal/read_modal'
+           //url:'?module=modal&function=read_modal'
         })
          .done(function( data) {
                  //console.log( "La solicitud se ha completado correctamente." );
@@ -46,9 +48,9 @@ $(document).ready(function () {
                 modal(data.nombre);
             
          })
-         .fail(function( jqXHR, textStatus, errorThrown ) {
+         .fail(function( data, textStatus, errorThrown ) {
              if ( console && console.log ) {
-                 console.log( "La solicitud a fallado: " +  textStatus);
+                 console.log( "La solicitud a fallado: " +  data);
              }
         });
         

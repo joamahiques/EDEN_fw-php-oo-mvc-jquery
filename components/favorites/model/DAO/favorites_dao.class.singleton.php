@@ -20,9 +20,9 @@ class favorites_dao {
         $home= $data['home'];
         $email=$data['email'];
         $sql="INSERT INTO `favoritos1`(`user_id`, `home_id`) VALUES ((SELECT id FROM users  WHERE email='$email'), (SELECT id FROM casas  WHERE nombre='$home'))";
-        $stmt = $db->ejecutar($sql);
-        return $db->listar($stmt);
-         
+        // $stmt = $db->ejecutar($sql);
+        // return $db->listar($stmt);
+        return $db->ejecutar($sql);        
      }
      function readFavorites_DAO(&db,$email){
          
@@ -35,8 +35,9 @@ class favorites_dao {
         $home= $data['home'];
         $email=$data['email'];
         $sql="DELETE FROM `favoritos1` WHERE user_id=(SELECT id FROM users WHERE email='$email') and home_id=(SELECT ID FROM casas WHERE nombre='$home')";
-        $stmt = $db->ejecutar($sql);
-        return $db->listar($stmt);
+        // $stmt = $db->ejecutar($sql);
+        // return $db->listar($stmt);
+        return $db->ejecutar($sql);  
         
       }
 }

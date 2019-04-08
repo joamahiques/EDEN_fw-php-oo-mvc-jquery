@@ -11,7 +11,7 @@ class controller_shop{
         require_once(VIEW_PATH_INC . "top-page.php");
         require_once(VIEW_PATH_INC . "header-home.php");
         require_once(VIEW_PATH_INC . "menu.php");
-        include(SHOP_VIEW_PATH . "shop.php");
+        include(MODULE_VIEW_PATH . "shop.php");
         require_once(VIEW_PATH_INC . "footer.php");
         if (isset($_SESSION["tiempo"])) {  
             $_SESSION["tiempo"] = time(); //Devuelve la fecha actual
@@ -38,8 +38,8 @@ class controller_shop{
                 'local'=>$local
             );
             
-            $totalResults = loadModel(MODEL_SHOP, "shop_model", "count", $arrArgument);/// to count the total of houses
-            $arrValue = loadModel(MODEL_SHOP, "shop_model", "alldrops", $arrArgument);
+            $totalResults = loadModel(MODEL_MODULE, "shop_model", "count", $arrArgument);/// to count the total of houses
+            $arrValue = loadModel(MODEL_MODULE, "shop_model", "alldrops", $arrArgument);
             $result= array('totalcount'=>$totalResults,'results' => $arrValue);
             
             }catch(Exception $e) {echo json_encode($e+"error shop");}

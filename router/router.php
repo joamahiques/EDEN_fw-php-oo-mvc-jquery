@@ -17,18 +17,21 @@ if (PRODUCTION) { //estamos en producción
 
 
 $_SESSION['module'] = "";
+$_SESSION['component'] = "";
 
 function handlerRouter() {
+    
     if (!empty($_GET['module'])) {
         $URI_module = $_GET['module'];
+        //$_SESSION['module'] = $_GET['module'];
     } else {
         $URI_module = 'home';
+       // $_SESSION['module'] = "home";
     }
-       
+    
     if (!empty($_GET['function'])) {
         $URI_function = $_GET['function'];
     } else {
-        // $URI_function = 'begin';
         $URI_function = 'list_home';
     }
     

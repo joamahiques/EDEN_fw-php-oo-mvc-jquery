@@ -12,18 +12,14 @@ class controller_home {
         require_once(VIEW_PATH_INC . "top-page.php");
         require_once(VIEW_PATH_INC . "header-home.php");
         require_once(VIEW_PATH_INC . "menu.php");
-        include(HOME_VIEW_PATH . "home.php");
-
-        //  loadView('modules/products/view/', 'home.php');
-        
-
+        include(MODULE_VIEW_PATH . "home.php");
         require_once(VIEW_PATH_INC . "footer.php");
     }
 
 function scroll_home() {
     // echo json_encode("yeess scroll home");
     //         exit;
-    $totalResults = loadModel(MODEL_HOME, "home_model", "count");/// to count the total of houses
+        $totalResults = loadModel(MODEL_MODULE, "home_model", "count");/// to count the total of houses
         if( isset($_POST['p']) ){
             $page					=	intval($_POST['p']);//number of page
             $current_page			=	$page - 1;
@@ -33,7 +29,7 @@ function scroll_home() {
                 'start'=>$start,
                 'records'=>$records_per_page
             );
-            $arrValue = loadModel(MODEL_HOME, "home_model", "select_scroll", $arrArgument);
+            $arrValue = loadModel(MODEL_MODULE, "home_model", "select_scroll", $arrArgument);
             $result= array('totalcount'=>$totalResults,'results' => $arrValue);
             echo json_encode($result);
             exit;

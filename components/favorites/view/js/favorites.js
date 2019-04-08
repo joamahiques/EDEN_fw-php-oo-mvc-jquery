@@ -8,7 +8,8 @@ function readmyfavorites(){
                 
             type: "GET",
             dataType: "json",
-            url: "components/favorites/controller/controllerfavorites.php?op=readfavorites",
+            //url: "components/favorites/controller/controllerfavorites.php?op=readfavorites",
+            url: '../../favorites/read_favorites'
         })
         .done(function( data, textStatus, jqXHR ) {
         //console.log( data );
