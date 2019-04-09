@@ -26,16 +26,31 @@ function handlerRouter() {
         //$_SESSION['module'] = $_GET['module'];
     } else {
         $URI_module = 'home';
-       // $_SESSION['module'] = "home";
     }
-    
+   
     if (!empty($_GET['function'])) {
         $URI_function = $_GET['function'];
     } else {
         $URI_function = 'list_home';
     }
     
-    handlerModule($URI_module, $URI_function);
+    if(($_GET['module'])=='components'){
+        //print_r($_GET['function']);//nombre del comopenete
+        //print_r($_GET['aux']);//nombre de la funcion
+        $comp=$_GET['function'];
+        $func=$_GET['aux'];
+        $path = COMPONENTS_PATH . $comp . "/controller/controller_" . $comp . ".class.php";
+        require_once($path);
+                
+        $controllerClass = "controller_" . $comp;
+                
+        $obj = new $controllerClass;
+        call_user_func(array($obj, $func));
+    }else{
+        handlerModule($URI_module, $URI_function);
+    }
+
+    
 }
 
 function handlerModule($URI_module, $URI_function) {

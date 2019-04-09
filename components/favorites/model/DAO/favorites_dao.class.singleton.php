@@ -24,7 +24,7 @@ class favorites_dao {
         // return $db->listar($stmt);
         return $db->ejecutar($sql);        
      }
-     function readFavorites_DAO(&db,$email){
+     function readFavorites_DAO($db,$email){
          
          $sql = "SELECT nombre FROM casas, favoritos1 WHERE ID =home_id and user_id = ( SELECT id FROM users WHERE email='$email')";
          $stmt = $db->ejecutar($sql);

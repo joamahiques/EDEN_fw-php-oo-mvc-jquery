@@ -1,7 +1,10 @@
 <?php
 // console_log($_SESSION('module'));
-//echo($_SESSION['module']);
-
+if (!isset($_GET['module'])){
+    $_GET['module'] = 'home';
+}
+// echo($_GET['module']);
+// exit;
 
 //SITE_ROOT
 $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
@@ -21,6 +24,8 @@ define('VIEW_PATH_INC', SITE_ROOT . 'view/include/');
 define('VIEW_PATH_INC_ERROR', SITE_ROOT . 'view/include/error/');
 //modules
 define('MODULES_PATH', SITE_ROOT . 'module/');
+///components
+define('COMPONENTS_PATH', SITE_ROOT . 'components/');
 //resources
 define('RESOURCES', SITE_ROOT . 'resources/');
 //media
@@ -55,6 +60,7 @@ define('MODEL_FAVORITES', SITE_ROOT . 'components/favorites/model/model/');
 define('FAVORITES_JS_PATH', SITE_PATH . 'components/favorites/view/js/');
 define('FAVORITES_VIEW_PATH', SITE_ROOT . 'components/favorites/view/');
 ///MODAL
+define('MODEL_MODAL', SITE_ROOT . 'components/modal/model/model/');
 define('MODAL_JS_PATH', SITE_PATH . 'components/modal/view/js/');
 ///SEARCH
 define('SEARCH_JS_PATH', SITE_PATH . 'components/search/view/js/');

@@ -35,6 +35,11 @@ spl_autoload_register( function($className){
             spl_autoload($className);
             //spl_autoload(SITE_ROOT . "module/home/model/DAO/home_DAO.class.singleton.php");
         } 
+        elseif (file_exists('components/' . $module_name . '/model/'.$model_name.'/' . $className . '.class.singleton.php')) {//require(BLL_USERS . "user_bll.class.singleton.php");
+            set_include_path('components/' . $module_name . '/model/'.$model_name.'/');
+            spl_autoload($className);
+            //spl_autoload(SITE_ROOT . "module/home/model/DAO/home_DAO.class.singleton.php");
+        } 
         //model
         elseif (file_exists('model/' . $className . '.class.singleton.php')) {//require(MODEL_PATH . "db.class.singleton.php");
             set_include_path('model/');
