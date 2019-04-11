@@ -1,3 +1,4 @@
+<?php include('module/login/view/login.html') ?>
 <div id="contenido" class="content">
     <div class="container_12">
         <div class="flex3">
@@ -8,28 +9,36 @@
             </div>
             <div class="contact">
 					<h2>Contacto:</h2>
-					<form id="form">
+					<form id="form" name="form">
 						<label class="name">
-							<input type="text" placeholder="Name:" />
+							<input type="text" placeholder="Name:" name="name" id="con_name" />
 							<span class="cd-error-message"></span>
 						</label>
 						<label class="email">
-							<input type="text" placeholder="E-mail:"/>
+							<input type="text" placeholder="E-mail:" name="email" id="con_email"/>
 							<span class="cd-error-message"></span>
 
 						</label>
-						<label class="phone">
-							<input type="text" placeholder="Phone:"/>
-							<span class="cd-error-message"></span>
-
+						
+						<label class="select">
+							<select  name="opcontact" id="opcontact" id="con_options">
+								<option disabled selected>Selecciona una opción</option>
+								<option>Casas</option>
+								<option>Reservas</option>
+								<option>Propietarios</option>
+								<option>Sugerencias</option>
+								<option>Otros</option>
+							</select>
+							<span id="e_select" class="cd-error-message"></span>							
 						</label>
 						<label class="message">
-							<textarea placeholder="Message:"></textarea>
+							<textarea placeholder="Message:" name="mess" id="con_mess"></textarea>
 							<span class="cd-error-message"></span>							
 						</label>
+						
 						<label class="contactbtn">
-								<a href="#" data-type="reset" class="btn">BORRAR</a>
-								<a href="#" data-type="submit" class="btn">ENVIAR</a>
+								<!-- <button type="reset" class="btn">BORRAR</button> -->
+								<button type="submit" class="btn">ENVIAR</button>
 						</label>
                     </form>
                     

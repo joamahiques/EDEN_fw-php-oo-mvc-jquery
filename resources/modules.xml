@@ -8,4 +8,20 @@
         <name>shop</name>
         <uri>shop</uri>
     </module>
+    <module>
+        <name>login</name>
+        <uri>login</uri>
+    </module>
+    <module>
+        <name>contact</name>
+        <uri>contact</uri>
+    </module>
+    <module>
+        <name>crud</name>
+        <uri>crud</uri>
+    </module>
+    <module>
+        <name>profile</name>
+        <uri>profile</uri>
+    </module>
 </modules>

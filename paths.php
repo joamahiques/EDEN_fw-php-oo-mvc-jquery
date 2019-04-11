@@ -50,8 +50,8 @@ define('MODEL_PATH_LOGIN', SITE_ROOT . 'components/login/model/');
 define('DAO_LOGIN', SITE_ROOT . 'components/login/model/DAO/');
 define('BLL_LOGIN', SITE_ROOT . 'components/login/model/BLL/');
 define('MODEL_LOGIN', SITE_ROOT . 'components/login/model/model/');
-define('LOGIN_JS_PATH', SITE_PATH . 'components/login/view/js/');
-define('LOGIN_VIEW_PATH', SITE_ROOT . 'components/login/view/');
+define('LOGIN_JS_PATH', SITE_PATH . 'module/login/view/js/');/////no borrar
+define('LOGIN_VIEW_PATH', SITE_ROOT . 'module/login/view/');/////no borrar
 ///FAVORITES
 define('MODEL_PATH_FAVORITES', SITE_ROOT . 'components/favorites/model/');
 define('DAO_FAVORITES', SITE_ROOT . 'components/favorites/model/DAO/');

@@ -55,9 +55,10 @@
 		<script src="<?php echo FAVORITES_JS_PATH ?>favorites.js"></script>
 		<!-- <script src="components/search/view/js/functionssearch.js"></script> -->
 		<script src="<?php echo SEARCH_JS_PATH ?>functionssearch.js"></script>
-		<!-- <script src="components/login/view/js/validatelogin.js"></script> -->
-		<script src="<?php echo LOGIN_JS_PATH ?>validatelogin.js"></script>	
+			
 		<!-- modules js -->
+		<!-- <script src="components/login/view/js/validatelogin.js"></script> -->
+		<script src="<?php echo LOGIN_JS_PATH ?>validatelogin.js"></script>
 		<!-- <script src="module/homes/view/js/functionshomes.js"></script> -->
 		<script src="<?php echo MODULE_JS_PATH ?>functionshomes.js"></script>
 		<!-- <script src="module/homes/view/js/validateData.js"></script> -->
@@ -66,6 +67,7 @@
 		<script src="<?php echo MODULE_JS_PATH ?>datatable.js"></script>	
 		<!-- <script src="module/contact/view/js/map.js"></script> -->
 		<script src="<?php echo MODULE_JS_PATH ?>map.js"></script>
+		<script src="<?php echo MODULE_JS_PATH ?>formcontact.js"></script>
 		<!-- <script src="module/home/view/js/slider.js"></script> -->
 		<script src="<?php echo MODULE_JS_PATH ?>slider.js"></script>
 		<!-- <script src="module/home/view/js/functionshome.js"></script> -->
@@ -76,5 +78,6 @@
 		<script src="<?php echo MODULE_JS_PATH ?>functionscart.js"></script>
 		<!-- <script src="module/profile/view/js/functions-profile.js"></script> -->
 		<script src="<?php echo MODULE_JS_PATH ?>functions-profile.js"></script>
+		
 
 	</head>

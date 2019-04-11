@@ -29,12 +29,13 @@ spl_autoload_register( function($className){
         $model_name = strtoupper($model_name);
     }
     
-        //users && products
+        //singleton modules;
         if (file_exists('module/' . $module_name . '/model/'.$model_name.'/' . $className . '.class.singleton.php')) {//require(BLL_USERS . "user_bll.class.singleton.php");
             set_include_path('module/' . $module_name . '/model/'.$model_name.'/');
             spl_autoload($className);
             //spl_autoload(SITE_ROOT . "module/home/model/DAO/home_DAO.class.singleton.php");
         } 
+        ///singletons components
         elseif (file_exists('components/' . $module_name . '/model/'.$model_name.'/' . $className . '.class.singleton.php')) {//require(BLL_USERS . "user_bll.class.singleton.php");
             set_include_path('components/' . $module_name . '/model/'.$model_name.'/');
             spl_autoload($className);

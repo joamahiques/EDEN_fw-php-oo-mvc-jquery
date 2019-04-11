@@ -244,7 +244,7 @@ html * {
     font-size: 0.875rem;
     color: #343642;
   }
-  .cd-form .cd-error-message {
+  .cd-form .cd-error-message,#form .cd-error-message {
     display: inline-block;
     position: absolute;
     left: -5px;
@@ -265,7 +265,7 @@ html * {
     transition: opacity 0.2s 0, visibility 0 0.2s;
   }
 
-  .cd-form .cd-error-message::after {
+  .cd-form .cd-error-message::after,#form .cd-error-message::after {
     /* triangle */
     content: '';
     position: absolute;
@@ -277,7 +277,7 @@ html * {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
   }
-  .cd-form .cd-error-message.is-visible {
+  .cd-form .cd-error-message.is-visible,#form .cd-error-message.is-visible {
     opacity: 1;
     visibility: visible;
     -webkit-transition: opacity 0.2s 0, visibility 0 0;

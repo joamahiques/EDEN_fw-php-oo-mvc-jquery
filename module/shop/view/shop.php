@@ -1,3 +1,4 @@
+<?php include('module/login/view/login.html') ?>
 <div id="contenido" class="content">
     <div class="container_12">
         <div class="grid_12">   
@@ -29,3 +30,4 @@
     </div>
    
 </section>
+<div class="loginhtml"></div>

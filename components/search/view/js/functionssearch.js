@@ -94,7 +94,7 @@
     
                 if((drop==0)&&(drop2==0)&&(auto==="")){
                    // console.log("ingresa criterios de busqueda");
-                    toastr["info"]("Ingresa criterios de busqueda"),{"iconClass":'toast-info'};
+                    toastr["info"]("Ingresa criterios de busqueda o ve a la Tienda"),{"iconClass":'toast-info'};
                     
                 }else{
                     

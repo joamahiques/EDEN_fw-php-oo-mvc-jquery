@@ -17,9 +17,7 @@ $(document).ready(function () {
             dataType: "json",
             data: 'op=read_modal&modal='+id,
             // URL
-        //url: "components/modal/controller/controller_modal.php?op=read_modal&modal=" + id,
            url:url2
-           //url:'?module=modal&function=read_modal'
         })
          .done(function( data) {
                  //console.log( "La solicitud se ha completado correctamente." );

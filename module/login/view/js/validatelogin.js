@@ -231,9 +231,7 @@ $(document).ready(function(){
 
 	//open modal
 	$main_nav.on('click', function(event){
-		
-		
-			
+		console.log($form_modal);
 			// clean before open
 			$("#formregister")[0].reset();
 			$("#formlogin")[0].reset();
@@ -242,8 +240,6 @@ $(document).ready(function(){
 			$form_modal.addClass('is-visible');	
 			//show the selected form
 			( $(event.target).is('.cd-signup') ) ? signup_selected() : login_selected();
-		
-
 	});
 
 	//close modal

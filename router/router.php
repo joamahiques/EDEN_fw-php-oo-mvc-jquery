@@ -4,7 +4,7 @@ require ('autoload.php');
 include(UTILS . "functions.inc.php");
 include(UTILS . "errors.inc.php");
 include(UTILS . "common.inc.php");
-//include(UTILS . "filters.inc.php");
+
 
 if (PRODUCTION) { //estamos en producción
     ini_set('display_errors', '1');

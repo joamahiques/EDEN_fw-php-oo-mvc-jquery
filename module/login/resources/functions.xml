@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>view</name>
+        <uri>view</uri>
+    </function>
+    <function>
+        <name>register</name>
+        <uri>register</uri>
+    </function>
+    <function>
+        <name>autologin</name>
+        <uri>autologin</uri>
+    </function>
+    <function>
+        <name>login</name>
+        <uri>login</uri>
+    </function>
+    <function>
+        <name>logout</name>
+        <uri>logout</uri>
+    </function>
+    <function>
+        <name>controluser</name>
+        <uri>controluser</uri>
+    </function>
+    <function>
+        <name>actividad</name>
+        <uri>actividad</uri>
+    </function>
+</functions>
