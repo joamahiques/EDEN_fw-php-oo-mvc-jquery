@@ -311,7 +311,17 @@ div.contact{
 	clear: left;
 	width: 100%;
 }
-
+#form .contactbtn{
+	display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    min-height: 41px;
+    float: left;
+    clear: left;
+}
+.contactbtn button.btn{
+	width: 40%;
+}
 #form label.message{
 	width: 100%;
 	position: relative;

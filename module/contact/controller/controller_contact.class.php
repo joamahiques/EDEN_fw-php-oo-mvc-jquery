@@ -3,16 +3,16 @@
     class controller_contact {
 
         function __construct() {
-            include(UTILS . "mail.inc.php");
+            //include(UTILS . "mail.inc.php");
             $_SESSION['module'] = "contact";
         }
     
         function list_contact() {
             
             require_once(VIEW_PATH_INC . "top-page.php");
-            require_once(VIEW_PATH_INC . "header-home.php");
+            require_once(VIEW_PATH_INC . "header.php");
             require_once(VIEW_PATH_INC . "menu.php");
-            include(MODULE_VIEW_PATH . "contactus.php");
+            include(MODULE_VIEW_PATH . "contactus.html");
             require_once(VIEW_PATH_INC . "footer.php");
         }
 

@@ -1,19 +1,51 @@
 <?php
     
-    // $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
-    // include($path . "components/login/model/DAOlogin.php");
-    // include($path . "components/login/model/validatelogin.php");
-	// @session_start();
     class controller_login {
 
 		function __construct() {
-			include(FUNCTIONS_MODULE . "utils.inc.php");
-			$_SESSION['module'] = "login";
+				include(FUNCTIONS_MODULE . "utils.inc.php");
+				$_SESSION['module'] = "login";
 		}
 		
    
     function register() {
+				$user=$_POST['user'];
+				$valide = validateregister($user); 
+				// echo($valide);
+				// exit;
+				if(!$valide){
 
+								$arrArgument = array(
+									'user'=>$_POST['user'],
+									'email'=>$_POST['mail'],
+									'passwd'=> $_POST['password']
+							);
+							
+									try {
+											$rlt['token']= loadModel(MODEL_MODULE,'login_model','insert_user',$arrArgument);//return token
+										
+									} catch (Exception $e) {
+												echo json_encode("Error");
+												exit;
+									}
+									
+									if(!$rlt){
+													echo json_encode("Error");
+													exit;
+									}else{
+										$rlt['type']='alta';
+										$rlt['inputEmail']=$arrArgument['email'];
+										$rlt['inputMessage']='Para activar tu cuenta en EDEN pulse el siguiente enlace:';
+
+										enviar_email($rlt);
+									}
+
+									echo("ok");
+							 exit;
+				}else{
+					echo "ERROR: Este usuario ya está registrado";
+					exit;
+				}
 	}
 	function login() {
 				try {

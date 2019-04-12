@@ -4,7 +4,7 @@ require ('autoload.php');
 include(UTILS . "functions.inc.php");
 include(UTILS . "errors.inc.php");
 include(UTILS . "common.inc.php");
-
+include(UTILS . "mail.inc.php");
 
 if (PRODUCTION) { //estamos en producción
     ini_set('display_errors', '1');
@@ -70,7 +70,6 @@ function handlerModule($URI_module, $URI_function) {
                 
                 $obj = new $controllerClass;
             } else {
-                //die($URI_module . ' - Controlador no encontrado');
                 require_once(VIEW_PATH_INC ."top-page.php");
                 if ((!empty($_GET['module']))||($_GET['module']==='home')){
                     require_once(VIEW_PATH_INC ."header-home.php");///si estamos en homepage
@@ -94,7 +93,6 @@ function handlerModule($URI_module, $URI_function) {
         }
     }
     if (!$exist) {
-        //die($URI_module . ' - Controlador no encontrado');
         require_once(VIEW_PATH_INC ."top-page.php");
         require_once(VIEW_PATH_INC . "header.php");
 
@@ -105,9 +103,7 @@ function handlerModule($URI_module, $URI_function) {
         }else if($_SESSION['type']==='admin'){
             require_once(VIEW_PATH_INC ."menuadmin.php");   
         } 
-        // require_once(VIEW_PATH_INC . "menu.php");
         require_once(VIEW_PATH_INC_ERROR . "error404.php");
-        // showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
         require_once(VIEW_PATH_INC . "footer.php");
     }
 }
@@ -124,22 +120,18 @@ function handlerFunction($module, $obj, $URI_function) {
         }
     }
     if (!$exist) {
-        // die($URI_function . ' - Funci&oacute;n no encontrada');
-        require_once(VIEW_PATH_INC ."top-page.php");
-        require_once(VIEW_PATH_INC . "header.php");
-        if(!isset($_SESSION['type'])){
-            require_once(VIEW_PATH_INC ."menu.php");
-        }else if ($_SESSION['type']==='client'){
-            require_once(VIEW_PATH_INC ."menuuser.php");   
-        }else if($_SESSION['type']==='admin'){
-            require_once(VIEW_PATH_INC ."menuadmin.php");   
-        } 
-        // require_once(VIEW_PATH_INC . "menu.php");
-        require_once(VIEW_PATH_INC_ERROR . "error404.php");
-        // showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
-        require_once(VIEW_PATH_INC . "footer.php");
+        // require_once(VIEW_PATH_INC ."top-page.php");
+        // require_once(VIEW_PATH_INC . "header.php");
+        // if(!isset($_SESSION['type'])){
+        //     require_once(VIEW_PATH_INC ."menu.php");
+        // }else if ($_SESSION['type']==='client'){
+        //     require_once(VIEW_PATH_INC ."menuuser.php");   
+        // }else if($_SESSION['type']==='admin'){
+        //     require_once(VIEW_PATH_INC ."menuadmin.php");   
+        // } 
+        // require_once(VIEW_PATH_INC_ERROR . "error404.php");
+        // require_once(VIEW_PATH_INC . "footer.php");
     } else {
-        //$obj->$event();
         call_user_func(array($obj, $event));
     }
 }

@@ -19,10 +19,10 @@ class login_bll{
     public function validate_BLL($data){
         return $this->dao->validate_DAO($this->db, $data);
       }
-    public function insert_user_BLL(){
-        return $this->dao->insert_user_DAO($this->db);
+    public function insert_user_BLL($data){
+        return $this->dao->insert_user_DAO($this->db, $data);
     }
-    public function select_user_BLL(){
-        return $this->dao->select_user_DAO($this->db);
+    public function select_user_BLL($data){
+        return $this->dao->select_user_DAO($this->db, $data);
     }
 }

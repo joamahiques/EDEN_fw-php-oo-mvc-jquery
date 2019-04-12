@@ -17,10 +17,10 @@ class login_model {
     public function validate($data) {
         return $this->bll->validate_BLL($data);
     }
-    public function insert_user() {
-        return $this->bll->insert_user_BLL();
+    public function insert_user($data) {
+        return $this->bll->insert_user_BLL($data);
     }
-    public function select_user() {
-        return $this->bll->select_user_BLL();
+    public function select_user($data) {
+        return $this->bll->select_user_BLL($data);
     }
 }

@@ -1,3 +1,4 @@
+
 function valide_login(){
 	var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 	//console.log("valide_login");
@@ -145,63 +146,41 @@ $(document).ready(function(){
 	});
 ////////////register
 	$("#formregister").submit(function (e) {
-		console.log("valide_register11");
 		e.preventDefault();
+		url1=tryurl();
 		if (valide_register() != 0) {
-			var data = $("#formregister").serialize();
-			console.log(data);
+			var data1 = $("#formregister").serialize();
+			//console.log(data);
 			$.ajax({
 				type : 'POST',
-				url  : 'components/login/controller/controller-login.php?&op=register&' + data,
-				data : data,
+				url : url1+'login/register',
+				data : data1,
 				beforeSend: function(){	
-					console.log(data)
+					//console.log(data)
 					$("#error_register").fadeOut();
 				}
 			})
 			////si nos registramos: 
-				.done(function( response, textStatus, jqXHR ) {
+				.done(function(response,data,jqXHR ) {
 					console.log(response);
-					console.log(data);
 					///// autologin una vez registrado
-					if(response==="ok"){
-						console.log("OOKK");
-						$.ajax({
-							type : 'POST',
-							url  : 'components/login/controller/controller-login.php?&op=autologin&' + data,
-							data :data,
-							dataType: 'json',
-							beforeSend: function(){	
-								$("#error_register").fadeOut();
-							}
-						})
-						.done(function(data){			
-							console.log(data)		
-							if(data!=""){
-								localStorage.setItem("user", data.name);
-								localStorage.setItem("type", data.type);
-								localStorage.setItem("avatar", data.avatar);
-								localStorage.setItem("email", data.email);
-								setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
-							}///end if
-						})
-						
-						 .fail( function(response){console.log(response)	});
-						
-					}else if (response=="okay") {
-						alert("Debes realizar login para completar tu compra");
-						setTimeout(' window.location.href = window.location.href; ',1000);
-					}else{
-						console.log("error-register fallo validateloginphp");
+					if(response=="            ok"){
+						 toastr["success"]('Revisa tu correo para activar tu cuenta'),{"iconClass":'toast-info'};
+						 setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+					}else if (response=="            Error") {
+						toastr["info"]('Fallo de conexión. Prueba mas tarde'),{"iconClass":'toast-info'};
+						setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);					// 	setTimeout(' window.location.href = window.location.href; ',1000);
+					 }else{
+						//console.log("error-register fallo validateloginphp");
 						$("#error_register").fadeIn(1000, function(){						
 							$("#error_register").addClass('has-error').children('span').addClass('is-visible').html(response);
 
 						});
 					}
 				})
-				.fail(function( response, textStatus, jqXHR ) {
-					
-					console.log("FALLOOOO");
+				.fail(function( response, data, jqXHR ) {
+					toastr["info"]('Fallo de conexión. Prueba mas tarde'),{"iconClass":'toast-info'};
+					setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',3000);
 				})
 			
 		
@@ -231,7 +210,7 @@ $(document).ready(function(){
 
 	//open modal
 	$main_nav.on('click', function(event){
-		console.log($form_modal);
+		//console.log($form_modal);
 			// clean before open
 			$("#formregister")[0].reset();
 			$("#formlogin")[0].reset();
@@ -249,7 +228,7 @@ $(document).ready(function(){
 			$form_modal.removeClass('is-visible');
 			
 			if((!localStorage.getItem('type'))||(localStorage.getItem('type')!='admin')){
-				 window.location.href = "index.php?page=controllerhome&op=list"; 
+				 window.location.href = "http://localhost/www/EDEN/home/list_home/"; 
 			}
 		}	
 	});

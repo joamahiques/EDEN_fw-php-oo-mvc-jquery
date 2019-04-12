@@ -6,21 +6,15 @@
                 <div id="contenedor-slider" class="contenedor-slider">
                		 <h1>
 						<a href="="<?php amigable('?module=home&function=list_home'); ?>">
-							<img src="view/img/logo.png" alt="Eden">
+							<img src="<?php echo IMG_PATH ?>logo.png" alt="Eden">
 						</a>
 					</h1>
 					
-                    <!-- <div  class="slider"> -->
 					<div class="fotohome"> 
                         <section class="slider__section"><img  class="slider__img"></section>
-                        <!-- <section class="slider__section"><img src="view/img/panoramica.jpg" class="slider__img"></section>
-                        <section class="slider__section"><img src="view/img/casa1.jpg" class="slider__img"></section>
-                        <section class="slider__section"><img src="view/img/masqi.jpg" class="slider__img"></section>
-						<section class="slider__section"><img src="view/img/masqi2.png" class="slider__img"></section> -->
-
                     </div>
                     
-					</div>
+				</div>
 					<form class="search">
 						
 							<select id="drop1">

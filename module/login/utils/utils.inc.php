@@ -1,23 +1,20 @@
 <?php
    
-   function validateregister(){
+   function validateregister($user){
        $error='';
         try{
-            //echo('create1');
-            $DAOlogin = new DAOlogin();
-            $check = $DAOlogin->validate();
-            //var_dump($check);
-            //die();
+            $check =check_user($user);
         }catch (Exception $e){
-            //print_r($rdo);
-            $callback = 'index.php?page=503';
-            die('<script>window.location.href="'.$callback .'";</script>');
+            echo json_encode("Error de conexión");
+			exit();
         }
-
-        if ($check != false){
-            $error='ERROR: Este email ya está registrado';
-        }
-       
+        // if ($check != false){ ///si es true
+        //     $error='ERROR: Este email ya está registrado';
+        // }
         return $check;
    }
         
+   function check_user($user){
+       return loadmodel(MODEL_MODULE,'login_model','validate',$user);
+
+   }

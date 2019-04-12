@@ -43,14 +43,25 @@ define('BLL_MODULE', SITE_ROOT . 'module/'.$_GET['module'].'/model/BLL/');
 define('MODEL_MODULE', SITE_ROOT . 'module/'.$_GET['module'].'/model/model/');
 define('MODULE_JS_PATH', SITE_PATH . 'module/'.$_GET['module'].'/view/js/');
 define('MODULE_VIEW_PATH', SITE_ROOT . 'module/'.$_GET['module'].'/view/');
+//JS MODULES
+define('HOME_JS_PATH', SITE_PATH . 'module/home/view/js/');
+define('SHOP_JS_PATH', SITE_PATH . 'module/shop/view/js/');
+define('CONTACT_JS_PATH', SITE_PATH . 'module/contact/view/js/');
+define('LOGIN_JS_PATH', SITE_PATH . 'module/login/view/js/');
+define('PROFILE_JS_PATH', SITE_PATH . 'module/profile/view/js/');
+define('HOMES_JS_PATH', SITE_PATH . 'module/homes/view/js/');
+define('CART_JS_PATH', SITE_PATH . 'module/cart/view/js/');
+define('USERFAVORITES_JS_PATH', SITE_PATH . 'module/userfavorites/view/js/');
+///JS COMPONENTS
+
+
 ////COMPONENTS
 // LOGIN
-define('FUNCTIONS_LOGIN', SITE_ROOT . 'components/login/');
+define('FUNCTIONS_LOGIN', SITE_ROOT . '/login/');
 define('MODEL_PATH_LOGIN', SITE_ROOT . 'components/login/model/');
 define('DAO_LOGIN', SITE_ROOT . 'components/login/model/DAO/');
 define('BLL_LOGIN', SITE_ROOT . 'components/login/model/BLL/');
 define('MODEL_LOGIN', SITE_ROOT . 'components/login/model/model/');
-define('LOGIN_JS_PATH', SITE_PATH . 'module/login/view/js/');/////no borrar
 define('LOGIN_VIEW_PATH', SITE_ROOT . 'module/login/view/');/////no borrar
 ///FAVORITES
 define('MODEL_PATH_FAVORITES', SITE_ROOT . 'components/favorites/model/');
@@ -64,7 +75,11 @@ define('MODEL_MODAL', SITE_ROOT . 'components/modal/model/model/');
 define('MODAL_JS_PATH', SITE_PATH . 'components/modal/view/js/');
 ///SEARCH
 define('SEARCH_JS_PATH', SITE_PATH . 'components/search/view/js/');
+///GEOAPI
+define('GEOAPI_JS_PATH', SITE_PATH . 'components/apis/geoapi/');
 
+//CLUBRURAL
+define('CRURAL_JS_PATH', SITE_PATH . 'components/apis/clubrural/');
 
 //amigables
 define('URL_AMIGABLES', TRUE);
