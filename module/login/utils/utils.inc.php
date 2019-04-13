@@ -1,6 +1,6 @@
 <?php
    
-   function validateregister($user){
+   function validate_register($user){
        $error='';
         try{
             $check =check_user($user);
@@ -13,6 +13,21 @@
         // }
         return $check;
    }
+   function validate_login($user){
+    $error='';
+            $check =check_user($user);
+            $data = $check[0];
+            $act = $check[0]['activate'];
+            $pass = $check[0]['password'];
+            
+    
+        if(!$data){
+            $error='El usuario no existe';
+        }else if($act==="0"){
+            $error='Tienes que verificar tu cuenta. Revisa el correo';
+        }
+     return $return= array('data'=>$data, 'error'=>$error);
+}
         
    function check_user($user){
        return loadmodel(MODEL_MODULE,'login_model','validate',$user);

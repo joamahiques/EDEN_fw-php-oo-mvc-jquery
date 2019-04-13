@@ -35,6 +35,16 @@ function scroll_home() {
             exit;
         }
 }
+
+function active_user(){
+    // echo json_encode('hello');
+    // echo json_encode($_GET['aux']);
+    // exit;
+    if(isset($_GET['aux'])){
+        loadModel(MODEL_MODULE,"home_model","active_user",$_GET['aux']);
+        header('Location: '. SITE_PATH);
+    }
+}
 }
 //     $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
    

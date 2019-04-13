@@ -20,10 +20,11 @@ $_SESSION['module'] = "";
 $_SESSION['component'] = "";
 
 function handlerRouter() {
-    
+    // echo json_encode($_GET['module']);
+    // echo json_encode($_GET['function']);
+    // exit;
     if (!empty($_GET['module'])) {
         $URI_module = $_GET['module'];
-        //$_SESSION['module'] = $_GET['module'];
     } else {
         $URI_module = 'home';
     }
@@ -54,6 +55,9 @@ function handlerRouter() {
 }
 
 function handlerModule($URI_module, $URI_function) {
+    // echo json_encode($URI_module);
+    // echo json_encode($URI_function);
+    // exit;
     $modules = simplexml_load_file('resources/modules.xml');
     $exist = false;
 

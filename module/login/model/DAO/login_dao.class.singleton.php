@@ -17,7 +17,7 @@ class login_dao {
     public function validate_DAO($db,$data){
             // echo json_encode($data);
             // exit;
-        $sql="SELECT 'password','activate','token' FROM users2 WHERE IDuser ='$data'";
+        $sql="SELECT password,activate,token FROM users2 WHERE IDuser ='$data'";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);//devuelve false si no existe registro,??
         // $email=$data['mail'];

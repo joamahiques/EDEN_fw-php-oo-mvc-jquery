@@ -29,4 +29,7 @@ class home_model {
     public function count() {
         return $this->bll->count_BLL();
     }
+    public function active_user($data) {
+        return $this->bll->active_user_BLL($data);
+    }
 }

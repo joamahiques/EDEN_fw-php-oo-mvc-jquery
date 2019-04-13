@@ -31,4 +31,9 @@ class home_dao {
         return $db->listar($stmt);
         
     }
+
+    public function active_user_DAO($db,$data){
+        $sql= "UPDATE users2 SET activate = 1 where token = '$data'";
+        return $db->ejecutar($sql);
+    }
 }

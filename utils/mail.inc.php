@@ -9,7 +9,8 @@
         switch ($arr['type']) {
             case 'alta':////mail para enviar el token y darse de alta
                 $subject = 'Tu Alta en EDEN';
-                $ruta = "<a href='" . amigable("?module=home&function=active_user&param=" . $arr['token'], true) . "'>aqu&iacute;</a>";
+                // $ruta = "<a href='" . amigable("?module=home&function=active_user&aux=" . $arr['token'], true) . "'>aqu&iacute;</a>";
+                $ruta = "<a href=http://localhost/www/EDEN/home/active_user/" . $arr['token'] . ">aqu&iacute;</a>";
                 $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
                 break;
     

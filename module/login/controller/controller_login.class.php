@@ -10,17 +10,13 @@
    
     function register() {
 				$user=$_POST['user'];
-				$valide = validateregister($user); 
-				// echo($valide);
-				// exit;
+				$valide = validate_register($user); 
 				if(!$valide){
-
 								$arrArgument = array(
 									'user'=>$_POST['user'],
 									'email'=>$_POST['mail'],
 									'passwd'=> $_POST['password']
 							);
-							
 									try {
 											$rlt['token']= loadModel(MODEL_MODULE,'login_model','insert_user',$arrArgument);//return token
 										
@@ -48,34 +44,52 @@
 				}
 	}
 	function login() {
-				try {
-					// $daologin = new DAOlogin();
-					// $rlt = $daologin->select_user($_POST['mail']);
-						$data=$_POST['mail'];
-						$arrValue = loadModel(MODEL_MODULE, "login_model", "select_user", $data);
-				} catch (Exception $e) {
-						echo "error";
-						exit();
-				}
-				if(!$arrValue){
-						echo "El usuario no existe";
-						exit();
-				}else{
-						$value = get_object_vars($arrValue);
-						if (password_verify($_POST['password'],$value['userpass'])) {
-							
-								$_SESSION['type'] = $value['type'];
-								$_SESSION['avatar'] = $value['avatar'];
-								$_SESSION['mail'] = $value['email'];
-								$_SESSION['tiempo'] = time();
-								//echo 'ok';
-								echo json_encode($value);
-								exit();
-					}else {
-								echo "No coinciden los datos";
-								exit();
+				$user=$_POST['user'];
+				///log
+					try{
+						$valide=validate_login($user);
+					}catch (Exception $e){
+							echo json_encode("Error");
+							exit;
 					}
-				}			
+					
+				///log
+					if($valide['error']==""){
+						echo json_encode($valide['data']['token']);
+						exit;
+					}else{
+						$response='false';
+						$datos=array($response,$valide['error']);
+						echo json_encode($datos);
+					}
+				// try {
+				// 	// $daologin = new DAOlogin();
+				// 	// $rlt = $daologin->select_user($_POST['mail']);
+				// 		$data=$_POST['user'];
+				// 		$arrValue = loadModel(MODEL_MODULE, "login_model", "select_user", $data);
+				// } catch (Exception $e) {
+				// 		echo "error";
+				// 		exit();
+				// }
+				// if(!$arrValue){
+				// 		echo "El usuario no existe";
+				// 		exit();
+				// }else{
+				// 		$value = get_object_vars($arrValue);
+				// 		if (password_verify($_POST['password'],$value['userpass'])) {
+							
+				// 				$_SESSION['type'] = $value['type'];
+				// 				$_SESSION['avatar'] = $value['avatar'];
+				// 				$_SESSION['mail'] = $value['email'];
+				// 				$_SESSION['tiempo'] = time();
+				// 				//echo 'ok';
+				// 				echo json_encode($value);
+				// 				exit();
+				// 	}else {
+				// 				echo "No coinciden los datos";
+				// 				exit();
+				// 	}
+				// }			
 	}	
 	function logout() {
 

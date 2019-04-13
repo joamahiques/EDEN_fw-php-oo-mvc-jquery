@@ -31,5 +31,7 @@ class home_bll{
     public function count_BLL(){
         return $this->dao->count_DAO($this->db);
       }
-
+    public function active_user_BLL($data){
+    return $this->dao->active_user_DAO($this->db, $data);
+    }
 }

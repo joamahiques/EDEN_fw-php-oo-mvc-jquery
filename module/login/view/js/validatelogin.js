@@ -1,24 +1,24 @@
 
 function valide_login(){
-	var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+	// var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 	//console.log("valide_login");
 
 	//Mail
-	if(document.formlogin.mail.value.length === 0){
+	if(document.formlogin.user.value.length === 0){
 		//document.getElementById('e_mail').innerHTML = "Tienes que escribir el mail";
-		$('#signin-email').addClass('has-error').next('span').addClass('is-visible').html("EL MAIL ES REQUERIDO");
-		document.formlogin.mail.focus();
+		$('#signin-email').addClass('has-error').next('span').addClass('is-visible').html("EL NOMBRE DE USUARIO ES REQUERIDO");
+		document.formlogin.user.focus();
 		return 0;
 	}
-	$('#signin-email').removeClass('has-error').next('span').removeClass('is-visible');
+	$('#signin-user').removeClass('has-error').next('span').removeClass('is-visible');
 
-	if(!mailp.test(document.formlogin.mail.value)){
-		//document.getElementById('e_mail').innerHTML = "El formato del mail es invalido";
-		$('#signin-email').addClass('has-error').next('span').addClass('is-visible').html("EL FORMATO DE MAIL NO ES VÁLIDO");
-		document.formlogin.mail.focus();
-		return 0;
-	}
-	$('#signin-email').removeClass('has-error').next('span').removeClass('is-visible');
+	// if(!mailp.test(document.formlogin.mail.value)){
+	// 	//document.getElementById('e_mail').innerHTML = "El formato del mail es invalido";
+	// 	$('#signin-email').addClass('has-error').next('span').addClass('is-visible').html("EL FORMATO DE MAIL NO ES VÁLIDO");
+	// 	document.formlogin.mail.focus();
+	// 	return 0;
+	// }
+	// $('#signin-email').removeClass('has-error').next('span').removeClass('is-visible');
 	//document.getElementById('e_mail').innerHTML = "";
 	//Password
 	if(document.formlogin.password.value.length === 0){
@@ -103,47 +103,46 @@ $(document).ready(function(){
 	$("#formlogin").submit(function (e) {
 		console.log("valide_login11");
 		e.preventDefault();
+		url1=tryurl();
 		if(valide_login() != 0){
-			var data = $("#formlogin").serialize();
+			var data1 = $("#formlogin").serialize();
 			//var data=$("#signin-password").val();
-			console.log(data);
+			console.log(data1);
 			$.ajax({
 				type : 'POST',
-				url  : 'components/login/controller/controller-login.php?&op=login&' + data,
-				data :data,
+				url  : url1+'login/login',
+				data :data1,
 				dataType: 'json',
 				beforeSend: function(){	
 					$("#error_login").fadeOut();
 				}
 			})
-			.done(function(data){			
-				console.log(data)		
-				if(data!=""){
-					localStorage.setItem("user", data.name);
-					localStorage.setItem("type", data.type);
-					localStorage.setItem("avatar", data.avatar);
-					localStorage.setItem("email", data.email);
-					logincart();
-					//setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
-					setTimeout(' window.location.href = ""; ',1000);
-				}else if(data=="No coinciden los datos") {
-					console.log("error-login fallo logeandote");
-						$("#error_login").fadeIn(1000, function(){						
-							$("#error_login").addClass('has-error').children('span').addClass('is-visible').html(data);
-
+			.done(function(data, response){			
+				
+				if(data[0]=='false'){
+					//console.log('errorrrr');
+					$("#error_login").fadeIn(1000, function(){						
+						$("#error_login").addClass('has-error').children('span').addClass('is-visible').html(data[1]);
 						});
-				}///end if
+				}else{
+					localStorage.setItem('token',data);
+					toastr["info"]('Iniciando sesión'),{"iconClass":'toast-info'};
+					logincart();
+					setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+					// 	localStorage.setItem("user", data.name);
+				// 	localStorage.setItem("type", data.type);
+				// 	localStorage.setItem("avatar", data.avatar);
+				// 	localStorage.setItem("email", data.email);
+				// 	logincart();
+				}
+				
 			})
-			.fail(function( data, textStatus, jqXHR ) {
-				//console.log(response);
-				$("#error_login").fadeIn(1000, function(){						
-					$("#error_login").addClass('has-error').children('span').addClass('is-visible').append("EL USUARIO NO EXISTE");
-
-				});
-				console.log("FALLOOOOLogin");
+			.fail(function( data, success, jqXHR ) {
+				toastr["error"]("ERROR DE CONEXION. PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
+				setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
 			});
-		};///end if
-	});
+	 	};///end if
+	 });
 ////////////register
 	$("#formregister").submit(function (e) {
 		e.preventDefault();
