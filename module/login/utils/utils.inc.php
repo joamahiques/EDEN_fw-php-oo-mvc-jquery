@@ -14,8 +14,9 @@
         return $check;
    }
    function validate_login($user){
+       
     $error='';
-            $check =check_user($user);
+            $check =check_user($user['user']);
             $data = $check[0];
             $act = $check[0]['activate'];
             $pass = $check[0]['password'];
@@ -25,7 +26,9 @@
             $error='El usuario no existe';
         }else if($act==="0"){
             $error='Tienes que verificar tu cuenta. Revisa el correo';
-        }
+        }else if(!password_verify($user['pass'],$check[0]['password'])){
+            $error='La contraseña no es correcta';
+        };
      return $return= array('data'=>$data, 'error'=>$error);
 }
         

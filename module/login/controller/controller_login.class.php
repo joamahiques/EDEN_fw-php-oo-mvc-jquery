@@ -44,7 +44,8 @@
 				}
 	}
 	function login() {
-				$user=$_POST['user'];
+				//$user=$_POST['user'];
+				$user= array('user'=>$_POST['user'], 'pass'=>$_POST['password']);
 				///log
 					try{
 						$valide=validate_login($user);

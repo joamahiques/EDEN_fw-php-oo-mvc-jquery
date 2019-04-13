@@ -1,4 +1,4 @@
-
+var userProfile;
 function valide_login(){
 	// var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 	//console.log("valide_login");
@@ -6,11 +6,11 @@ function valide_login(){
 	//Mail
 	if(document.formlogin.user.value.length === 0){
 		//document.getElementById('e_mail').innerHTML = "Tienes que escribir el mail";
-		$('#signin-email').addClass('has-error').next('span').addClass('is-visible').html("EL NOMBRE DE USUARIO ES REQUERIDO");
+		$('#signin-username').addClass('has-error').next('span').addClass('is-visible').html("EL NOMBRE DE USUARIO ES REQUERIDO");
 		document.formlogin.user.focus();
 		return 0;
 	}
-	$('#signin-user').removeClass('has-error').next('span').removeClass('is-visible');
+	$('#signin-username').removeClass('has-error').next('span').removeClass('is-visible');
 
 	// if(!mailp.test(document.formlogin.mail.value)){
 	// 	//document.getElementById('e_mail').innerHTML = "El formato del mail es invalido";
@@ -40,6 +40,7 @@ function valide_register(){
 	
 	//console.log("valide_register");
 	//User
+	
 	if(document.formregister.user.value.length === 0){
 		$('#signup-username').addClass('has-error').next('span').addClass('is-visible').html("EL USER ES REQUERIDO");;
 		document.formregister.user.focus();
@@ -98,7 +99,68 @@ function valide_register(){
 }
 
 $(document).ready(function(){
+///////////AUTH0
+var WebAuth = new auth0.WebAuth({
+	domain: 'dev-joamahi.eu.auth0.com',
+    clientID: '9jz8YMFTP9gdmpBtvdzh7guntVbCZpy9',
+    redirectUri: 'http://localhost/www/EDEN/home/list_home/',
+    audience: 'https://' + 'dev-joamahi.eu.auth0.com' + '/userinfo',
+    responseType: 'token id_token',
+    scope: 'openid profile',
+    leeway: 60
+});
 
+$(document).on('click','#login_auth',function(e){
+	e.preventDefault();
+	WebAuth.authorize();
+});
+
+handleAuthentication();
+setTimeout(function(){ getProfile(); }, 1000);
+function handleAuthentication() {
+    WebAuth.parseHash(function(err, authResult) {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        window.location.hash = '';
+        setSession(authResult);
+      } else if (err) {
+        console.log(err);
+        //alert('Error: ' + err.error + '. Check the console for further details.');
+      }
+      
+    });
+  }
+  function getProfile() {
+    if (!userProfile) {
+      var accessToken = localStorage.getItem('token');
+      if (!accessToken) {
+      }else{
+        WebAuth.client.userInfo(accessToken, function(err, profile) {
+          console.log(profile);
+        //   if (profile) {
+        //     id_profile = profile.sub.split('|');
+        //     $.post(amigable("?module=login&function=log_social"),{'data_social_net':JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture})},function(data){
+        //         localStorage.removeItem('id_token');
+        //         localStorage.setItem('id_token',JSON.parse(data));
+        //         localStorage.removeItem('access_token');
+        //         localStorage.removeItem('expires_at');
+
+        //         Command: toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
+        //         setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
+        //     });
+        //   }
+        });
+      }
+    }
+  }
+  function setSession(authResult) {
+    // Set the time that the access token will expire at
+    var expiresAt = JSON.stringify(
+      authResult.expiresIn * 1000 + new Date().getTime()
+    );
+    localStorage.setItem('token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+  }
 //////////////login	
 	$("#formlogin").submit(function (e) {
 		console.log("valide_login11");
@@ -114,21 +176,26 @@ $(document).ready(function(){
 				data :data1,
 				dataType: 'json',
 				beforeSend: function(){	
-					$("#error_login").fadeOut();
+					$(".has-error").removeClass('has-error');
 				}
 			})
 			.done(function(data, response){			
 				
 				if(data[0]=='false'){
 					//console.log('errorrrr');
-					$("#error_login").fadeIn(1000, function(){						
-						$("#error_login").addClass('has-error').children('span').addClass('is-visible').html(data[1]);
-						});
+					if(data[1]=='La contraseña no es correcta'){
+						$('#signin-password').addClass('has-error').next().next('span').addClass('is-visible').html(data[1]);
+					}else{
+						$('#signin-username').addClass('has-error').next('span').addClass('is-visible').html(data[1]);
+					// $("#error_login").fadeIn(1000, function(){						
+					// 	$("#error_login").addClass('has-error').children('span').addClass('is-visible').html(data[1]);
+					// 	});
+					}
 				}else{
 					localStorage.setItem('token',data);
 					toastr["info"]('Iniciando sesión'),{"iconClass":'toast-info'};
-					logincart();
-					setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+					//logincart();
+					//setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
 					// 	localStorage.setItem("user", data.name);
 				// 	localStorage.setItem("type", data.type);
 				// 	localStorage.setItem("avatar", data.avatar);
@@ -139,7 +206,7 @@ $(document).ready(function(){
 			})
 			.fail(function( data, success, jqXHR ) {
 				toastr["error"]("ERROR DE CONEXION. PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
-				setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+				//setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
 			});
 	 	};///end if
 	 });
@@ -185,6 +252,7 @@ $(document).ready(function(){
 		
 		}
 	});
+
 ///////////logout
 	$("#btnlogout").on('click', function () {
 		//console.log("logout!!!!!");
