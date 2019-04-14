@@ -65,7 +65,7 @@ $(document).ready(function(){
                 console.log(data);
                 toastr["info"](data),{"iconClass":'toast-info'};
                 $('#form')[0].reset();
-            	});
+            });
         }
     })
 

@@ -110,13 +110,6 @@ var WebAuth = new auth0.WebAuth({
     leeway: 60
 });
 
-$(document).on('click','#login_auth',function(e){
-	e.preventDefault();
-	WebAuth.authorize();
-});
-
-handleAuthentication();
-setTimeout(function(){ getProfile(); }, 1000);
 function handleAuthentication() {
     WebAuth.parseHash(function(err, authResult) {
       if (authResult && authResult.accessToken && authResult.idToken) {
@@ -128,39 +121,65 @@ function handleAuthentication() {
       }
       
     });
-  }
+	}
+	function setSession(authResult) {
+		// Set the time that the access token will expire at
+	//	console.log(authResult);
+    var expiresAt = JSON.stringify(
+      authResult.expiresIn * 1000 + new Date().getTime()
+    );
+    localStorage.setItem('au_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+	}
+	
   function getProfile() {
     if (!userProfile) {
-      var accessToken = localStorage.getItem('token');
+      var accessToken = localStorage.getItem('au_token');
       if (!accessToken) {
       }else{
         WebAuth.client.userInfo(accessToken, function(err, profile) {
-          console.log(profile);
-        //   if (profile) {
-        //     id_profile = profile.sub.split('|');
-        //     $.post(amigable("?module=login&function=log_social"),{'data_social_net':JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture})},function(data){
-        //         localStorage.removeItem('id_token');
-        //         localStorage.setItem('id_token',JSON.parse(data));
-        //         localStorage.removeItem('access_token');
-        //         localStorage.removeItem('expires_at');
+          //console.log(profile);
+          if (profile) {
+						id_profile = profile.sub.split('|');
+						//console.log(id_profile)
+						var data1 = JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture});
+						console.log(data1);
+						$.ajax({
+							type : 'POST',
+							url  : '../../login/social',
+							data :{data1},
+							dataType: 'json',
+						})
+						.done(function(data){	
+											console.log(data);
+										//	localStorage.removeItem('id_token');
+            //     localStorage.setItem('id_token',JSON.parse(data));
+            //     localStorage.removeItem('token');
+            //     localStorage.removeItem('expires_at');
+										// Command: toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
+                // setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
+						});
+            // $.post(amigable("?module=login&function=log_social"),{'data_social_net':JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture})},function(data){
+            //     localStorage.removeItem('id_token');
+            //     localStorage.setItem('id_token',JSON.parse(data));
+            //     localStorage.removeItem('token');
+            //     localStorage.removeItem('expires_at');
 
-        //         Command: toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
-        //         setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
-        //     });
-        //   }
+                
+            // });
+          }
         });
       }
     }
   }
-  function setSession(authResult) {
-    // Set the time that the access token will expire at
-    var expiresAt = JSON.stringify(
-      authResult.expiresIn * 1000 + new Date().getTime()
-    );
-    localStorage.setItem('token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
-  }
+	$(document).on('click','#login_auth',function(e){
+		e.preventDefault();
+		WebAuth.authorize();
+	});
+	
+	handleAuthentication();
+	setTimeout(function(){ getProfile(); }, 1000);
 //////////////login	
 	$("#formlogin").submit(function (e) {
 		console.log("valide_login11");

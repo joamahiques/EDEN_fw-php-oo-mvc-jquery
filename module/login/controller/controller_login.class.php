@@ -17,6 +17,7 @@
 									'email'=>$_POST['mail'],
 									'passwd'=> $_POST['password']
 							);
+							//log
 									try {
 											$rlt['token']= loadModel(MODEL_MODULE,'login_model','insert_user',$arrArgument);//return token
 										
@@ -24,7 +25,7 @@
 												echo json_encode("Error");
 												exit;
 									}
-									
+								//log	
 									if(!$rlt){
 													echo json_encode("Error");
 													exit;
@@ -63,6 +64,23 @@
 						$datos=array($response,$valide['error']);
 						echo json_encode($datos);
 					}
+		}
+
+
+	function social(){
+				$data= json_decode($_POST['data1'],true);
+				// echo json_encode($data);
+				// exit;
+				$rlt=check_user($data['id_user']);
+				
+				if(!$rlt){
+					$rlt=loadModel(MODEL_MODULE,'login_model','social',$data);
+				}else{
+					//echo('register');
+				}
+			echo json_encode($rlt[0]['token']);
+			exit;
+	}
 				// try {
 				// 	// $daologin = new DAOlogin();
 				// 	// $rlt = $daologin->select_user($_POST['mail']);
@@ -91,7 +109,7 @@
 				// 				exit();
 				// 	}
 				// }			
-	}	
+	
 	function logout() {
 
 					error_reporting(0);

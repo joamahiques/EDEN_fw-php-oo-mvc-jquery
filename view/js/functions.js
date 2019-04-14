@@ -1,4 +1,4 @@
-
+////url
 function tryurl(){
 	if(window.location.href=='http://localhost/www/EDEN/'){
         url1='';
@@ -8,7 +8,7 @@ function tryurl(){
 	return url1;
 }
 
-
+///pretty url
 function amigable(url) {
   var link="";
   url = url.replace("?", "");
@@ -45,7 +45,7 @@ function getQueryVariable(variable) {
     //console.log(num);
     return num;
     }
-
+////protect url
   function protecturl() {
       /////////protect url
       $.ajax({
@@ -137,11 +137,10 @@ toastr.options = {
   }
 /////////// Pintar en el menú el profile
   if (document.getElementById('btnprofile')){
+    //traure el avatar, nom y tipo en typeuser per a pintar el menu.
     $('#menuprofile').prepend(localStorage.getItem("user"));
     $('#avatar').attr("src", localStorage.getItem("avatar"));
-    //console.log(localStorage.getItem("avatar"));
-    //   console.log("profile");
-    //   console.log(localStorage.getItem("user"));
+    
       $('#menuprofile').on('click', function(){
             $('#submenu').toggle( "slow" );
       })

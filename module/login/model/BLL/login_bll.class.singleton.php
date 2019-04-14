@@ -25,4 +25,7 @@ class login_bll{
     public function select_user_BLL($data){
         return $this->dao->select_user_DAO($this->db, $data);
     }
+    public function social_BLL($data){
+        return $this->dao->social_DAO($this->db, $data);
+    }
 }

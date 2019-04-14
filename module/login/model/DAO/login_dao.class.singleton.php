@@ -17,7 +17,7 @@ class login_dao {
     public function validate_DAO($db,$data){
             // echo json_encode($data);
             // exit;
-        $sql="SELECT password,activate,token FROM users2 WHERE IDuser ='$data'";
+        $sql="SELECT IDuser,password,activate,token FROM users2 WHERE IDuser ='$data'";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);//devuelve false si no existe registro,??
         // $email=$data['mail'];
@@ -44,7 +44,20 @@ class login_dao {
         return $token;
         
 	}
+    public function social_DAO($db, $data){
+        $id=$data['id_user'];
+        $nombre=$data['user'];
+        $email=$data['email'];
+        $avatar=$data['avatar'];
+        $type="client_rs";
+        $token=md5(uniqid(rand(),true));
 
+        $sql ="INSERT INTO `users2`(`IDuser`, `user`, `email`, `type`, `avatar`, `activate`, `token`)
+        VALUES ('$id','$nombre','$email','$type', '$avatar',1,'$token')";
+        $stmt =$db->ejecutar($sql);
+        return $token;
+
+    }
     public function select_user_DAO($db, $data){
 			
         $email=$data['mail'];

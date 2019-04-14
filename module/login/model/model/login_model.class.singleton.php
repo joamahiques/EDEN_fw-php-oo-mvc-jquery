@@ -23,4 +23,7 @@ class login_model {
     public function select_user($data) {
         return $this->bll->select_user_BLL($data);
     }
+    public function social($data) {
+        return $this->bll->social_BLL($data);
+    }
 }

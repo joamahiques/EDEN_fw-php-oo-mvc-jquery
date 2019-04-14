@@ -6,8 +6,8 @@
         <uri>register</uri>
     </function>
     <function>
-        <name>autologin</name>
-        <uri>autologin</uri>
+        <name>social</name>
+        <uri>social</uri>
     </function>
     <function>
         <name>login</name>
