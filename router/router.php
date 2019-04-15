@@ -20,9 +20,9 @@ $_SESSION['module'] = "";
 $_SESSION['component'] = "";
 
 function handlerRouter() {
-    // echo json_encode($_GET['module']);
+    //echo json_encode($_GET['module']);
     // echo json_encode($_GET['function']);
-    // exit;
+     //exit;
     if (!empty($_GET['module'])) {
         $URI_module = $_GET['module'];
     } else {
@@ -81,13 +81,13 @@ function handlerModule($URI_module, $URI_function) {
                     require_once(VIEW_PATH_INC ."header.php");
                 } 
                
-                if(!isset($_SESSION['type'])){
+                //if(!isset($_SESSION['type'])){
                     require_once(VIEW_PATH_INC ."menu.php");
-                }else if ($_SESSION['type']==='client'){
-                    require_once(VIEW_PATH_INC ."menuuser.php");   
-                }else if($_SESSION['type']==='admin'){
-                    require_once(VIEW_PATH_INC ."menuadmin.php");   
-                } 
+                //}else if ($_SESSION['type']==='client'){
+                //     require_once(VIEW_PATH_INC ."menuuser.php");   
+                // }else if($_SESSION['type']==='admin'){
+                //     require_once(VIEW_PATH_INC ."menuadmin.php");   
+                // } 
                 
                 require_once(VIEW_PATH_INC_ERROR . "error404.php");
                 require_once(VIEW_PATH_INC . "footer.php");
@@ -100,13 +100,13 @@ function handlerModule($URI_module, $URI_function) {
         require_once(VIEW_PATH_INC ."top-page.php");
         require_once(VIEW_PATH_INC . "header.php");
 
-        if(!isset($_SESSION['type'])){
+        //if(!isset($_SESSION['type'])){
             require_once(VIEW_PATH_INC ."menu.php");
-        }else if ($_SESSION['type']==='client'){
-            require_once(VIEW_PATH_INC ."menuuser.php");   
-        }else if($_SESSION['type']==='admin'){
-            require_once(VIEW_PATH_INC ."menuadmin.php");   
-        } 
+        // }else if ($_SESSION['type']==='client'){
+        //     require_once(VIEW_PATH_INC ."menuuser.php");   
+        // }else if($_SESSION['type']==='admin'){
+        //     require_once(VIEW_PATH_INC ."menuadmin.php");   
+        // } 
         require_once(VIEW_PATH_INC_ERROR . "error404.php");
         require_once(VIEW_PATH_INC . "footer.php");
     }
@@ -124,17 +124,17 @@ function handlerFunction($module, $obj, $URI_function) {
         }
     }
     if (!$exist) {
-        // require_once(VIEW_PATH_INC ."top-page.php");
-        // require_once(VIEW_PATH_INC . "header.php");
-        // if(!isset($_SESSION['type'])){
-        //     require_once(VIEW_PATH_INC ."menu.php");
+        require_once(VIEW_PATH_INC ."top-page.php");
+        require_once(VIEW_PATH_INC . "header.php");
+        //if(!isset($_SESSION['type'])){
+            require_once(VIEW_PATH_INC ."menu.php");
         // }else if ($_SESSION['type']==='client'){
         //     require_once(VIEW_PATH_INC ."menuuser.php");   
         // }else if($_SESSION['type']==='admin'){
         //     require_once(VIEW_PATH_INC ."menuadmin.php");   
         // } 
-        // require_once(VIEW_PATH_INC_ERROR . "error404.php");
-        // require_once(VIEW_PATH_INC . "footer.php");
+        require_once(VIEW_PATH_INC_ERROR . "error404.php");
+        require_once(VIEW_PATH_INC . "footer.php");
     } else {
         call_user_func(array($obj, $event));
     }

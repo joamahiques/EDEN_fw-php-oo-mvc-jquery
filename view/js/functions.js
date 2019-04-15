@@ -87,6 +87,8 @@ function getQueryVariable(variable) {
         //console.log(str);
         return str; 
   } 
+
+  
 $(document).ready(function(){
     
     // function datePic() {
@@ -135,24 +137,80 @@ toastr.options = {
     "showMethod": "show",
     "hideMethod": "fadeOut"
   }
-/////////// Pintar en el menú el profile
-  if (document.getElementById('btnprofile')){
-    //traure el avatar, nom y tipo en typeuser per a pintar el menu.
-    $('#menuprofile').prepend(localStorage.getItem("user"));
-    $('#avatar').attr("src", localStorage.getItem("avatar"));
+/////////// MENU
+      urlgen=tryurl();
+      console.log(localStorage.getItem("id_token"));
+      var token = localStorage.getItem("id_token");
+      if (token) {
+          $.ajax({
+            type : 'POST',
+            url  : urlgen+'login/controluser',
+            data :{'token':token},
+            dataType: 'json',
+          })
+          .done(function(data){	
+                if (data != 'error') {
+                    console.log(data[0].type);
+                    if ((data[0].type === 'client_rs')||(data[0].type === 'client')) {
+                      //console.log('menuuuuu');
+                      $('.sf-menu').empty();
+                      $('.sf-menu').html(
+                        '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+							
+                        '<li><a href="'+amigable('?module=shop&function=list_shop')+'" data-tr="Tienda" id="btnshop"></a></li>'+
+                        '<li><a href="'+amigable('?module=contact&function=list_contact')+'" data-tr="Contacto"></a></li>'+
+                       '<li><a href="'+amigable('?module=cart&function=view')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
+                       '<li><a id="menuprofile">  <img id="avatar"></a>'+
+                          '<ul id="submenu">'+
+                            '<li><a id="btnprofile" href="'+amigable('?module=profile&function=view')+'" data-tr="Perfil"></a></li>'+
+                            '<li><a id="btnlogout" data-tr="Salir"></a></li>'+
+                          '</ul>'+
+                        '</li>'
+                      );
+
+                       
+                     }
+                     if(data[0].type === 'admin'){
+                        $('.sf-menu').empty();
+                        $('.sf-menu').html(
+                          '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+
+                          '<li><a href="'+amigable('?module=crud&functions=list')+'" data-tr="CRUD"></a></li>'+
+                          '<li><a href="'+amigable('?module=shop&function=list_shop')+'" data-tr="Tienda" id="btnshop"></a></li>'+
+                          '<li><a href="'+amigable('?module=contact&function=list_contact')+'" data-tr="Contacto"></a></li>'+
+                          '<li><a href="'+amigable('?module=cart&function=view')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
+                          '<li><a id="menuprofile">  <img id="avatar"></a>'+
+                            '<ul id="submenu">'+
+                              '<li><a id="btnprofile" href="'+amigable('?module=profile&function=view')+'" data-tr="Perfil"></a></li>'+
+                              '<li><a id="btnlogout" data-tr="Salir"></a></li>'+
+                            '</ul>'+
+                          '</li>'
+                      )
+                      }
+                      $('#menuprofile').prepend(data[0].user);
+                      $('#avatar').attr("src", data[0].avatar);
+  
+                      $('#menuprofile').on('click', function(){
+                            $('#submenu').toggle( "slow" );
+                      })
+                      $('#contenido').on('click', function(){
+                            $('#submenu').fadeOut( "slow" );
+                      })
+                }else{
+                      }
+            })
+            .fail(function(data,response){
+              console.log(data);
+            })
+      }else{
+      }
+  
     
-      $('#menuprofile').on('click', function(){
-            $('#submenu').toggle( "slow" );
-      })
-      $('#contenido').on('click', function(){
-             $('#submenu').fadeOut( "slow" );
-      })
-  }
+  
 ////////////logout inactivity
   setInterval(function(){ 
 		$.ajax({
-			type : 'GET',
-			url  : 'components/login/controller/controller-login.php?&op=actividad',
+			type : 'POST',
+      //url  : 'components/login/controller/controller-login.php?&op=actividad',
+      url  : urlgen+'login/actividad',
 			success :  function(response){						
 				if(response=="inactivo"){
                     alert("Se ha cerrado la cuenta por inactividad");

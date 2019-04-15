@@ -59,9 +59,8 @@ class login_dao {
 
     }
     public function select_user_DAO($db, $data){
-			
-        $email=$data['mail'];
-		$sql = "SELECT * FROM users WHERE email='$email'";
+        
+		$sql = "SELECT * FROM users2 WHERE token ='$data'";
 
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);

@@ -9,14 +9,12 @@ class controller_favorites{
         //set_error_handler('ErrorHandler');
         try{
             $arrArgument = array(
-                'home'=>$_GET['id'],
-                'email'=>$_GET['email']
+                'id'=>$_POST['id'],
+                'tok'=>$_POST['tok']
             );
-            // $DAOFavorites = new DAOFavorites();
-            // $rdo = $DAOFavorites->insertFavorites($_GET['id'],$_GET['email']);//$_SESSION['mail]
+            $arrValue = false;
             $arrValue = loadModel(MODEL_FAVORITES, "favorites_model", "insertFavorites", $arrArgument);
-            // echo json_encode($arrValue);
-            // exit;
+           
         }catch(Exception $e) {echo json_encode($e+"error FAVORITES");}
         //restore_error_handler();
         if($arrValue){
@@ -31,13 +29,9 @@ class controller_favorites{
     //set_error_handler('ErrorHandler');
 
         try{
-            $user = $_SESSION['mail'];
-    
+            $user=$_POST['tok'];
             $arrValue = false;
             $arrValue = loadModel(MODEL_FAVORITES, "favorites_model", "readFavorites", $user);
-            //echo json_encode($arrValue);
-            // $DAOFavorites = new DAOFavorites();
-            // $rdo = $DAOFavorites->readFavorites($_SESSION['mail']);
 
         }catch (Exception $e){
             echo json_encode("error");
@@ -49,11 +43,6 @@ class controller_favorites{
             exit;
         }else{
             echo json_encode($arrValue);
-            // $favor = array();///inicializamos el array
-            // foreach ($rdo as $row) {
-            //     array_push($favor, $row);//lo rellenamos con array_push
-            // }
-            // echo json_encode($favor);///lo pasamos a json
             exit;
         }
     }
@@ -61,28 +50,25 @@ class controller_favorites{
     function delete_favorites(){
         //set_error_handler('ErrorHandler');
         try{
-            $user = $_SESSION['mail'];
-            $name = $_GET['nombre'];
             $arrArgument = array(
-                'user'=>$user,
-                'home'=>$name
+                'id'=>$_POST['id'],
+                'tok'=>$_POST['tok']
             );
             $arrValue = false;
-            $arrValue = loadModel(MODEL_FAVORITES, "favorites_model", "deleteFavorites", $arrArgument);
-            //    $DAOFavorites = new DAOFavorites();
-            //    $rdo = $DAOFavorites->deleteFavorites($_GET['id'],$_GET['email']);
+            $arrValue = loadModel(MODEL_FAVORITES, "favorites_model", "deleteFavorites", $arrArgument); 
         }catch (Exception $e){
             //echo ("conexion");
-            $callback = 'index.php?page=503';
-            die('<script>window.location.href="'.$callback .'";</script>');
+            echo json_encode($e+"error FAVORITES");
+            exit;
         }
         //restore_error_handler();
-        if ($arrValue){
-            $message = "Favorite delete";
+        if($arrValue){
+            echo json_encode($arrValue);
+            exit;
         }else{
-            $message = "Dont find favorite";
+            echo json_encode($arrValue);
+            exit;
         }
-        echo json_encode($message);
     }
 
 }

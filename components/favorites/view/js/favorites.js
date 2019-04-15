@@ -1,26 +1,29 @@
 
 ///////////////////////////////FAVORITOS
-
+urlfavoritos=tryurl();
 //console.log("Favorites");   
 function readmyfavorites(){
-    if(localStorage.getItem("user")!=null){
-        $.ajax({
-                
-            type: "GET",
+    if(localStorage.getItem('id_token')!=null){
+        var tok=localStorage.getItem('id_token');
+        //console.log(tok);
+        $.ajax({  
+            type: "POST",
             dataType: "json",
+            data   :  {tok},
             //url: "components/favorites/controller/controllerfavorites.php?op=readfavorites",
-            url: '../../favorites/read_favorites'
+            url: urlfavoritos+'components/favorites/read_favorites'
         })
         .done(function( data, textStatus, jqXHR ) {
-        //console.log( data );
+        
+        if(data=='error'){
+            console.log( data );
+        }else{
             $.each(data, function(i, item) {///bucle para buscar los elementos que coincidan con los id de favoritos y los pintamos
                 // console.log( item.nombre );
                 var id= document.getElementById(item.nombre);
-                //var id2= $('"#'+item.nombre+'"')
-                // console.log( id );
-                //console.log( id2 );
                 $(id).children("i").addClass("fas");    
             });
+        }
 
         });  
     }
@@ -35,7 +38,7 @@ $(document).ready(function () {
 ///añadir o borrar de favoritos
    
     $(document).on("click",".corazon", function () {
-        if(localStorage.getItem("user")===null){
+        if(localStorage.getItem('id_token')===null){
 
             loginauto();
             
@@ -43,6 +46,7 @@ $(document).ready(function () {
         }else{
    
                     var id = this.getAttribute('id');
+                    var tok=localStorage.getItem('id_token');
                 // console.log(id);
                     
                     if($(this).children("i").hasClass("fas")){///si está en favoritos, borralo
@@ -51,25 +55,25 @@ $(document).ready(function () {
                             
                             $.ajax({
                             
-                                type: "GET",
+                                type: "POST",
                                 dataType: "json",
-                                url: "components/favorites/controller/controllerfavorites.php?op=favoritesDelete&id=" + id+"&email="+localStorage.getItem("email"),
+                                url: urlfavoritos+"components/favorites/delete_favorites",
+                                data : {'id':id,'tok':tok},
                             })
                             
                             .done(function( data, textStatus, jqXHR ) {
-                            // console.log("si es favorito22");
+                            //  console.log("si es favorito22");
                                 
                             });
                     
                     }else{ //si no está en favoritos, agrégalo
                         
                         $(this).children("i").addClass("fas");///añadimos la clase FAS, corazón pintado
-                        console.log(localStorage.getItem("email"));
-                            $.ajax({
-                                    
-                                type: "GET",
+                            $.ajax({   
+                                type: "POST",
                                 dataType: "json",
-                                url: "components/favorites/controller/controllerfavorites.php?op=favorites&id=" + id+"&email="+localStorage.getItem("email"),
+                                url: urlfavoritos+"components/favorites/favorites",
+                                data : {'id':id,'tok':tok}
                             })
                             .done(function( data, textStatus, jqXHR ) {
                                 

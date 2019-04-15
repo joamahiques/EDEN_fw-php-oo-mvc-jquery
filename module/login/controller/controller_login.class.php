@@ -81,6 +81,19 @@
 			echo json_encode($rlt[0]['token']);
 			exit;
 	}
+
+	function controluser() {
+		// echo json_encode($_POST['token']);
+		// exit;
+		$rlt= loadModel(MODEL_MODULE,'login_model','select_user',$_POST['token']);
+		if($rlt){
+			echo json_encode($rlt);
+			exit;
+		}else{
+			echo json_encode('error');
+			exit;
+		}
+	}
 				// try {
 				// 	// $daologin = new DAOlogin();
 				// 	// $rlt = $daologin->select_user($_POST['mail']);

@@ -78,7 +78,7 @@ $(document).ready(function(){
                                 });
                                 //console.log(casas);
                                 $(casas).hide().appendTo('#inicio').fadeIn(2000);
-                                // readmyfavorites();
+                                readmyfavorites();
 								current_page++;
 								$('.load').fadeOut(500);
 								loading = false;

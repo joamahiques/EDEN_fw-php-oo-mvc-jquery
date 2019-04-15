@@ -18,13 +18,13 @@ class favorites_bll{
         return self::$_instance;
     }
     public function insertFavorites_BLL($data){
-        return $this->dao->insertFavorites_DAO($this->db, $data);
+        return $this->dao->insertFavorites_DAO($this->db,$data);
     }
-    public function readFavorites_BLL(){
-        return $this->dao->readFavorites_DAO($this->db);
+    public function readFavorites_BLL($data){
+        return $this->dao->readFavorites_DAO($this->db,$data);
     }
-    public function deleteFavorites_BLL(){
-        return $this->dao->deleteFavorites_DAO($this->db);
+    public function deleteFavorites_BLL($data){
+        return $this->dao->deleteFavorites_DAO($this->db,$data);
     }
 
 }

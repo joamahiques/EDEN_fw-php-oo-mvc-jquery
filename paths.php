@@ -49,7 +49,7 @@ define('SHOP_JS_PATH', SITE_PATH . 'module/shop/view/js/');
 define('CONTACT_JS_PATH', SITE_PATH . 'module/contact/view/js/');
 define('LOGIN_JS_PATH', SITE_PATH . 'module/login/view/js/');
 define('PROFILE_JS_PATH', SITE_PATH . 'module/profile/view/js/');
-define('HOMES_JS_PATH', SITE_PATH . 'module/homes/view/js/');
+define('HOMES_JS_PATH', SITE_PATH . 'module/crud/view/js/');
 define('CART_JS_PATH', SITE_PATH . 'module/cart/view/js/');
 define('USERFAVORITES_JS_PATH', SITE_PATH . 'module/userfavorites/view/js/');
 ///JS COMPONENTS
@@ -58,10 +58,10 @@ define('USERFAVORITES_JS_PATH', SITE_PATH . 'module/userfavorites/view/js/');
 ////COMPONENTS
 // LOGIN
 define('FUNCTIONS_LOGIN', SITE_ROOT . '/login/');
-define('MODEL_PATH_LOGIN', SITE_ROOT . 'components/login/model/');
-define('DAO_LOGIN', SITE_ROOT . 'components/login/model/DAO/');
-define('BLL_LOGIN', SITE_ROOT . 'components/login/model/BLL/');
-define('MODEL_LOGIN', SITE_ROOT . 'components/login/model/model/');
+// define('MODEL_PATH_LOGIN', SITE_ROOT . 'components/login/model/');
+// define('DAO_LOGIN', SITE_ROOT . 'components/login/model/DAO/');
+// define('BLL_LOGIN', SITE_ROOT . 'components/login/model/BLL/');
+// define('MODEL_LOGIN', SITE_ROOT . 'components/login/model/model/');
 define('LOGIN_VIEW_PATH', SITE_ROOT . 'module/login/view/');/////no borrar
 ///FAVORITES
 define('MODEL_PATH_FAVORITES', SITE_ROOT . 'components/favorites/model/');

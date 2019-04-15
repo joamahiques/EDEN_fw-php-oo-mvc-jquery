@@ -153,12 +153,13 @@ function handleAuthentication() {
 						})
 						.done(function(data){	
 											console.log(data);
-										//	localStorage.removeItem('id_token');
-            //     localStorage.setItem('id_token',JSON.parse(data));
-            //     localStorage.removeItem('token');
-            //     localStorage.removeItem('expires_at');
-										// Command: toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
-                // setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
+											var token=data;
+								localStorage.removeItem('id_token');
+                localStorage.setItem('id_token',token);
+                localStorage.removeItem('au_token');
+                localStorage.removeItem('expires_at');
+								toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
+                 setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
 						});
             // $.post(amigable("?module=login&function=log_social"),{'data_social_net':JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture})},function(data){
             //     localStorage.removeItem('id_token');
@@ -211,15 +212,10 @@ function handleAuthentication() {
 					// 	});
 					}
 				}else{
-					localStorage.setItem('token',data);
+					localStorage.setItem('id_token',data);
 					toastr["info"]('Iniciando sesión'),{"iconClass":'toast-info'};
 					//logincart();
-					//setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
-					// 	localStorage.setItem("user", data.name);
-				// 	localStorage.setItem("type", data.type);
-				// 	localStorage.setItem("avatar", data.avatar);
-				// 	localStorage.setItem("email", data.email);
-				// 	logincart();
+					setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
 				}
 				
 			})
@@ -247,8 +243,7 @@ function handleAuthentication() {
 			})
 			////si nos registramos: 
 				.done(function(response,data,jqXHR ) {
-					console.log(response);
-					///// autologin una vez registrado
+					//console.log(response);
 					if(response=="            ok"){
 						 toastr["success"]('Revisa tu correo para activar tu cuenta'),{"iconClass":'toast-info'};
 						 setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
@@ -273,9 +268,9 @@ function handleAuthentication() {
 	});
 
 ///////////logout
-	$("#btnlogout").on('click', function () {
+	$(document).on('click',"#btnlogout", function () {
 		//console.log("logout!!!!!");
-		deletelogout()
+	//	deletelogout()
 		logoutauto();
 		
 		
@@ -436,24 +431,25 @@ jQuery.fn.putCursorAtEnd = function() {
 };
 
 function logoutauto(){
+	console
 	$.ajax({
-		type : 'GET',
-		url  : 'components/login/controller/controller-login.php?&op=logout',
+		type : 'POST',
+		url	: url1+'login/logout'
 	})
 		.done(function() {
-			
+			console.log('ok');
+			localStorage.removeItem('id_token');
 			localStorage.removeItem('user');
 			localStorage.removeItem('avatar');
 			localStorage.removeItem('type');
 			localStorage.removeItem('email');
-			deletelogout();
-			setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
+			// deletelogout();
+			setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',1000);
 			
 
 	})
 }
 function loginauto(){
-	//console.log("madre mia");
 					var $form_modal = $('.cd-user-modal'),
                     $form_login = $form_modal.find('#cd-login'),
                     $form_signup = $form_modal.find('#cd-signup'),
