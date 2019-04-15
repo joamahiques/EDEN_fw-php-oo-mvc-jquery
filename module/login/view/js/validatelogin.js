@@ -1,4 +1,5 @@
 var userProfile;
+var WebAuth;
 function valide_login(){
 	// var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 	//console.log("valide_login");
@@ -100,7 +101,7 @@ function valide_register(){
 
 $(document).ready(function(){
 ///////////AUTH0
-var WebAuth = new auth0.WebAuth({
+WebAuth = new auth0.WebAuth({
 	domain: 'dev-joamahi.eu.auth0.com',
     clientID: '9jz8YMFTP9gdmpBtvdzh7guntVbCZpy9',
     redirectUri: 'http://localhost/www/EDEN/home/list_home/',
@@ -159,16 +160,9 @@ function handleAuthentication() {
                 localStorage.removeItem('au_token');
                 localStorage.removeItem('expires_at');
 								toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
-                 setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
+                setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
 						});
-            // $.post(amigable("?module=login&function=log_social"),{'data_social_net':JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture})},function(data){
-            //     localStorage.removeItem('id_token');
-            //     localStorage.setItem('id_token',JSON.parse(data));
-            //     localStorage.removeItem('token');
-            //     localStorage.removeItem('expires_at');
-
-                
-            // });
+            
           }
         });
       }
@@ -207,9 +201,6 @@ function handleAuthentication() {
 						$('#signin-password').addClass('has-error').next().next('span').addClass('is-visible').html(data[1]);
 					}else{
 						$('#signin-username').addClass('has-error').next('span').addClass('is-visible').html(data[1]);
-					// $("#error_login").fadeIn(1000, function(){						
-					// 	$("#error_login").addClass('has-error').children('span').addClass('is-visible').html(data[1]);
-					// 	});
 					}
 				}else{
 					localStorage.setItem('id_token',data);
@@ -221,7 +212,7 @@ function handleAuthentication() {
 			})
 			.fail(function( data, success, jqXHR ) {
 				toastr["error"]("ERROR DE CONEXION. PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
-				//setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+				setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
 			});
 	 	};///end if
 	 });
@@ -332,7 +323,6 @@ function handleAuthentication() {
 	$('.hide-password').on('click', function(){
 		var $this= $(this),
 			$password_field = $this.prev('input');
-		
 		( 'password' == $password_field.attr('type') ) ? $password_field.attr('type', 'text') : $password_field.attr('type', 'password');
 		( 'Hide' == $this.text() ) ? $this.text('Show') : $this.text('Hide');
 		//focus and move cursor to the end of input field
@@ -431,23 +421,31 @@ jQuery.fn.putCursorAtEnd = function() {
 };
 
 function logoutauto(){
-	console
-	$.ajax({
-		type : 'POST',
-		url	: url1+'login/logout'
-	})
-		.done(function() {
-			console.log('ok');
-			localStorage.removeItem('id_token');
+	WebAuth.logout({
+		returnTo: 'http://localhost/www/EDEN/home/list_home/',
+		client_id: '9jz8YMFTP9gdmpBtvdzh7guntVbCZpy9'
+	});
+	localStorage.removeItem('id_token');
 			localStorage.removeItem('user');
 			localStorage.removeItem('avatar');
 			localStorage.removeItem('type');
-			localStorage.removeItem('email');
-			// deletelogout();
-			setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',1000);
+	// console
+	// $.ajax({
+	// 	type : 'POST',
+	// 	url	: url1+'login/logout'
+	// })
+	// 	.done(function() {
+	// 		console.log('ok');
+	// 		localStorage.removeItem('id_token');
+	// 		localStorage.removeItem('user');
+	// 		localStorage.removeItem('avatar');
+	// 		localStorage.removeItem('type');
+	// 		//localStorage.removeItem('email');
+	// 		// deletelogout();
+	// 		setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',1000);
 			
 
-	})
+	// })
 }
 function loginauto(){
 					var $form_modal = $('.cd-user-modal'),

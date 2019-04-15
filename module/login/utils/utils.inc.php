@@ -8,9 +8,6 @@
             echo json_encode("Error de conexión");
 			exit();
         }
-        // if ($check != false){ ///si es true
-        //     $error='ERROR: Este email ya está registrado';
-        // }
         return $check;
    }
    function validate_login($user){

@@ -15,16 +15,10 @@ class login_dao {
     }
 
     public function validate_DAO($db,$data){
-            // echo json_encode($data);
-            // exit;
+            
         $sql="SELECT IDuser,password,activate,token FROM users2 WHERE IDuser ='$data'";
         $stmt = $db->ejecutar($sql);
-        return $db->listar($stmt);//devuelve false si no existe registro,??
-        // $email=$data['mail'];
-        // $sql="SELECT * FROM users WHERE email ='$email' LIMIT 1";
-        // $stmt = $db->ejecutar($sql);
-        // return $stmt->fetch();//devuelve false si no existe registro,??
-        
+        return $db->listar($stmt);  
     }
 
     public function insert_user_DAO($db,$data){

@@ -33,19 +33,16 @@
 										$rlt['type']='alta';
 										$rlt['inputEmail']=$arrArgument['email'];
 										$rlt['inputMessage']='Para activar tu cuenta en EDEN pulse el siguiente enlace:';
-
 										enviar_email($rlt);
 									}
-
 									echo("ok");
-							 exit;
+							 		exit;
 				}else{
 					echo "ERROR: Este usuario ya está registrado";
 					exit;
 				}
 	}
 	function login() {
-				//$user=$_POST['user'];
 				$user= array('user'=>$_POST['user'], 'pass'=>$_POST['password']);
 				///log
 					try{
@@ -53,8 +50,7 @@
 					}catch (Exception $e){
 							echo json_encode("Error");
 							exit;
-					}
-					
+					}	
 				///log
 					if($valide['error']==""){
 						echo json_encode($valide['data']['token']);
@@ -69,10 +65,7 @@
 
 	function social(){
 				$data= json_decode($_POST['data1'],true);
-				// echo json_encode($data);
-				// exit;
 				$rlt=check_user($data['id_user']);
-				
 				if(!$rlt){
 					$rlt=loadModel(MODEL_MODULE,'login_model','social',$data);
 				}else{
@@ -83,8 +76,6 @@
 	}
 
 	function controluser() {
-		// echo json_encode($_POST['token']);
-		// exit;
 		$rlt= loadModel(MODEL_MODULE,'login_model','select_user',$_POST['token']);
 		if($rlt){
 			echo json_encode($rlt);
@@ -93,41 +84,11 @@
 			echo json_encode('error');
 			exit;
 		}
-	}
-				// try {
-				// 	// $daologin = new DAOlogin();
-				// 	// $rlt = $daologin->select_user($_POST['mail']);
-				// 		$data=$_POST['user'];
-				// 		$arrValue = loadModel(MODEL_MODULE, "login_model", "select_user", $data);
-				// } catch (Exception $e) {
-				// 		echo "error";
-				// 		exit();
-				// }
-				// if(!$arrValue){
-				// 		echo "El usuario no existe";
-				// 		exit();
-				// }else{
-				// 		$value = get_object_vars($arrValue);
-				// 		if (password_verify($_POST['password'],$value['userpass'])) {
-							
-				// 				$_SESSION['type'] = $value['type'];
-				// 				$_SESSION['avatar'] = $value['avatar'];
-				// 				$_SESSION['mail'] = $value['email'];
-				// 				$_SESSION['tiempo'] = time();
-				// 				//echo 'ok';
-				// 				echo json_encode($value);
-				// 				exit();
-				// 	}else {
-				// 				echo "No coinciden los datos";
-				// 				exit();
-				// 	}
-				// }			
-	
+	}		
 	function logout() {
 
 					error_reporting(0);
 					session_unset($_SESSION['type']);
-					//session_unset($_SESSION['user']);
 					session_unset($_SESSION['avatar']);
 					session_unset($_SESSION['mail']);
 					session_unset($_SESSION['tiempo']);
