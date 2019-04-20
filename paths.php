@@ -74,6 +74,7 @@ define('FAVORITES_VIEW_PATH', SITE_ROOT . 'components/favorites/view/');
 define('MODEL_MODAL', SITE_ROOT . 'components/modal/model/model/');
 define('MODAL_JS_PATH', SITE_PATH . 'components/modal/view/js/');
 ///SEARCH
+define('MODEL_SEARCH', SITE_ROOT . 'components/search/model/model/');
 define('SEARCH_JS_PATH', SITE_PATH . 'components/search/view/js/');
 ///GEOAPI
 define('GEOAPI_JS_PATH', SITE_PATH . 'components/apis/geoapi/');

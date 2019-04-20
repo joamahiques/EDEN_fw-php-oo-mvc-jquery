@@ -4,12 +4,12 @@
 
     $.ajax({
         
-        type: "GET",
+        type: "POST",
         dataType: "json",
-        url: "components/search/controller/controllersearch.php?op=firstdrop" 
+        url:amigable('?module=components&function=search&aux=firstdrop'),
     })
     .done(function( data, textStatus, jqXHR ) {
-       //console.log( data );
+       console.log( data );
        var $drop = $("#drop1");
        //$drop.empty();
          $.each(data, function(i, item) {///bucle para rellenar el dropdown1
@@ -17,6 +17,9 @@
             $drop.append("<option>" + item.provincia + "</option>")
                
         });
+    })
+    .fail(function(data){
+        console.log(data);
     });
     
     
@@ -26,23 +29,28 @@
         $("#drop1").on("change", function () {
                 var valPro = $(this).val();
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "json",
-                url: "components/search/controller/controllersearch.php?op=seconddrop&id=" + valPro, 
+                url: amigable('?module=components&function=search&aux=seconddrop'),
+                data: {id:valPro}
             })
             .done(function( data, textStatus, jqXHR ) {
-               //console.log( data );
-               var $drop2 = $("#drop2");
-               $drop2.empty();
-    
                
-                $drop2.append("<option value=false>" + "Selecciona Municipio" + "</option>");
-    
-                 $.each(data, function(i, item) {///bucle para rellenar el dropdown1
-                   // console.log( item);
-                    $drop2.append("<option>" + item.localidad + "</option>")
-                       
-                });
+               if(data=="error"){
+                toastr["error"]("Error de conexión"),{"iconClass":'toast-info'};
+
+               }else{
+                    var $drop2 = $("#drop2");
+                    $drop2.empty();
+            
+                        $drop2.append("<option value=false>" + "Selecciona Municipio" + "</option>");
+            
+                        $.each(data, function(i, item) {///bucle para rellenar el dropdown1
+                        // console.log( item);
+                            $drop2.append("<option>" + item.localidad + "</option>")
+                            
+                        });
+                }
        
             });//end done
             
@@ -55,29 +63,32 @@
                 var autCom = {auto: auto, drop2: drop2}; 
                 $.ajax({
                     type: "POST",
-                    url: "components/search/controller/controllersearch.php?op=autocomplete",  
+                    url: amigable('?module=components&function=search&aux=autocomplete'), 
                     data: autCom,
                 })
                 .done(function( data, textStatus, jqXHR ) {
-                   // console.log(data);
-                    $('#optionsauto').fadeIn(1000).html(data);// se ve
-                    ///si selecciono valor
-                    $('.autoelement').on('click', function(){
-                        var id = $(this).children('a').attr('id');
-                        console.log(id);
-                        $('#autocom').val(id);
-                        //$('#autocom').val($('#'+id).attr('data'));
-                        $('#optionsauto').fadeOut(1000);
-                   
-                     });
-                     ///si click fuera se borra value y se cierra
-                     $("#contenido, .slider__img").on('click', function(){
-                        $('#optionsauto').fadeOut(1000);
-                        $('#autocom').val("");
-                    });
+                    if(data=="error"){
+                        toastr["error"]("Error de conexión"),{"iconClass":'toast-info'};
+        
+                       }else{
+                        // console.log(data);
+                            $('#optionsauto').fadeIn(1000).html(data);// se ve
+                            ///si selecciono valor
+                            $('.autoelement').on('click', function(){
+                                var id = $(this).children('a').attr('id');
+                                console.log(id);
+                                $('#autocom').val(id);
+                                //$('#autocom').val($('#'+id).attr('data'));
+                                $('#optionsauto').fadeOut(1000);
+                        
+                            });
+                            ///si click fuera se borra value y se cierra
+                            $("#contenido, .slider__img").on('click', function(){
+                                $('#optionsauto').fadeOut(1000);
+                                $('#autocom').val("");
+                            });
+                    }
                 });
-    
-    
             });
     
         //// BTN SEARCH
@@ -93,14 +104,11 @@
                 sessionStorage.setItem('val', auto); // save data
     
                 if((drop==0)&&(drop2==0)&&(auto==="")){
-                   // console.log("ingresa criterios de busqueda");
                     toastr["info"]("Ingresa criterios de busqueda o ve a la Tienda"),{"iconClass":'toast-info'};
                     
                 }else{
                     
-                    //window.location.href = 'index.php?page=shop&provi=' + drop + '&local=' + drop2 + '&val=' + auto;
-                    window.location.href = 'index.php?page=shop';
-    
+                    window.location.href = amigable('?module=shop&function=list_shop')
                 }
                 
             });

@@ -98,6 +98,8 @@ $(document).ready(function(){
             })//end done
         .fail(function( data, response, jqXHR ) {
             console.log(data);
+            toastr["error"]("Error de conexión, pruebe mas tarde"),{"iconClass":'toast-info'};
+
         })
 
      }//end function
@@ -128,38 +130,6 @@ $(document).ready(function(){
             }
            
              ajaxForSearch('&provi=' + drop + '&local=' + drop1 + '&val=' + drop2);
-            //ajaxForSearch('&provi=valencia&local=null&val=null');
-        // ajaxForSearch("module/shop/controller/controllershop.php?op=list");
-    //         if ((!drop && !drop1 && !drop2) || (drop==='null' && drop1==='null' && drop2==='null')){
-    //             console.log("vengo de menú");
-    //             //ajaxForSearch("module/shop/controller/controllershop.php?op=lis");
-    //             ajaxForSearch("module/shop/controller/controllershop.php?op=searchComplete&provi=" + drop + '&local=' + drop1 + '&val=' + drop2);
-
-    //         }//else if((drop1==="false") && (drop2.length==0)){
-    //             else if((drop1==null) && (drop2==null)&& (drop!=null)){
-    //             console.log("por provincia");
-    //             //ajaxForSearch("module/shop/controller/controllershop.php?op=searchProvince1&provi=" + drop);
-    //             ajaxForSearch("module/shop/controller/controllershop.php?op=searchComplete&provi=" + drop + '&local=' + drop1 + '&val=' + drop2);
-
-    //         }//else if((drop1!="false") && (drop2.length==0) ){
-    //             else if((drop1!=null) && (drop2==null) ){
-    //             console.log("por provincia i localidad");
-    //             // ajaxForSearch("module/shop/controller/controllershop.php?op=searchPorYLoc&provi=" + drop + '&local=' + drop1);
-    //             ajaxForSearch("module/shop/controller/controllershop.php?op=searchComplete&provi=" + drop + '&local=' + drop1 + '&val=' + drop2);
-
-                
-    //         }//else if ((drop.length > 4)&&(drop1!="false") &&(drop2.length > 1)){
-    //             else if ((drop!=null)&&(drop1!=null) &&(drop2!=null)){
-    //             console.log("busqueda completa");
-    //             ajaxForSearch("module/shop/controller/controllershop.php?op=searchComplete&provi=" + drop + '&local=' + drop1 + '&val=' + drop2);
-                
-    //         }//else if((drop=="false"||drop==0) &&(drop1=="false"||drop1==0) && (drop2.length > 0)){
-    //             else if((drop==null) &&(drop1==null) && (drop2!=null)){
-    //             console.log("busqueda solo por valor del autocomplete");
-    //             ajaxForSearch("module/shop/controller/controllershop.php?op=searchComplete&provi=" + drop + '&local=' + drop1 + '&val=' + drop2);
-
-    //             // ajaxForSearch("module/shop/controller/controllershop.php?op=search&val=" + drop2 );
-    //         }
      }//end if
 
    
