@@ -67,8 +67,10 @@
 
 function send_mailgun($from, $email, $subject, $html){
     $config = array();
-    $config['api_key'] = "bc5805ea5df1fe1751896a341d702f39-6140bac2-de5253c0"; //API Key
-    $config['api_url'] = "https://api.mailgun.net/v3/sandboxb20b48a4b8d2462abf42247fc9e7536c.mailgun.org/messages"; //API Base URL
+    //$config['api_key'] = "bc5805ea5df1fe1751896a341d702f39-6140bac2-de5253c0"; //API Key
+    $config['api_key'] = apikeymailgun; //API Key
+    //$config['api_url'] = "https://api.mailgun.net/v3/sandboxb20b48a4b8d2462abf42247fc9e7536c.mailgun.org/messages"; //API Base URL
+    $config['api_url'] = apiurlmailgun; //API Base URL
 
    $message = array();
    $message['from'] = $from;

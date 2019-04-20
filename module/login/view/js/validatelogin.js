@@ -101,11 +101,12 @@ function valide_register(){
 
 $(document).ready(function(){
 ///////////AUTH0
+
 WebAuth = new auth0.WebAuth({
-	domain: 'dev-joamahi.eu.auth0.com',
-    clientID: '9jz8YMFTP9gdmpBtvdzh7guntVbCZpy9',
-    redirectUri: 'http://localhost/www/EDEN/home/list_home/',
-    audience: 'https://' + 'dev-joamahi.eu.auth0.com' + '/userinfo',
+	domain: authdomain,
+    clientID: authclientID,
+    redirectUri: authredirect,
+    audience: authaudience,
     responseType: 'token id_token',
     scope: 'openid profile',
     leeway: 60
@@ -421,14 +422,16 @@ jQuery.fn.putCursorAtEnd = function() {
 };
 
 function logoutauto(){
+	////crear ajax xa borrar el token de autenticacio
 	WebAuth.logout({
 		returnTo: 'http://localhost/www/EDEN/home/list_home/',
-		client_id: '9jz8YMFTP9gdmpBtvdzh7guntVbCZpy9'
+		client_id: authclientID,
 	});
 	localStorage.removeItem('id_token');
 			localStorage.removeItem('user');
 			localStorage.removeItem('avatar');
 			localStorage.removeItem('type');
+		
 	// console
 	// $.ajax({
 	// 	type : 'POST',

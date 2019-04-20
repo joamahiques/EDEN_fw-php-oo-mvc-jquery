@@ -7,7 +7,6 @@
 				$_SESSION['module'] = "login";
 		}
 		
-   
     function register() {
 				$user=$_POST['user'];
 				$valide = validate_register($user); 
@@ -61,7 +60,6 @@
 						echo json_encode($datos);
 					}
 		}
-
 
 	function social(){
 				$data= json_decode($_POST['data1'],true);
