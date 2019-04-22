@@ -28,4 +28,7 @@ class login_bll{
     public function social_BLL($data){
         return $this->dao->social_DAO($this->db, $data);
     }
+    public function delete_token_BLL($data){
+        return $this->dao->delete_token_DAO($this->db, $data);
+    }
 }

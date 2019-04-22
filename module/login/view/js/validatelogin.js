@@ -178,44 +178,44 @@ function handleAuthentication() {
 	setTimeout(function(){ getProfile(); }, 1000);
 //////////////login	
 	$("#formlogin").submit(function (e) {
-		console.log("valide_login11");
-		e.preventDefault();
-		url1=tryurl();
-		if(valide_login() != 0){
-			var data1 = $("#formlogin").serialize();
-			//var data=$("#signin-password").val();
-			console.log(data1);
-			$.ajax({
-				type : 'POST',
-				url  : url1+'login/login',
-				data :data1,
-				dataType: 'json',
-				beforeSend: function(){	
-					$(".has-error").removeClass('has-error');
-				}
-			})
-			.done(function(data, response){			
-				
-				if(data[0]=='false'){
-					//console.log('errorrrr');
-					if(data[1]=='La contraseña no es correcta'){
-						$('#signin-password').addClass('has-error').next().next('span').addClass('is-visible').html(data[1]);
-					}else{
-						$('#signin-username').addClass('has-error').next('span').addClass('is-visible').html(data[1]);
-					}
-				}else{
-					localStorage.setItem('id_token',data);
-					toastr["info"]('Iniciando sesión'),{"iconClass":'toast-info'};
-					//logincart();
-					setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
-				}
-				
-			})
-			.fail(function( data, success, jqXHR ) {
-				toastr["error"]("ERROR DE CONEXION. PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
-				setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
-			});
-	 	};///end if
+		//console.log("valide_login11");
+				e.preventDefault();
+				url1=tryurl();
+				if(valide_login() != 0){
+							var data1 = $("#formlogin").serialize();
+							//var data=$("#signin-password").val();
+							console.log(data1);
+							$.ajax({
+									type : 'POST',
+									url  : url1+'login/login',
+									data :data1,
+									dataType: 'json',
+									beforeSend: function(){	
+										$(".has-error").removeClass('has-error');
+									}
+							})
+							.done(function(data, response){			
+								
+									if(data[0]=='false'){
+										//console.log('errorrrr');
+										if(data[1]=='La contraseña no es correcta'){
+											$('#signin-password').addClass('has-error').next().next('span').addClass('is-visible').html(data[1]);
+										}else{
+											$('#signin-username').addClass('has-error').next('span').addClass('is-visible').html(data[1]);
+										}
+									}else{
+										localStorage.setItem('id_token',data);
+										toastr["info"]('Iniciando sesión'),{"iconClass":'toast-info'};
+										//logincart();
+										setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+									}
+								
+							})
+							.fail(function( data, success, jqXHR ) {
+									toastr["error"]("ERROR DE CONEXION. PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
+									setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+							});
+				};///end if
 	 });
 ////////////register
 	$("#formregister").submit(function (e) {
@@ -236,7 +236,6 @@ function handleAuthentication() {
 			////si nos registramos: 
 				.done(function(response,data,jqXHR ) {
 					response=response.trim();
-					//console.log(response.trim());
 					if(response=="ok"){
 						 toastr["success"]('Revisa tu correo para activar tu cuenta'),{"iconClass":'toast-info'};
 						 setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
@@ -422,34 +421,31 @@ jQuery.fn.putCursorAtEnd = function() {
 	});
 };
 
-function logoutauto(){
-	////crear ajax xa borrar el token de autenticacio
-	WebAuth.logout({
-		returnTo: 'http://localhost/www/EDEN/home/list_home/',
-		client_id: authclientID,
-	});
-	localStorage.removeItem('id_token');
-			localStorage.removeItem('user');
-			localStorage.removeItem('avatar');
-			localStorage.removeItem('type');
+function logoutauto(){	
+		var tok=localStorage.getItem('id_token');
 		
-	// console
-	// $.ajax({
-	// 	type : 'POST',
-	// 	url	: url1+'login/logout'
-	// })
-	// 	.done(function() {
-	// 		console.log('ok');
-	// 		localStorage.removeItem('id_token');
-	// 		localStorage.removeItem('user');
-	// 		localStorage.removeItem('avatar');
-	// 		localStorage.removeItem('type');
-	// 		//localStorage.removeItem('email');
-	// 		// deletelogout();
-	// 		setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',1000);
-			
+	$.ajax({
+		type : 'POST',
+		url	: url1+'login/logout',
+		//data:'tok='+tok
+		data:{'tok':tok}
+	})
+		.done(function(data, response) {
+			data=data.trim();
+					if(data==='"ok"'){
+							WebAuth.logout({
+								returnTo: 'http://localhost/www/EDEN/home/list_home/',
+								client_id: authclientID,
+							});
+									localStorage.removeItem('id_token');
+									localStorage.removeItem('user');
+									localStorage.removeItem('avatar');
+									localStorage.removeItem('type');
+							 //deletelogout();
+							setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',2000);
+				}
 
-	// })
+	})
 }
 function loginauto(){
 					var $form_modal = $('.cd-user-modal'),

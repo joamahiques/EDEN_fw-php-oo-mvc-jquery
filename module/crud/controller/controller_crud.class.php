@@ -33,45 +33,35 @@
             break;
     /////////CREATE        
         case 'create';
-        // echo "hollo";
-        // die();
+        
            //include("module/homes/model/validation.php");//AQUI validacion php
             $check = true;
             $error='';
             
             if ($_POST){
-               // echo('create');
-                //die();
+               
                 $check=validatephp();
-                //var_dump($check);
-                //die();
+                
             ////si no hay ninguno registrado( si es null)
                 if (!$check){
                     $_SESSION['home']=$_POST;
-                    //print_r($_POST);
-                     //die();
+                    
                     try{
                         $DAOhome = new DAOhome();
                         $rdo = $DAOhome->insert_home($_POST);
-                       // print_r($rdo);
-                       // die();
+                       
                     }catch (Exception $e){
-                         //print_r($rdo);
-                        //  echo ("1 caracola");
-                        // die();
+                        
                         $callback = 'index.php?page=503';
         			    die('<script>window.location.href="'.$callback .'";</script>');
                     }
                     ///si se ha registrado correctamente
 		            if($rdo){
-                        // echo ("Registrado en la base de datos correctamente");
-                        // die();
+                        
             			$callback = 'index.php?page=controller_homes&op=list';
         			    die('<script>window.location.href="'.$callback .'";</script>');
             		}else{
-                        // print_r($rdo);
-                        //  echo ("2");
-                        //  die();
+                        
                         $callback = 'index.php?page=503';
     			        die('<script>window.location.href="'.$callback .'";</script>');
                     }

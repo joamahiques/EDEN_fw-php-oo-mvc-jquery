@@ -26,4 +26,7 @@ class login_model {
     public function social($data) {
         return $this->bll->social_BLL($data);
     }
+    public function delete_token($data) {
+        return $this->bll->delete_token_BLL($data);
+    }
 }

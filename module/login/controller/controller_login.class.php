@@ -64,10 +64,13 @@
 	function social(){
 				$data= json_decode($_POST['data1'],true);
 				$rlt=check_user($data['id_user']);
+				echo json_encode($rlt);
+				exit;
 				if(!$rlt){
+					echo('register_socila');
 					$rlt=loadModel(MODEL_MODULE,'login_model','social',$data);
 				}else{
-					//echo('register');
+					echo('NOregistersocial');
 				}
 			echo json_encode($rlt[0]['token']);
 			exit;
@@ -84,14 +87,24 @@
 		}
 	}		
 	function logout() {
-
+		
+		$data=$_POST['tok'];
+		$rlt= loadModel(MODEL_MODULE,'login_model','delete_token',$data);
+		
+		if($rlt){
+			echo json_encode('ok');
 					error_reporting(0);
 					session_unset($_SESSION['type']);
 					session_unset($_SESSION['avatar']);
 					session_unset($_SESSION['mail']);
 					session_unset($_SESSION['tiempo']);
 					session_destroy();
-					echo "home";
+			exit;
+		}else{
+			echo json_encode('error');
+			exit;
+		}
+					
 	}
 }//end class
 	

@@ -1,5 +1,5 @@
 <?php
-    echo json_decode('controller');
+   // echo json_decode('controller');
     
     $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
     session_start();

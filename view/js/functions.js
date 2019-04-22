@@ -139,7 +139,7 @@ toastr.options = {
   }
 /////////// MENU
       urlgen=tryurl();
-      console.log(localStorage.getItem("id_token"));
+      //console.log(localStorage.getItem("id_token"));
       var token = localStorage.getItem("id_token");
       if (token) {
           $.ajax({
@@ -149,10 +149,13 @@ toastr.options = {
             dataType: 'json',
           })
           .done(function(data){	
+            //console.log(data);
+            localStorage.setItem("id_token", data[1]);
+            //console.log(localStorage.getItem("id_token"));
                 if (data != 'error') {
-                    console.log(data[0].type);
-                    if ((data[0].type === 'client_rs')||(data[0].type === 'client')) {
-                      //console.log('menuuuuu');
+                    console.log(data[0][0].type);
+                    if ((data[0][0].type === 'client_rs')||(data[0][0].type === 'client')) {
+                      console.log('menuuuuu');
                       $('.sf-menu').empty();
                       $('.sf-menu').html(
                         '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+							
@@ -169,7 +172,7 @@ toastr.options = {
 
                        
                      }
-                     if(data[0].type === 'admin'){
+                     if(data[0][0].type === 'admin'){
                         $('.sf-menu').empty();
                         $('.sf-menu').html(
                           '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+
@@ -185,8 +188,8 @@ toastr.options = {
                           '</li>'
                       )
                       }
-                      $('#menuprofile').prepend(data[0].user);
-                      $('#avatar').attr("src", data[0].avatar);
+                      $('#menuprofile').prepend(data[0][0].user);
+                      $('#avatar').attr("src", data[0][0].avatar);
   
                       $('#menuprofile').on('click', function(){
                             $('#submenu').toggle( "slow" );
