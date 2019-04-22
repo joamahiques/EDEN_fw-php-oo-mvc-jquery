@@ -34,7 +34,7 @@
 										$rlt['inputMessage']='Para activar tu cuenta en EDEN pulse el siguiente enlace:';
 										enviar_email($rlt);
 									}
-									echo("ok");
+									echo "ok";
 							 		exit;
 				}else{
 					echo "ERROR: Este usuario ya está registrado";

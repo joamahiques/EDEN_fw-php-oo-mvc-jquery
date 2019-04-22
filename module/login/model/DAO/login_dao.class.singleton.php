@@ -27,7 +27,8 @@ class login_dao {
         $email=$data['email'];
         $passw=$data['passwd'];
         $type="client";
-        $token=md5(uniqid(rand(),true));
+        //$token=md5(uniqid(rand(),true));
+        $token= generate_JWK($nombre);
 		$hashed_pass = password_hash($passw, PASSWORD_DEFAULT);
 		$hashavatar= md5( strtolower( trim( $email ) ) );
 		$avatar="https://www.gravatar.com/avatar/$hashavatar?s=40&d=identicon";

@@ -41,6 +41,7 @@ class shop_dao {
     }
 
     public function alldrops_DAO($db, $data){ //$provi,$local,$val
+        
         $provi=$data['provi'];
         $local=$data['local'];
         $val=$data['val'];
@@ -68,51 +69,12 @@ class shop_dao {
         // }else if(($provi=='null') &&($local=='null') && ($val!='null')){//por valor del autocomplete
         //     $sql = "SELECT * FROM casas WHERE nombre LIKE '".$val. "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC";// LIMIT $start, $records_per_page";
         // }
-       
+        // echo json_encode($sql);
+        // exit;
         
         $stmp = $db->ejecutar($sql);
         return $db->listar($stmp);
     }
 
-    // public function select_pagination_DAO($db, $data){
-    //     $start = $data['start'];
-    //     $records_per_page = $data['records'];
-    //     $sql = "SELECT * from casas ORDER BY provincia ASC LIMIT $start, $records_per_page";
-        
-    //     $stmp = $db->ejecutar($sql);
-    //     return $db->listar($stmp);
-    // }
-
-    // public function selectProvi_DAO($db, $data){
-    //     $provi=$data['provi'];
-    //     $start = $data['start'];
-    //     $records_per_page = $data['records'];
-        
-    //     $sql = "SELECT * FROM casas WHERE provincia='$provi' ORDER BY localidad ASC,capacidad ASC LIMIT $start, $records_per_page";
-        
-    //     $stmp = $db->ejecutar($sql);
-    //     return $db->listar($stmp);
-    // }
-    // public function selectProviYLoca_DAO($db, $data){
-    //     $provi=$data['provi'];
-    //     $local=$data['local'];
-    //     $start = $data['start'];
-    //     $records_per_page = $data['records'];
-
-    //     $sql = "SELECT * FROM casas WHERE provincia='$provi' AND localidad='$local' ORDER BY capacidad ASC LIMIT $start, $records_per_page";
-
-    //     $stmp = $db->ejecutar($sql);
-    //     return $db->listar($stmp);
-    // }
     
-
-    // public function search_DAO($db,$data){
-    //     $val=$data['val'];
-    //     $start = $data['start'];
-    //     $records_per_page = $data['records'];
-    //     $sql = "SELECT * FROM casas WHERE nombre LIKE '".$val. "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC LIMIT $start, $records_per_page";
-
-    //     $stmp = $db->ejecutar($sql);
-    //     return $db->listar($stmp);
-    // }
 }

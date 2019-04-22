@@ -1,14 +1,7 @@
 $(document).ready(function () {
-    //console.log("modaljs");
-    if(window.location.href=='http://localhost/www/EDEN/'){
-        url2='components/modal/read_modal';
-    }else{
-        url2='../../components/modal/read_modal';
-    }
-    
+   
     $('body').on("click",".read", function () {
         var id = this.getAttribute('id');
-        console.log("modaljs");
         $.ajax({
             // En data puedes utilizar un objeto JSON, un array o un query string
             //data: {"parametro1" : "valor1"},
@@ -17,11 +10,11 @@ $(document).ready(function () {
             dataType: "json",
             data: 'op=read_modal&modal='+id,
             // URL
-           url:url2
+           url: amigable('?module=components&function=modal&aux=read_modal'),
         })
          .done(function( data) {
                  //console.log( "La solicitud se ha completado correctamente." );
-                 //console.log( data );
+                
                  $('#modalcontent').empty();
                  $('#nombre').html(data[0].nombre);
                  $('<div></div>').attr('id','Div1').appendTo('#modalcontent');

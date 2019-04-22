@@ -18,18 +18,18 @@ class controller_shop{
         }
     }
     function products(){
-        
-        if( isset($_POST['page_num']) ){
-            
+        $search= json_decode($_POST['search'],true);
+        if( isset($search['page_num']) ){
+
             //set_error_handler('ErrorHandler');
             try{
-            $page					=	intval($_POST['page_num']);//number of page
+            $page					=	intval($search['page_num']);//number of page
             $current_page			=	$page - 1;
             $records_per_page		=	6; // records to show per page
             $start					=	$current_page * $records_per_page;//first limit to search
-            $val                    =   ($_POST['val']);
-            $provi                  =   ($_POST['provi']);
-            $local                  =   ($_POST['local']);
+            $val                    =   ($search['val']);
+            $provi                  =   ($search['provi']);
+            $local                  =   ($search['local']);
             $arrArgument = array(
                 'start'=>$start,
                 'records'=>$records_per_page,
@@ -42,8 +42,8 @@ class controller_shop{
             $arrValue = loadModel(MODEL_MODULE, "shop_model", "alldrops", $arrArgument);
             $result= array('totalcount'=>$totalResults,'results' => $arrValue);
             
-            }catch(Exception $e) {echo json_encode($e+"error shop");}
-            //restore_error_handler();
+         }catch(Exception $e) {echo json_encode($e+"error shop");}
+            restore_error_handler();
             if(($totalResults)&&($arrValue)){
                 echo json_encode($result);
             }else{

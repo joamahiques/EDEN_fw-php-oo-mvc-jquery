@@ -2,20 +2,20 @@
 $(document).ready(function(){
 
 ///////////////  AJAX FOR ALL SEARCH
-     function ajaxForSearch(durl) {
-         var data=durl;
-          //console.log(data);
+     function ajaxForSearch(provi, local, val) {
+         //var data=durl;
+         var search = JSON.stringify({'page_num':1,'provi':provi,'local':local,'val':val});
+          //console.log(provi);
          $.ajax({
             
             type: "POST",
             dataType: "json",
-            //url:url,
             url:'../../shop/products',
-            data:'page_num=1'+data,
+            //data:'page_num=1'+data,
+            data:{search}
         })
         .done(function( data, textStatus, jqXHR ) {
              //console.log(data);
-            
             total_pages=Math.ceil(parseInt(data.totalcount[0].total) / parseInt(6))
            
             if(total_pages<2){
@@ -53,18 +53,20 @@ $(document).ready(function(){
                         prev: '<<',
                         // href: '#result-page-{{number}}'
                     }).on("page", function (e, num) {
-                        //console.log(num);
+                        console.log(num);
                         e.preventDefault();
+                        var search = JSON.stringify({'page_num':num,'provi':provi,'local':local,'val':val})
                         $.ajax({
             
                             type: "post",
                             dataType: "json",
                             url:'../../shop/products',
-                            data:'page_num='+ num,
+                            //data:'page_num='+ num,
+                            data: {search}
                         })
                         .done(function( data, textStatus, jqXHR ) {
                             total_pages=Math.ceil(parseInt(data.totalcount) / parseInt(6))//total pages=round total houses/6
-                            //console.log(data.length);
+                            //console.log(data);
                            if(data.results.length==0){
                                 $('#inicioshop').empty();
                                 $('<div><h3>Su búsqueda no dió resultados.</h3></div>').attr('id','list').appendTo('#inicioshop');
@@ -129,7 +131,8 @@ $(document).ready(function(){
                 drop=null;
             }
            
-             ajaxForSearch('&provi=' + drop + '&local=' + drop1 + '&val=' + drop2);
+             //ajaxForSearch('&provi=' + drop + '&local=' + drop1 + '&val=' + drop2);
+             ajaxForSearch( drop,drop1,drop2);
      }//end if
 
    

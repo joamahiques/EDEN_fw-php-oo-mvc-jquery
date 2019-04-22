@@ -5,11 +5,8 @@ $(document).ready(function(){
 /////////////////////////////////SHOP
 
     if (document.getElementById('inicioshop')) {
-        // var pro = $(this).val();
          var pro= sessionStorage.getItem('provincia');
-         console.log(pro+" provi");
-         
-        
+         //console.log(pro+" provi");
         if (pro==='null'){//si provincia es null(entramos por menu)
             geolocation('#shopclub');
         }else{
@@ -17,7 +14,7 @@ $(document).ready(function(){
             $.ajax({
                 url: "/www/EDEN/components/apis/clubrural/provinces.json",
                 dataType: 'json',
-                type: 'GET',
+                type: 'POST',
                 success: function (data) {
                 //console.log(data); 
                 $.each(data, function(i, item) {
@@ -31,7 +28,7 @@ $(document).ready(function(){
                                     dataType: "xml",
                                 })
                                 .done(function( data, textStatus, jqXHR ) {
-                                    console.log(data);
+                                    //console.log(data);
                                     var nombre;
                                     var provincia;
                                     var img;
@@ -61,15 +58,18 @@ $(document).ready(function(){
                                     });  
                                 })// end done
                                 .fail(function( data, textStatus, jqXHR ) {
-                                    console.log("HELLOOOOO FAIL"+data);
+                                    //console.log("HELLOOOOO FAIL"+data);
+                                    $('#shopclub').empty();
+                                    $("#h2club").append("No se han podido cargar ofertas de "+pro+". Pruebe más tarde");
                                 })
                     }
                     })
                     
                 },
                 error: function (data) {
-                    alert("fail", data);
-                    console.log(data);
+                    $('#shopclub').empty();
+                    $("#h2club").append("No se han podido cargar ofertas de "+pro+". Pruebe más tarde");
+                    //console.log(data);
                 },
             });
         }
@@ -124,7 +124,9 @@ $(document).ready(function(){
                 
             })// end done
             .fail(function( data, textStatus, jqXHR ) {
-                console.log("HELLOOOOO FAIL"+data);
+                $('#shopclub').empty();
+                $("#h2club").append("No se han podido cargar ofertas de "+pro+". Pruebe más tarde");
+                //console.log("HELLOOOOO FAIL"+data);
             })
         
      
@@ -135,11 +137,12 @@ $(document).ready(function(){
 function geolocation(id) {
         //try to get user current location using getCurrentPosition() method
         navigator.geolocation.getCurrentPosition(function(position){ 
+            var pro= sessionStorage.getItem('provincia');
             var latitude=position.coords.latitude;
             var longitude=position.coords.longitude;
             //console.log("Found your location nLat : "+latitude+" nLang :"+longitude);
             url="https://api.clubrural.com/api.php?claveapi="+keyclub+"&type=gmaps&lat="+latitude+"&lng="+longitude+"&limitkm="+numeroAleatorio(1,80);
-             console.log(url);
+             //console.log(url);
             // console.log('geolocation');
         
             $.ajax({
@@ -148,7 +151,7 @@ function geolocation(id) {
                 dataType: "xml",
             })
             .done(function( data, textStatus, jqXHR ) {
-                console.log(data);
+                //console.log(data);
                 var nombre;
                 var provincia;
                 var img;
@@ -176,7 +179,9 @@ function geolocation(id) {
                 });  
             })// end done
             .fail(function( data, response, jqXHR ) {
-                console.log("HELLOOOOO FAIL"+ response);
+                // $('#shopclub').empty();
+                // $("#h2club").append("No se han podido cargar ofertas de "+pro+". Pruebe más tarde");
+                //console.log("HELLOOOOO FAIL"+ response);
             })
         
         

@@ -9,7 +9,7 @@
         url:amigable('?module=components&function=search&aux=firstdrop'),
     })
     .done(function( data, textStatus, jqXHR ) {
-       console.log( data );
+       //console.log( data );
        var $drop = $("#drop1");
        //$drop.empty();
          $.each(data, function(i, item) {///bucle para rellenar el dropdown1

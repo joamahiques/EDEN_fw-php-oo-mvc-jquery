@@ -46,7 +46,7 @@ spl_autoload_register( function($className){
             set_include_path('model/');
             spl_autoload($className);
         }
-        //log
+        //log i JWT
         elseif (file_exists('classes/' . $className . '.class.singleton.php')) {//require(MODEL_PATH . "db.class.singleton.php");
             set_include_path('classes/');
             spl_autoload($className);

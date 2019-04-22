@@ -235,11 +235,12 @@ function handleAuthentication() {
 			})
 			////si nos registramos: 
 				.done(function(response,data,jqXHR ) {
-					//console.log(response);
-					if(response=="            ok"){
+					response=response.trim();
+					//console.log(response.trim());
+					if(response=="ok"){
 						 toastr["success"]('Revisa tu correo para activar tu cuenta'),{"iconClass":'toast-info'};
 						 setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
-					}else if (response=="            Error") {
+					}else if (response=="Error") {
 						toastr["info"]('Fallo de conexión. Prueba mas tarde'),{"iconClass":'toast-info'};
 						setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);					// 	setTimeout(' window.location.href = window.location.href; ',1000);
 					 }else{
