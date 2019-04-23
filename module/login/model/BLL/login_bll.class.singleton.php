@@ -19,6 +19,12 @@ class login_bll{
     public function validate_BLL($data){
         return $this->dao->validate_DAO($this->db, $data);
       }
+    public function recover_pass_BLL($data){
+        return $this->dao->recover_pass_DAO($this->db, $data);
+    }
+    public function update_pass_BLL($data){
+        return $this->dao->update_pass_DAO($this->db, $data);
+    }
     public function insert_user_BLL($data){
         return $this->dao->insert_user_DAO($this->db, $data);
     }

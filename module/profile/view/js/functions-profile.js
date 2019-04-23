@@ -28,14 +28,7 @@ function valide_update_profile(){
 		return 0;
 	}
 	$('#proemail').removeClass('has-error').next('span').removeClass('is-visible');
-
-	//tf
-	// if(document.formprofile.tf.value.length === 0){
-	// 	$('#protf').addClass('has-error').next('span').addClass('is-visible').html("EL TF ES REQUERIDO");
-	// 	document.formprofile.tf.focus();
-	// 	return 0;
-	// }
-	// $('#protf').removeClass('has-error').next('span').removeClass('is-visible');
+//tf
 	if(document.formprofile.tf.value.length != 0){
 		if(!phoneval.test(document.formprofile.tf.value)){
 			$('#protf').addClass('has-error').next('span').addClass('is-visible').html("FORMATO NO VÁLIDO");
@@ -63,32 +56,34 @@ function valide_update_profile(){
 }
 ///////////////// coger datos del ususarios de la bd y pintarlos
 function myprofile(){
+
     $.ajax({
-        type:"GET",
-        url:"module/profile/controller/controller-profile.class.php?op=load_data_user",
+        type:"POST",
+				//url:"module/profile/controller/controller-profile.class.php?op=load_data_user",
+				url:amigable('?module=profile&function=load_data_user'),
+				data:{'tok':localStorage.getItem("id_token")},
         dataType:"json",
         success: function(data) {
-					//  data[0].province='VALENCIA';
-					//   data[0].city='XÀTIVA';
-          $('#proname').attr('value', data[0].name);
-					$('#proemail').attr('value', data[0].email);
-					$('#protf').attr('value', data[0].tf);
-					localStorage.setItem("user", data[0].name);
-					localStorage.setItem("avatar", data[0].avatar);
-					
+					$user=data[0][0];
+					localStorage.setItem("id_token", data[1]);
+
+          $('#proname').attr('value', $user.IDuser);
+					$('#proemail').attr('value', $user.email);
+					$('#protf').attr('value', $user.phone);
+	
 		  		setTimeout(function(){
-						if (typeof data[0].province != 'undefined' && data[0].province) {///si no es null ni undefined ni esta vacio....
-							console.log(data[0].province);
+						if (typeof $user.province != 'undefined' && $user.province) {///si no es null ni undefined ni esta vacio....
+							console.log($user.province);
 							
-							$("#provinciaini option[value="+ data[0].province +"]").attr("selected",true);
+							$("#provinciaini option[value="+ $user.province +"]").attr("selected",true);
 							$("#provinciaini").trigger('change');////activar auto la funcion on change
 							 }
 					 }, 200);
 		  		setTimeout(function(){
-						if (typeof data[0].city != 'undefined' && data[0].city) {
-								data[0].city=quitaAcentos(data[0].city);
-								console.log(data[0].city);
-								$("#selcity option[value="+ data[0].city +"]").attr("selected",true);
+						if (typeof $user.city != 'undefined' && $user.city) {
+								$user.city=quitaAcentos($user.city);
+								console.log($user.city);
+								$("#selcity option[value="+ $user.city +"]").attr("selected",true);
 							//$("#selcity").val(data[0].city);	
 							}
 					}, 500);
@@ -101,8 +96,10 @@ function myprofile(){
 }
 function myprofilefavorites(){
 	$.ajax({
-        type:"GET",
-        url:"module/profile/controller/controller-profile.class.php?op=load_data_favorites",
+				type:"POST",
+				url: amigable('?module=profile&function=load_data_favorites'),
+				//url:"module/profile/controller/controller-profile.class.php?op=load_data_favorites",
+				data:{'tok':localStorage.getItem("id_token")},
         dataType:"json",
         success: function(data) {
 		  			//console.log(data);
@@ -141,8 +138,10 @@ function myprofilefavorites(){
 
 function myprofilepurchases(){
 	$.ajax({
-        type:"GET",
-        url:"module/profile/controller/controller-profile.class.php?op=load_data_purchases",
+				type:"POST",
+				url: amigable('?module=profile&function=load_data_purchases'),
+				//url:"module/profile/controller/controller-profile.class.php?op=load_data_purchases",
+				data:{'tok':localStorage.getItem("id_token")},
         dataType:"json",
         success: function(data) {
 		  //console.log(data);
@@ -188,8 +187,10 @@ $(document).ready(function(){
 	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
 	$(".tab_content:first").show(); //Show first tab content
 	///my profile
-	myprofile();
-	
+	if(document.getElementById('myprofile')){
+		//console.log('myprofile');
+		myprofile();
+	}
 	//change tabs
 	var $activeTab;
 	$("ul.tabs li").click(function() {
@@ -215,7 +216,8 @@ $(document).ready(function(){
 
 /////////////Dropzone function //////////////////////////////////
     $("#dropzone").dropzone({
-        url: "module/profile/controller/controller-profile.class.php?op=uploadimg",
+			  url: amigable('?module=profile&function=uploadimg'),
+        //url: "module/profile/controller/controller-profile.class.php?op=uploadimg",
         addRemoveLinks: true,
         maxFileSize: 1000,
         dictResponseError: "An error has occurred on the server",
@@ -258,8 +260,9 @@ $(document).ready(function(){
             var name = file.name;
            // console.log(name);
             $.ajax({
-                type: "POST",
-                url: "module/profile/controller/controller-profile.class.php?op=delete",
+								type: "POST",
+								url: amigable('?module=profile&function=delete'),
+                //url: "module/profile/controller/controller-profile.class.php?op=delete",
                 data: "filename=" + name,
                 success: function (data) {
                   console.log(data);
@@ -301,17 +304,18 @@ $(document).ready(function(){
 		var nombre = this.getAttribute('id');
 		console.log(nombre);
 			$.ajax({
-				type:"GET",
-				url:"module/profile/controller/controller-profile.class.php?op=delete_favorites&nombre="+nombre,
+				type:"POST",
+				url:amigable('?module=profile&function=delete_favorites'),
+				data:{'tok':localStorage.getItem('id_token'),'nombre':nombre},
 				dataType:"json",
 				success: function(data) {
-				console.log(data);
-				myprofilefavorites()
-				//location.reload();/////////
+						console.log(data);
+						myprofilefavorites()
+						//location.reload();/////////
 				},
 				error: function (data){
-				console.log("not delete");
-				console.log(data);
+						console.log("not delete");
+						console.log(data);
 				}
 			})
 	})
@@ -334,13 +338,14 @@ $(document).ready(function(){
 				if(valide_update_profile() != 0){
 				
 						var data = $("#formprofile").serialize();
-						//console.log(data);
+						
+						var datos='datos=&'+data+'&tok='+localStorage.getItem('id_token');
+						console.log(datos);
 						$.ajax({
 							type : 'POST',
-							url  : 'module/profile/controller/controller-profile.class.php?op=update_profile&' + data,
-							data : data,
+							url:amigable('?module=profile&function=update_profile'),
+							data:datos,
 								beforeSend: function(){	
-									//console.log(data)
 									$("#error_update").fadeOut();
 								}
 							})
@@ -355,7 +360,7 @@ $(document).ready(function(){
 									console.log('actualizado??');
 									myprofile();
 									toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
-									location.reload();
+									setTimeout(function(){location.reload();}, 3000);
 								}
 							})
 							.fail(function( data, textStatus, jqXHR ) {

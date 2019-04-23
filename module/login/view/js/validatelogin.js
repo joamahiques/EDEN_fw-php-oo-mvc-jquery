@@ -1,5 +1,36 @@
 var userProfile;
 var WebAuth;
+function valide_password(){
+	//Password
+	if(document.newpass.password.value.length === 0){
+		$('#password').addClass('has-error').next('span').addClass('is-visible').html("LA CONTRASEÑA ES REQUERIDA");
+		document.newpass.password.focus();
+		return 0;
+	}
+	$('#password').removeClass('has-error').next('span').removeClass('is-visible');
+
+	if(document.newpass.password.value.length < 6){
+		$('#password').addClass('has-error').next('span').addClass('is-visible').html("MÁS DE 6 CARACTERES");
+		document.newpass.password.focus();
+		return 0;
+	}
+	$('#password').removeClass('has-error').next('span').removeClass('is-visible');
+
+	//Repeat Password
+	if(document.newpass.rpassword.value.length === 0){
+		$('#rpassword').addClass('has-error').next('span').addClass('is-visible').html("LA CONTRASEÑA ES REQUERIDA");
+		document.formregister.rpassword.focus();
+		return 0;
+	}
+	$('#rpassword').removeClass('has-error').next().next('span').removeClass('is-visible');
+
+	if(document.newpass.rpassword.value != document.newpass.password.value){
+		$('#rpassword').addClass('has-error').next('span').addClass('is-visible').html("LAS CONTRASEÑAS NO SON IGUALES");
+		document.newpass.rpassword.focus();
+		return 0;
+	}
+	$('#rpassword').removeClass('has-error').next('span').removeClass('is-visible');
+}
 function valide_login(){
 	// var mailp = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 	//console.log("valide_login");
@@ -258,7 +289,53 @@ function handleAuthentication() {
 		
 		}
 	});
+//////////////////forgot password
+	$("#formforgotpass").submit(function (e) {
+				e.preventDefault();
+						var data1 = $("#formforgotpass").serialize();
+						//console.log(data1);
+						$.ajax({
+							type : 'POST',
+							url:amigable('?module=login&function=forgotpass'),
+							//url : url1+'login/forgotpass',
+							data : data1,
+						})
+						.done(function(data){
+								if(data=="error"){
+									$('#reset-user').addClass('has-error').next('span').addClass('is-visible').html('el usuario no existe');
 
+								}else{
+									toastr["success"]('Revisa tu correo para modificar tu contraseña'),{"iconClass":'toast-info'};
+								setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+								}
+						})
+	});
+//////////////////forgot password
+$("#newpass").submit(function (e) {
+		e.preventDefault();
+		if (valide_password() != 0) {
+					var data1 = $("#newpass").serialize();
+					$.ajax({
+						type : 'POST',
+						url:amigable('?module=login&function=update_pass'),
+						//url : url1+'login/forgotpass',
+						data : data1,
+					})
+					.done(function(data){
+						console.log(data);
+							if(data=="error"){
+								$('#reset-user').addClass('has-error').next('span').addClass('is-visible').html('el usuario no existe');
+
+							}else{
+								toastr["success"]('Contraseña cambiada correctamente. Haz Login'),{"iconClass":'toast-info'};
+								loginauto();
+							//setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',4000);
+							}
+					})
+
+
+	}
+});
 ///////////logout
 	$(document).on('click',"#btnlogout", function () {
 		//console.log("logout!!!!!");
@@ -267,7 +344,10 @@ function handleAuthentication() {
 		
 		
 	});
-
+	//////////borrar errores
+	$(document).on('click', function(event){
+		$('.has-error').removeClass('has-error').next('span').removeClass('is-visible');
+	})
 //////////////////////////////
 
 	var $form_modal = $('.cd-user-modal'),
@@ -431,21 +511,27 @@ function logoutauto(){
 		data:{'tok':tok}
 	})
 		.done(function(data, response) {
-			data=data.trim();
-					if(data==='"ok"'){
-							WebAuth.logout({
-								returnTo: 'http://localhost/www/EDEN/home/list_home/',
-								client_id: authclientID,
-							});
-									localStorage.removeItem('id_token');
-									localStorage.removeItem('user');
-									localStorage.removeItem('avatar');
-									localStorage.removeItem('type');
+				data=data.trim();
+			 console.log(data);
+				if(data==='"ok"'){
+					console.log(data);
+					localStorage.removeItem('id_token');
+					localStorage.removeItem('user');
+					localStorage.removeItem('avatar');
+					localStorage.removeItem('type');
+					
+					WebAuth.logout({
+						//returnTo: 'http://localhost/www/EDEN/home/list_home/',
+						returnTo: amigable('?module=home&function=list_home'),
+						client_id: authclientID,
+					});				
 							 //deletelogout();
-							setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',2000);
+			// 			//	setTimeout('window.location.href = "http://localhost/www/EDEN/home/list_home/";',2000);
 				}
-
-	})
+		})
+		.fail(function(data){
+			console.log(data);
+		})
 }
 function loginauto(){
 					var $form_modal = $('.cd-user-modal'),

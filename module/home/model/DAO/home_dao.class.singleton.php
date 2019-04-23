@@ -33,7 +33,7 @@ class home_dao {
     }
 
     public function active_user_DAO($db,$data){
-        $sql= "UPDATE users2 SET activate = 1 where token = '$data'";
+        $sql= "UPDATE users2 SET activate = 1 where tokenMail = '$data'";
         return $db->ejecutar($sql);
     }
 }

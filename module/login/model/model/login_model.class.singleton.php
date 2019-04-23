@@ -17,6 +17,12 @@ class login_model {
     public function validate($data) {
         return $this->bll->validate_BLL($data);
     }
+    public function recover_pass($data) {
+        return $this->bll->recover_pass_BLL($data);
+    }
+    public function update_pass($data) {
+        return $this->bll->update_pass_BLL($data);
+    }
     public function insert_user($data) {
         return $this->bll->insert_user_BLL($data);
     }

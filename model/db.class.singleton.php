@@ -50,5 +50,12 @@
             }
             return $this->array;
         }
+        //  public function list($sql) { 
+        //    $con = $this->array = array();
+        //     $result=mysqli_query($con,$sql);
+        //     //$row = $stmt->fetch_array(MYSQLI_ASSOC);
+                
+        //     return $result;
+        // }
 
     }

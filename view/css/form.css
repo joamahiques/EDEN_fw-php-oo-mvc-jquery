@@ -220,8 +220,11 @@ div.contact{
 /* #form{
 	padding-top: 5px;
 } */
-
-#form input {
+#newpass{
+	max-width: 40%;
+    margin: 0 auto;
+}
+#form input, #newpass input{
 	width: 100%;
 	height: 32px;
 	float:left;
@@ -303,7 +306,7 @@ div.contact{
 #form .message ._placeholder{
 	height: 100% !important;
 }
-#form label{
+#form label,#newpass label{
 	position:relative;
 	display: block;
 	min-height: 41px;

@@ -16,8 +16,8 @@
     
             case 'changepass':///para cambiarse la contraseña
                 $subject = 'Tu Nuevo Password en EDEN<br>';
-                $ruta = '<a href="' . amigable("?module=login&function=changepass&aux=" . $arr['token'], true) . '">aqu&iacute;</a>';
-                $body = 'Para recordar tu password pulsa ' . $ruta;
+                $ruta = "<a href=http://localhost/www/EDEN/login/changepass/" . $arr['token'] . ">aqu&iacute;</a>";
+                $body = 'Para cambiar tu password pulsa ' . $ruta;
                 break;
                 
             case 'contact':///el form del contact

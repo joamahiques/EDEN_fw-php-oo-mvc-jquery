@@ -52,6 +52,7 @@
 					}	
 				///log
 					if($valide['error']==""){
+						$_SESSION['tiempo'] = time();
 						echo json_encode($valide['data']['token']);
 						exit;
 					}else{
@@ -66,19 +67,71 @@
 				$rlt=check_user($data['id_user']);
 				echo json_encode($rlt);
 				exit;
-				if(!$rlt){
+				if(!$rlt){///si no existe registralo
 					echo('register_socila');
 					$rlt=loadModel(MODEL_MODULE,'login_model','social',$data);
 				}else{
 					echo('NOregistersocial');
 				}
+				///saca el token en los dos casos
+			$_SESSION['tiempo'] = time();
 			echo json_encode($rlt[0]['token']);
 			exit;
 	}
+	////////enviar mail con token para cambiar la contraseña
+	function forgotpass() {
+					$arrArgument = array(
+						'reset-user'=>$_POST['reset-user'],
+						'reset-email'=>$_POST['reset-email'],
+				);
+					$rlt['token']= loadModel(MODEL_MODULE,'login_model','recover_pass',$arrArgument);
+					
+					if($rlt){//enviar mail
+						$rlt['type']='changepass';
+						$rlt['inputEmail']=$arrArgument['reset-email'];
+						$rlt['inputMessage']='Para activar tu cuenta en EDEN pulse el siguiente enlace:';
+						enviar_email($rlt);
+						//echo json_encode($rlt['token']);
+						echo 'ok';
+						exit;
+					}else{//no existe el usuario
+						echo json_encode('error');
+						exit;
+					}
+
+	}
+	//////////pagina de cambiar la contraseña
+	function changepass() {
+				if(isset($_GET['aux'])){
+					$_SESSION['tok']=$_GET['aux'];
+				}
+				require_once(VIEW_PATH_INC . "top-page.php");
+				require_once(VIEW_PATH_INC . "header.php");
+				require_once(VIEW_PATH_INC . "menu.php");
+				include(MODULE_VIEW_PATH . "changepass.html");
+				require_once(VIEW_PATH_INC . "footer.php");
+	}
+
+	function update_pass(){
+					$arrArgument = array(
+						'password'=>$_POST['password'],
+						'token'=>$_SESSION['tok'],
+				);
+				
+				$rlt= loadModel(MODEL_MODULE,'login_model','update_pass',$arrArgument);
+				$_SESSION['tok']='';
+				if($rlt){
+					echo('ok');
+				}else{
+					echo 'error';
+				}
+	}
 
 	function controluser() {
+		
 		$rlt= loadModel(MODEL_MODULE,'login_model','select_user',$_POST['token']);
 		if($rlt){
+			$_SESSION['avatar']=$rlt[0][0]['avatar'];
 			echo json_encode($rlt);
 			exit;
 		}else{
@@ -88,15 +141,16 @@
 	}		
 	function logout() {
 		
-		$data=$_POST['tok'];
-		$rlt= loadModel(MODEL_MODULE,'login_model','delete_token',$data);
+	//	$data=$_POST['tok'];
+		$rlt= loadModel(MODEL_MODULE,'login_model','delete_token',$_POST['tok']);
 		
 		if($rlt){
 			echo json_encode('ok');
+			//exit;
 					error_reporting(0);
-					session_unset($_SESSION['type']);
-					session_unset($_SESSION['avatar']);
-					session_unset($_SESSION['mail']);
+					// session_unset($_SESSION['type']);
+					// session_unset($_SESSION['avatar']);
+					// session_unset($_SESSION['mail']);
 					session_unset($_SESSION['tiempo']);
 					session_destroy();
 			exit;
@@ -106,6 +160,21 @@
 		}
 					
 	}
+
+	function actividad() {
+		if (!isset($_SESSION["tiempo"])) {  
+			echo "activo";
+		} else {  
+			if((time() - $_SESSION["tiempo"]) >= 60000) {  
+				echo "inactivo"; 
+				exit();
+			}else{
+				echo "activo";
+				exit();
+			}
+		}
+	}
+
 }//end class
 	
   //   switch($_GET['op']){

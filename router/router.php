@@ -1,6 +1,7 @@
 <?php
 require_once("paths.php");
 require_once("keys.php");
+require_once(UTILS . "upload.php");
 require ('autoload.php');
 include(UTILS . "functions.inc.php");
 include(UTILS . "errors.inc.php");

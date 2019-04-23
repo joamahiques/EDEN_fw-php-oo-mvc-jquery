@@ -1,6 +1,6 @@
 ////url
 function tryurl(){
-	if(window.location.href=='http://localhost/www/EDEN/'){
+	if(window.location.href==='http://localhost/www/EDEN/'){
         url1='';
     }else{
         url1='../../';
@@ -17,6 +17,7 @@ function amigable(url) {
   for (var i=0;i<url.length;i++) {
     cont++;
       var aux = url[i].split("=");
+     
       if (cont == 2) {
         link +=  "/"+aux[1]+"/";	
       }else{
@@ -124,7 +125,7 @@ toastr.options = {
     "closeButton": true,
     "debug": false,
     "newestOnTop": true,
-    "progressBar": false,
+    "progressBar": true,
     "positionClass": "toast-top-right",
     "preventDuplicates": false,
     "onclick": null,
@@ -139,17 +140,18 @@ toastr.options = {
   }
 /////////// MENU
       urlgen=tryurl();
-      //console.log(localStorage.getItem("id_token"));
+      //console.log(urlgen+'login/controluser');
       var token = localStorage.getItem("id_token");
       if (token) {
           $.ajax({
             type : 'POST',
-            url  : urlgen+'login/controluser',
+            url:amigable('?module=login&function=controluser'),
+            //url  : urlgen+'login/controluser',
             data :{'token':token},
             dataType: 'json',
           })
           .done(function(data){	
-            //console.log(data);
+            console.log(data);
             localStorage.setItem("id_token", data[1]);
             //console.log(localStorage.getItem("id_token"));
                 if (data != 'error') {
@@ -205,16 +207,15 @@ toastr.options = {
             })
       }else{
       }
-  
-    
-  
+
 ////////////logout inactivity
   setInterval(function(){ 
 		$.ajax({
 			type : 'POST',
-      //url  : 'components/login/controller/controller-login.php?&op=actividad',
-      url  : urlgen+'login/actividad',
-			success :  function(response){						
+      //url  : urlgen+'login/actividad',
+      url: amigable('?module=login&function=actividad'),
+			success :  function(response){
+        response=response.trim();						
 				if(response=="inactivo"){
                     alert("Se ha cerrado la cuenta por inactividad");
                     logoutauto();
@@ -222,7 +223,7 @@ toastr.options = {
 				}
 			}
 		});
-  }, 120000);
+  }, 220000);
   
   
 });/////////end ready

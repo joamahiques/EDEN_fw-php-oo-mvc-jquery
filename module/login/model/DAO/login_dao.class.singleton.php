@@ -15,11 +15,29 @@ class login_dao {
     }
 
     public function validate_DAO($db,$data){
-        $newtok=$this->update_token_DAO($db,$data);//crear un token por que lo borramos en el logout
+        $newtok=$this->update_token_DAO($db,$data);//crear un token por que lo borramos en el logout, sin o existe el user, no hace nada
         $db->ejecutar($newtok);
         $sql="SELECT IDuser,password,activate,token FROM users2 WHERE IDuser ='$data'";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);  
+    }
+
+    public function recover_pass_DAO($db,$data){
+        $nombre=$data['reset-user'];
+        $email=$data['reset-email'];
+        $sql="SELECT tokenMail FROM users2 WHERE email ='$email' and IDuser='$nombre'";
+        $stmt = $db->ejecutar($sql);
+        $token= $db->listar($stmt);
+        $tokenb=$token[0]['tokenMail'];
+        return $tokenb;
+        
+    }
+    public function update_pass_DAO($db,$data){
+        $passw=$data['password'];
+        $tok=$data['token'];
+        $hashed_pass = password_hash($passw, PASSWORD_DEFAULT);
+        $sql = "UPDATE users2 set password ='$hashed_pass' WHERE tokenMail='$tok'";
+        return $db->ejecutar($sql);
     }
 
     public function insert_user_DAO($db,$data){
@@ -33,7 +51,7 @@ class login_dao {
 		$hashavatar= md5( strtolower( trim( $email ) ) );
 		$avatar="https://www.gravatar.com/avatar/$hashavatar?s=40&d=identicon";
         
-        $sql ="INSERT INTO `users2`(`IDuser`, `user`, `email`, `password`, `type`, `avatar`, `activate`, `token`)
+        $sql ="INSERT INTO `users2`(`IDuser`, `user`, `email`, `password`, `type`, `avatar`, `activate`, `tokenMail`)
         VALUES ('$nombre','$nombre','$email','$hashed_pass','$type', '$avatar',0,'$token')";
         $stmt =$db->ejecutar($sql);
         return $token;

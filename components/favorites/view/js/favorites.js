@@ -5,7 +5,7 @@ urlfavoritos=tryurl();
 function readmyfavorites(){
     if(localStorage.getItem('id_token')!=null){
         var tok=localStorage.getItem('id_token');
-        //console.log(tok);
+        console.log(tok);
         $.ajax({  
             type: "POST",
             dataType: "json",

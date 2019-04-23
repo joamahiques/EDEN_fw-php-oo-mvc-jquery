@@ -25,4 +25,16 @@
         <name>actividad</name>
         <uri>actividad</uri>
     </function>
+    <function>
+        <name>forgotpass</name>
+        <uri>forgotpass</uri>
+    </function>
+    <function>
+        <name>changepass</name>
+        <uri>changepass</uri>
+    </function>
+    <function>
+        <name>update_pass</name>
+        <uri>update_pass</uri>
+    </function>
 </functions>
