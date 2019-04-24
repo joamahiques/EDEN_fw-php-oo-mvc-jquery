@@ -66,7 +66,7 @@ function myprofile(){
         success: function(data) {
 					$user=data[0][0];
 					localStorage.setItem("id_token", data[1]);
-
+					console.log(localStorage.getItem('id_token'));
           $('#proname').attr('value', $user.IDuser);
 					$('#proemail').attr('value', $user.email);
 					$('#protf').attr('value', $user.phone);
@@ -178,20 +178,19 @@ function myprofilepurchases(){
         }
       })
 }
-// function removefileimg(){
 
-// }
 $(document).ready(function(){
+
 ////////////////////////////////tabs Profile
+
 	$(".tab_content").hide(); //Hide all content
 	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
 	$(".tab_content:first").show(); //Show first tab content
-	///my profile
+	/////////////my profile
 	if(document.getElementById('myprofile')){
-		//console.log('myprofile');
 		myprofile();
 	}
-	//change tabs
+	/////////////change tabs
 	var $activeTab;
 	$("ul.tabs li").click(function() {
 		
@@ -319,6 +318,7 @@ $(document).ready(function(){
 				}
 			})
 	})
+	////////////////////////////////PDF
 	$(document).on('click','#pdf',function(){
 		
 				var doc = new jsPDF();
@@ -327,9 +327,6 @@ $(document).ready(function(){
 					html: '#tablePurchases', startY: 30});
 				// doc.output("dataurlnewwindow");
 				doc.save('mypurchases.pdf');
-
-
-
 	})
 /////////////////////////SEND FORM update profile
     $("#formprofile").submit(function (e) {
@@ -340,7 +337,6 @@ $(document).ready(function(){
 						var data = $("#formprofile").serialize();
 						
 						var datos='datos=&'+data+'&tok='+localStorage.getItem('id_token');
-						console.log(datos);
 						$.ajax({
 							type : 'POST',
 							url:amigable('?module=profile&function=update_profile'),
@@ -349,17 +345,22 @@ $(document).ready(function(){
 									$("#error_update").fadeOut();
 								}
 							})
-							.done(function( response, textStatus, jqXHR ) {
+							.done(function( response, jqXHR ) {
+								var data=JSON.parse(response);
 								console.log(response);
+								console.log(data);
+								// console.log(data[0]);
 								if (response=='bad'){
 									console.log('badbad')
 									$("#error_update").fadeIn(1000, function(){						
 											$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("LA CONSTRASEÑA NO ES VÁLIDA");
 										});
-								}else{
-									console.log('actualizado??');
+								}else if (data[0]==true){
+									//console.log('actualizado??');
+									localStorage.setItem('id_token',data[1])
+									console.log(localStorage.getItem('id_token'));
 									myprofile();
-									toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
+								 	toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
 									setTimeout(function(){location.reload();}, 3000);
 								}
 							})

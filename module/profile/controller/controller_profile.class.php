@@ -23,7 +23,9 @@
             $_SESSION['result_prodpic'] = array('result' => true, 'error' => "", "data" => $avatar);
         }
         $result=validate_profile();
+        
        if ($result[0]=='ok'){
+           
                 //echo ($result);
                 $result_prodpic = $_SESSION['result_prodpic'];
                 $nombre =$_POST["user"];
@@ -38,18 +40,19 @@
                     'province'=>$province,
                     'city'=>$city,
                     'prodpic' => $result_prodpic['data'],
-                    'tok'=>$_POST['tok']
+                    'tok'=>$result[1]
                     
                 );
                 $arrValue = false;
                 $arrValue = loadModel(MODEL_MODULE, "profile_model", "update_user", $arrArgument);
-
+                
                 if ($arrValue){
-                    $message = "User updated";
+                    echo json_encode($arrValue);
                 }else{
                     $message = "Dont updated";
+                    echo json_encode($message);
                 }
-                echo json_encode($message);
+                
         }else if ($result!='ok'){
             $message2="bad";
             echo($message2);

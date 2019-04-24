@@ -2,7 +2,7 @@
 require_once("paths.php");
 require_once("keys.php");
 require_once(UTILS . "upload.php");
-require ('autoload.php');
+require('autoload.php');
 include(UTILS . "functions.inc.php");
 include(UTILS . "errors.inc.php");
 include(UTILS . "common.inc.php");
@@ -17,14 +17,15 @@ if (PRODUCTION) { //estamos en producción
     ini_set('error_reporting', '0'); //error_reporting(0); 
 }
 
+ob_start();
+@session_start();
+session_regenerate_id();
 
 $_SESSION['module'] = "";
 $_SESSION['component'] = "";
 
 function handlerRouter() {
-    //echo json_encode($_GET['module']);
-    // echo json_encode($_GET['function']);
-     //exit;
+    
     if (!empty($_GET['module'])) {
         $URI_module = $_GET['module'];
     } else {

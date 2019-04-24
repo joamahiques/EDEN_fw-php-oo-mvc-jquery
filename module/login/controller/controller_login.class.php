@@ -127,11 +127,11 @@
 				}
 	}
 
-	function controluser() {
+	function controluser() {//type, avatar y user
 		
 		$rlt= loadModel(MODEL_MODULE,'login_model','select_user',$_POST['token']);
 		if($rlt){
-			$_SESSION['avatar']=$rlt[0][0]['avatar'];
+			$_SESSION['avatar']=$rlt[0]['avatar'];
 			echo json_encode($rlt);
 			exit;
 		}else{

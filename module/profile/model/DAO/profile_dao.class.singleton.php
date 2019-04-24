@@ -38,15 +38,17 @@ class profile_dao {
         return $db->listar($stmp);
     }
       public function update_user_DAO($db, $arrArgument){
+        $user = $arrArgument['name'];
         $usertf = $arrArgument['tf'];
         $userprovince = $arrArgument['province'];
         $usercity = $arrArgument['city'];
         $useravatar = $arrArgument['prodpic'];
         $token = $arrArgument['tok'];
-        $sql = $sql = " UPDATE users2 SET phone='$usertf', province='$userprovince', city='$usercity', avatar='$useravatar'
+        $sql = " UPDATE users2 SET phone='$usertf', province='$userprovince', city='$usercity', avatar='$useravatar'
                          WHERE token='$token'";;
-        
-        return $db->ejecutar($sql);
+        $res = $db->ejecutar($sql);
+        $newtok=$this->update_token_DAO($db,$user);
+        return array ($res, $newtok); 
          
     }
     public function delete_favo_DAO($db, $arrArgument){

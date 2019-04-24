@@ -10,11 +10,12 @@ function generate_JWK($name){
     //name: info user
     //echo json_encode($secret);
     
+    
     $payload = '{
-    "iat":time(), 
-    "exp":time() + (60*60),
-    "name":'.$name.'
-    }';
+        "iat":"'.time().'", 
+        "exp":"'.(time() + (60*60)).'",
+        "name":'.$name.'
+       }';
 
     $JWT = new JWT;
     $token = $JWT->encode($header, $payload, $secret);
