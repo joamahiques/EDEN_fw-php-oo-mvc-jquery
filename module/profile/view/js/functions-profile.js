@@ -59,15 +59,14 @@ function myprofile(){
 
     $.ajax({
         type:"POST",
-				//url:"module/profile/controller/controller-profile.class.php?op=load_data_user",
 				url:amigable('?module=profile&function=load_data_user'),
 				data:{'tok':localStorage.getItem("id_token")},
         dataType:"json",
         success: function(data) {
 					$user=data[0][0];
 					localStorage.setItem("id_token", data[1]);
-					console.log(localStorage.getItem('id_token'));
-          $('#proname').attr('value', $user.IDuser);
+					//console.log(localStorage.getItem('id_token'));
+          $('#proname').attr('value', $user.user);
 					$('#proemail').attr('value', $user.email);
 					$('#protf').attr('value', $user.phone);
 	
@@ -347,18 +346,18 @@ $(document).ready(function(){
 							})
 							.done(function( response, jqXHR ) {
 								var data=JSON.parse(response);
-								console.log(response);
-								console.log(data);
-								// console.log(data[0]);
-								if (response=='bad'){
-									console.log('badbad')
+								//console.log(response);
+								//console.log(data);
+								 if (data[0]=='bad'){
+									//console.log('badbad')
+									localStorage.setItem('id_token',data[1]);
 									$("#error_update").fadeIn(1000, function(){						
 											$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("LA CONSTRASEÑA NO ES VÁLIDA");
 										});
-								}else if (data[0]==true){
-									//console.log('actualizado??');
-									localStorage.setItem('id_token',data[1])
-									console.log(localStorage.getItem('id_token'));
+								 }else{
+									//if (data[0]==true)
+									//var data=JSON.parse(response);
+									localStorage.setItem('id_token',data[1]);
 									myprofile();
 								 	toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
 									setTimeout(function(){location.reload();}, 3000);

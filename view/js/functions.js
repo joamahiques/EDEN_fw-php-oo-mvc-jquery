@@ -141,6 +141,7 @@ toastr.options = {
 /////////// MENU
       urlgen=tryurl();
       //console.log(urlgen+'login/controluser');
+      
       var token = localStorage.getItem("id_token");
       if (token) {
           $.ajax({
@@ -151,6 +152,7 @@ toastr.options = {
             dataType: 'json',
           })
           .done(function(data){	
+            console.log(localStorage.getItem("id_token"));
             console.log(data);
             //localStorage.setItem("id_token", data[1]);
             //console.log(localStorage.getItem("id_token"));

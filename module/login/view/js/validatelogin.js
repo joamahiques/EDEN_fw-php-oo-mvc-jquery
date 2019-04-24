@@ -165,7 +165,7 @@ function handleAuthentication() {
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
 	}
-	
+	//https://dev-joamahi.eu.auth0.com/v2/logout
   function getProfile() {
     if (!userProfile) {
       var accessToken = localStorage.getItem('au_token');
@@ -177,22 +177,22 @@ function handleAuthentication() {
 						id_profile = profile.sub.split('|');
 						//console.log(id_profile)
 						var data1 = JSON.stringify({'id_user':id_profile[1],'user':profile.nickname,'email':profile.nickname + "@gmail.com",'avatar':profile.picture});
-						console.log(data1);
+						//console.log(data1);
 						$.ajax({
 							type : 'POST',
-							url  : '../../login/social',
+							url  : '../../login/social',//registra o logea
 							data :{data1},
 							dataType: 'json',
 						})
 						.done(function(data){	
 											console.log(data);
 											var token=data;
-								localStorage.removeItem('id_token');
+								//localStorage.removeItem('id_token');
                 localStorage.setItem('id_token',token);
                 localStorage.removeItem('au_token');
                 localStorage.removeItem('expires_at');
 								toastr["success"]("Inicio de sesión correcto", "Iniciando sesion");
-                setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 3000);
+                setTimeout(function(){ window.location.href = amigable("?module=home&function=list_home"); }, 2000);
 						});
             
           }

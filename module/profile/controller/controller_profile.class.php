@@ -21,13 +21,23 @@
             $hashavatar= md5( strtolower( trim( $email ) ) );
             $avatar="https://www.gravatar.com/avatar/$hashavatar?s=40&d=identicon";
             $_SESSION['result_prodpic'] = array('result' => true, 'error' => "", "data" => $avatar);
+            $result_prodpic = $_SESSION['result_prodpic'];
+            $result_prodpic = $result_prodpic['data'];
+        };
+        if(($_SESSION['avatar']) && (empty($_SESSION['result_prodpic']))){
+            $result_prodpic = $_SESSION['avatar'];
         }
+        if($_SESSION['result_prodpic']){
+            $result_prodpic = $_SESSION['result_prodpic'];
+        }
+        // echo json_encode($result_prodpic['data']);
+        // exit;
         $result=validate_profile();
         
        if ($result[0]=='ok'){
            
                 //echo ($result);
-                $result_prodpic = $_SESSION['result_prodpic'];
+                //$result_prodpic = $_SESSION['result_prodpic'];
                 $nombre =$_POST["user"];
                 $mail =$_POST["mail"];
                 $tf = $_POST["tf"];
@@ -53,9 +63,13 @@
                     echo json_encode($message);
                 }
                 
-        }else if ($result!='ok'){
-            $message2="bad";
-            echo($message2);
+        }else if ($result[0]!='ok'){
+            $message2 = array(
+                '0' => 'bad',
+                '1'=>$result[1] 
+            );
+            echo json_encode($message2);
+            exit;
         }
     }
 

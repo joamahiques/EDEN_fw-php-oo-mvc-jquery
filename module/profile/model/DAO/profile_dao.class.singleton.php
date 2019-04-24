@@ -21,7 +21,7 @@ class profile_dao {
         $stmt = $db->ejecutar($sql);
         $res= $db->listar($stmt);
         
-        $newtok=$this->update_token_DAO($db,$res[0]['user']);
+        $newtok=$this->update_token_DAO($db,$res[0]['IDuser']);///user
         return array ($res, $newtok); 
     }
     public function select_user_fav_DAO($db, $user){
@@ -63,6 +63,7 @@ public function update_token_DAO($db,$nombre){
        
         $token= generate_JWK($nombre);
         $sql = "UPDATE users2 set token ='$token' WHERE IDuser='$nombre'";
+        //$sql = "UPDATE users2 set token ='$token' WHERE user='$nombre'";
 
         $stmt = $db->ejecutar($sql);
         return $token;

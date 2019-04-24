@@ -65,17 +65,22 @@
 	function social(){
 				$data= json_decode($_POST['data1'],true);
 				$rlt=check_user($data['id_user']);
-				echo json_encode($rlt);
-				exit;
+				// echo json_encode($rlt);
+				// exit;
 				if(!$rlt){///si no existe registralo
-					echo('register_socila');
 					$rlt=loadModel(MODEL_MODULE,'login_model','social',$data);
+					///enviar mail con contraseña y añadirla al register para poder actualizar los datos
+					// $mail['type']='passSocial';
+					// $mail['inputEmail']=$data['email'];
+					// $mail['inputMessage']='Tu contraseña de EDEN:'. $rlt[0]['passSocial'];
+					// enviar_email($mail);
 				}else{
-					echo('NOregistersocial');
+					//si existe devuelve el token;
 				}
 				///saca el token en los dos casos
 			$_SESSION['tiempo'] = time();
 			echo json_encode($rlt[0]['token']);
+			//echo json_encode($rlt);
 			exit;
 	}
 	////////enviar mail con token para cambiar la contraseña

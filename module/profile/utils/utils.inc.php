@@ -13,7 +13,7 @@ function validate_profile(){
             if (password_verify($_POST['propassword'],$arrValue[0][0]['password'])) {
                 return array ('ok',$arrValue[1]);
 		    }else {
-				return ("");
+				return array ('',$arrValue[1]);
 				
             }
         }
