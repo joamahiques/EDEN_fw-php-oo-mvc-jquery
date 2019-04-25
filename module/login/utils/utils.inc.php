@@ -35,3 +35,8 @@
 
    }
 
+   function send_mail_social($arrArgument){
+    return loadmodel(MODEL_MODULE,'login_model','validate',$user);
+
+}
+

@@ -65,22 +65,30 @@
 	function social(){
 				$data= json_decode($_POST['data1'],true);
 				$rlt=check_user($data['id_user']);
-				// echo json_encode($rlt);
-				// exit;
+				$_SESSION['avatar']=$data['avatar'];
 				if(!$rlt){///si no existe registralo
 					$rlt=loadModel(MODEL_MODULE,'login_model','social',$data);
-					///enviar mail con contraseña y añadirla al register para poder actualizar los datos
-					// $mail['type']='passSocial';
-					// $mail['inputEmail']=$data['email'];
-					// $mail['inputMessage']='Tu contraseña de EDEN:'. $rlt[0]['passSocial'];
-					// enviar_email($mail);
+					///enviar mail para cambiar contraseña( que no hay ) y poder modificar los datos del usuario en el perfil
+					if($rlt){
+							$arrArgument = array(
+								'reset-user'=>$data['user'],
+								'reset-email'=>$data['email'],
+						);
+						$mail['token']= loadModel(MODEL_MODULE,'login_model','recover_pass',$arrArgument);
+						if($mail){//enviar mail
+							$mail['type']='newpass';
+							$mail['inputEmail']=$arrArgument['reset-email'];
+							$mail['inputMessage']='Tu contraseña en EDEN: <b>'.$rlt[1].'</b>';
+							enviar_email($mail);
+						}
+						echo json_encode($rlt[0]);
+					}
+					
 				}else{
 					//si existe devuelve el token;
+					echo json_encode($rlt[0]['token']);
 				}
-				///saca el token en los dos casos
 			$_SESSION['tiempo'] = time();
-			echo json_encode($rlt[0]['token']);
-			//echo json_encode($rlt);
 			exit;
 	}
 	////////enviar mail con token para cambiar la contraseña
@@ -154,8 +162,8 @@
 			//exit;
 					error_reporting(0);
 					// session_unset($_SESSION['type']);
-					// session_unset($_SESSION['avatar']);
-					// session_unset($_SESSION['mail']);
+					session_unset($_SESSION['avatar']);
+					session_unset($_SESSION['result_prodpic']);
 					session_unset($_SESSION['tiempo']);
 					session_destroy();
 			exit;

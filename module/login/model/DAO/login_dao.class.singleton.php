@@ -63,12 +63,14 @@ class login_dao {
         $email=$data['email'];
         $avatar=$data['avatar'];
         $type="client_rs";
+        $pass=substr(md5(uniqid()), 0, 10);
+        $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
         $token= generate_JWK($nombre);
         $tokenM = generate_JWK($nombre);
-        $sql ="INSERT INTO `users2`(`IDuser`, `user`, `email`, `type`, `avatar`, `activate`, `tokenMail`, `token`)
-        VALUES ('$id','$nombre','$email','$type', '$avatar',1,'$tokenM','$token')";
+        $sql ="INSERT INTO `users2`(`IDuser`, `user`, `email`, `password`, `type`, `avatar`, `activate`, `tokenMail`, `token`)
+        VALUES ('$id','$nombre','$email','$hashed_pass','$type', '$avatar',1,'$tokenM','$token')";
         $stmt =$db->ejecutar($sql);
-        return $token;
+        return array($token, $pass);
 
     }
     public function select_user_DAO($db, $data){//type user
@@ -79,10 +81,10 @@ class login_dao {
 
     }
 
-    public function update_token_DAO($db,$nombre){
+    public function update_token_DAO($db,$nombre,$tok){
        
         $token= generate_JWK($nombre);
-        $sql = "UPDATE users2 set token ='$token' WHERE IDuser='$nombre'";
+        $sql = "UPDATE users2 set token ='$token' WHERE token='$tok'";
 
         $stmt = $db->ejecutar($sql);
         return $token;

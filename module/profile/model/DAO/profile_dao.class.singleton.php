@@ -16,12 +16,12 @@ class profile_dao {
         return self::$_instance;
     }
 
-    public function select_user_DAO($db, $user){
-        $sql = "SELECT * FROM users2 WHERE token = '$user'";
+    public function select_user_DAO($db, $token){
+        $sql = "SELECT * FROM users2 WHERE token = '$token'";
         $stmt = $db->ejecutar($sql);
         $res= $db->listar($stmt);
         
-        $newtok=$this->update_token_DAO($db,$res[0]['IDuser']);///user
+        $newtok=$this->update_token_DAO($db,$res[0]['IDuser'],$token);///user
         return array ($res, $newtok); 
     }
     public function select_user_fav_DAO($db, $user){
@@ -47,7 +47,7 @@ class profile_dao {
         $sql = " UPDATE users2 SET phone='$usertf', province='$userprovince', city='$usercity', avatar='$useravatar'
                          WHERE token='$token'";;
         $res = $db->ejecutar($sql);
-        $newtok=$this->update_token_DAO($db,$user);
+        $newtok=$this->update_token_DAO($db,$user,$token);
         return array ($res, $newtok); 
          
     }
@@ -59,10 +59,10 @@ class profile_dao {
         return $db->ejecutar($sql);
          
     }
-public function update_token_DAO($db,$nombre){
+public function update_token_DAO($db,$nombre,$tok){
        
         $token= generate_JWK($nombre);
-        $sql = "UPDATE users2 set token ='$token' WHERE IDuser='$nombre'";
+        $sql = "UPDATE users2 set token ='$token' WHERE token='$tok'";
         //$sql = "UPDATE users2 set token ='$token' WHERE user='$nombre'";
 
         $stmt = $db->ejecutar($sql);

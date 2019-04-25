@@ -25,10 +25,10 @@
             $result_prodpic = $result_prodpic['data'];
         };
         if(($_SESSION['avatar']) && (empty($_SESSION['result_prodpic']))){
-            $result_prodpic = $_SESSION['avatar'];
+            $result_prodpic['data'] = $_SESSION['avatar'];
         }
         if($_SESSION['result_prodpic']){
-            $result_prodpic = $_SESSION['result_prodpic'];
+            $result_prodpic['data'] = $_SESSION['result_prodpic'];
         }
         // echo json_encode($result_prodpic['data']);
         // exit;

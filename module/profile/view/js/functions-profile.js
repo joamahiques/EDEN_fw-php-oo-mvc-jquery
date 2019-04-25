@@ -65,7 +65,7 @@ function myprofile(){
         success: function(data) {
 					$user=data[0][0];
 					localStorage.setItem("id_token", data[1]);
-					//console.log(localStorage.getItem('id_token'));
+					console.log(localStorage.getItem('id_token'));
           $('#proname').attr('value', $user.user);
 					$('#proemail').attr('value', $user.email);
 					$('#protf').attr('value', $user.phone);
@@ -345,22 +345,24 @@ $(document).ready(function(){
 								}
 							})
 							.done(function( response, jqXHR ) {
+								console.log(response);
 								var data=JSON.parse(response);
-								//console.log(response);
-								//console.log(data);
+								
+								console.log(data);
 								 if (data[0]=='bad'){
-									//console.log('badbad')
+									console.log('badbad')
 									localStorage.setItem('id_token',data[1]);
 									$("#error_update").fadeIn(1000, function(){						
 											$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("LA CONSTRASEÑA NO ES VÁLIDA");
 										});
 								 }else{
 									//if (data[0]==true)
+									console.log(data[1]);
 									//var data=JSON.parse(response);
 									localStorage.setItem('id_token',data[1]);
 									myprofile();
 								 	toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
-									setTimeout(function(){location.reload();}, 3000);
+									//setTimeout(function(){location.reload();}, 3000);
 								}
 							})
 							.fail(function( data, textStatus, jqXHR ) {
