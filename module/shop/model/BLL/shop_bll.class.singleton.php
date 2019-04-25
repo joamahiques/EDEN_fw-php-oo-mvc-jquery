@@ -31,16 +31,12 @@ class shop_bll{
     public function count_BLL($data){
         return $this->dao->count_DAO($this->db, $data);
     }
-    // public function selectProvi_BLL($data){
-    //     return $this->dao->selectProvi_DAO($this->db, $data);
-    // }
-    // public function selectProviYLoca_BLL($data){
-    //     return $this->dao->selectProviYLoca_DAO($this->db, $data);
-    // }
+
     public function alldrops_BLL($data){
         return $this->dao->alldrops_DAO($this->db, $data);
     }
-    // public function search_BLL($data){
-    //     return $this->dao->search_DAO($this->db, $data);
-    // }  
+    public function productsmap_BLL($data){
+        return $this->dao->productsmap_DAO($this->db, $data);
+    }
+    
 }

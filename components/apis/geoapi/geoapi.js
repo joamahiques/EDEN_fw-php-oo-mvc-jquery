@@ -67,9 +67,10 @@ $("#provinciaini").on("change", function () {
 });
 
 function load_provinces_xml() {
-    $.get("resources/provinciasypoblaciones.xml", function (xml) {
+    //console.log('province');
+    $.post("http://localhost/www/EDEN/resources/provinciasypoblaciones.xml", function (xml) {
 	    $("#provinciaini").empty();
-	    $("#provinciaini").append('<option value="" selected="selected">Select province</option>');
+	    $("#provinciaini").append('<option value="" selected="selected">Selecciona Provincia</option>');
 
         $(xml).find("provincia").each(function () {
             var id = $(this).attr('id');
@@ -82,9 +83,9 @@ function load_provinces_xml() {
     });
 }
 function load_cities_xml(prov) {
-    $.get("resources/provinciasypoblaciones.xml", function (xml) {
+    $.post("http://localhost/www/EDEN/resources/provinciasypoblaciones.xml", function (xml) {
 		$("#selcity").empty();
-	    $("#selcity").append('<option value="" selected="selected">Select city</option>');
+	    $("#selcity").append('<option value="" selected="selected">Selecciona Municipio</option>');
 
 		$(xml).find('provincia[id=' + prov + ']').each(function(){
     		$(this).find('localidad').each(function(){

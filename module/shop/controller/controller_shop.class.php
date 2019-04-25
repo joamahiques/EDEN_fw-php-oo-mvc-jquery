@@ -9,7 +9,7 @@ class controller_shop{
         // echo json_encode("yeess list home");
         // exit;
         require_once(VIEW_PATH_INC . "top-page.php");
-        require_once(VIEW_PATH_INC . "header-home.php");
+        require_once(VIEW_PATH_INC . "header.php");
         require_once(VIEW_PATH_INC . "menu.php");
         include(MODULE_VIEW_PATH . "shop.php");
         require_once(VIEW_PATH_INC . "footer.php");
@@ -17,6 +17,16 @@ class controller_shop{
             $_SESSION["tiempo"] = time(); //Devuelve la fecha actual
         }
     }
+
+    function list_map() {
+      
+        require_once(VIEW_PATH_INC . "top-page.php");
+        require_once(VIEW_PATH_INC . "header.php");
+        require_once(VIEW_PATH_INC . "menu.php");
+        include(MODULE_VIEW_PATH . "ubication.html");
+        require_once(VIEW_PATH_INC . "footer.php");
+    }
+
     function products(){
         $search= json_decode($_POST['search'],true);
         if( isset($search['page_num']) ){
@@ -52,7 +62,43 @@ class controller_shop{
            
         }
     }
-
+    
+    function ubication(){
+        $direccion = $_POST['muni'].','.$_POST['ubi'].',ESPAÑA';
+       
+        // Obtener los resultados JSON de la peticion.
+        $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?key='.apikeymap.'&address='.urlencode($direccion));
+        // Convertir el JSON en array.
+        $geo = json_decode($geo, true);
+        
+        // Si todo esta bien
+        if ($geo['status'] = 'OK') {
+            // Obtener los valores
+            $latitud = $geo['results'][0]['geometry']['location']['lat'];
+            $longitud = $geo['results'][0]['geometry']['location']['lng'];
+            $arrArgument = array(
+                'lat'=>$latitud,
+                'long'=>$longitud
+            );
+            echo json_encode($arrArgument);
+        }
+        
+    }
+    function productsmap(){
+        $search= json_decode($_POST['searchmap'],true);
+        // echo json_encode($search);
+        // exit;
+            $val                    =   ($search['val']);
+            $provi                  =   ($search['provi']);
+            $local                  =   ($search['local']);
+            $arrArgument = array(
+                'val'=>$val,
+                'provi'=>$provi,
+                'local'=>$local
+            );
+            $arrValue = loadModel(MODEL_MODULE, "shop_model", "productsmap", $arrArgument);
+            echo json_encode($arrValue);
+    }
 }
      ?>
             

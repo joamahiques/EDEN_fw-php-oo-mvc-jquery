@@ -81,10 +81,10 @@ class login_dao {
 
     }
 
-    public function update_token_DAO($db,$nombre,$tok){
+    public function update_token_DAO($db,$nombre){
        
         $token= generate_JWK($nombre);
-        $sql = "UPDATE users2 set token ='$token' WHERE token='$tok'";
+        $sql = "UPDATE users2 set token ='$token' WHERE IDuser='$nombre'";
 
         $stmt = $db->ejecutar($sql);
         return $token;

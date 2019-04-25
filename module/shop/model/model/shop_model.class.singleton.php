@@ -38,6 +38,9 @@ class shop_model {
     public function alldrops($data){
         return $this->bll->alldrops_BLL($data);
     }
+    public function productsmap($data){
+        return $this->bll->productsmap_BLL($data);
+    }
     // public function search($data){
     //     return $this->bll->search_BLL($data);
     // }

@@ -4,6 +4,7 @@
         <div class="grid_12">   
 
             <h2> Resultados de tu búsqueda </h2>
+            <a id="ubi">Ver en el mapa</a>
             <div id="inicioshop" class="flex1"></div>
             <div id="pagination"></div>
             <div class='club'>
