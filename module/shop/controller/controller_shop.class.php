@@ -11,7 +11,7 @@ class controller_shop{
         require_once(VIEW_PATH_INC . "top-page.php");
         require_once(VIEW_PATH_INC . "header.php");
         require_once(VIEW_PATH_INC . "menu.php");
-        include(MODULE_VIEW_PATH . "shop.php");
+        include(MODULE_VIEW_PATH . "shop.html");
         require_once(VIEW_PATH_INC . "footer.php");
         if (isset($_SESSION["tiempo"])) {  
             $_SESSION["tiempo"] = time(); //Devuelve la fecha actual
@@ -73,12 +73,16 @@ class controller_shop{
         
         // Si todo esta bien
         if ($geo['status'] = 'OK') {
+            // echo json_encode($geo);
+            // exit;
             // Obtener los valores
+            $localidad = $geo['results'][0]['address_components'][0]['long_name'];
             $latitud = $geo['results'][0]['geometry']['location']['lat'];
             $longitud = $geo['results'][0]['geometry']['location']['lng'];
             $arrArgument = array(
                 'lat'=>$latitud,
-                'long'=>$longitud
+                'long'=>$longitud,
+                'loc'=>$localidad
             );
             echo json_encode($arrArgument);
         }

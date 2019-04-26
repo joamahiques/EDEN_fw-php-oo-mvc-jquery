@@ -143,6 +143,15 @@ a.btn , a.read{
     text-align: center;
     cursor: pointer;
 }
+#info-content a.read{
+    color: #a09f85;
+    font-size: 18px;
+    margin-top: 20px; 
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+}
 #deletehome a.btn{
     width: 10%;
 }
@@ -190,7 +199,12 @@ div#map{
     justify-content: space-between;
     align-items: center;
 }
-
+.flexmap{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    /* align-items: center; */
+}
 .flex2{
     display: flex;
     flex-flow: row wrap;

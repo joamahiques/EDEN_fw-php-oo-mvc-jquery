@@ -107,8 +107,12 @@
                     toastr["info"]("Ingresa criterios de busqueda o ve a la Tienda"),{"iconClass":'toast-info'};
                     
                 }else{
-                    
+                    if(window.location.href == 'http://localhost/www/EDEN/shop/list_map/'){
+                       
+                        window.location.href = 'http://localhost/www/EDEN/shop/list_map/'
+                    }else{
                     window.location.href = amigable('?module=shop&function=list_shop')
+                    }
                 }
                 
             });
