@@ -161,7 +161,6 @@
 			echo json_encode('ok');
 			//exit;
 					error_reporting(0);
-					// session_unset($_SESSION['type']);
 					session_unset($_SESSION['avatar']);
 					session_unset($_SESSION['result_prodpic']);
 					session_unset($_SESSION['tiempo']);

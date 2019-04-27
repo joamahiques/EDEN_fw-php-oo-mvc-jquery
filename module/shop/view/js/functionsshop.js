@@ -107,7 +107,8 @@ $(document).ready(function(){
      }//end function
 
 /////  THE RESULTS
-     $('#btnshop').on('click', function () {
+$(document).on("click", '#btnshop', function() {
+     //$('#btnshop').on('click', function () {
         sessionStorage.setItem('provincia', 'null'); // save data
         sessionStorage.setItem('local', 'null'); // save data
         sessionStorage.setItem('val', 'null'); // save data

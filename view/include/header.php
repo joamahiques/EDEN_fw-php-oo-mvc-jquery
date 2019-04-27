@@ -3,18 +3,18 @@
 <header>
 			<div>
 				<div id="rel">
-                <div id="contenedor-slider" class="contenedor-slider">
-               		 <h1>
-						<a href="="<?php amigable('?module=home&function=list_home'); ?>">
-							<img src="<?php echo IMG_PATH ?>logo.png" alt="Eden">
-						</a>
-					</h1>
-					
-					<div class="fotohome"> 
-                        <section class="slider__section"><img  class="slider__img"></section>
-                    </div>
-                    
-				</div>
+					<div id="contenedor-slider" class="contenedor-slider">
+						<h1>
+							<a href="="<?php amigable('?module=home&function=list_home'); ?>">
+								<img src="<?php echo IMG_PATH ?>logo.png" alt="Eden">
+							</a>
+						</h1>
+						
+						<div class="fotohome"> 
+							<section class="slider__section"><img  class="slider__img"></section>
+						</div>
+						
+					</div>
 					<form class="search">
 						
 							<select id="drop1">

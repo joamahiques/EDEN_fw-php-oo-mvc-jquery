@@ -24,7 +24,7 @@ $(document).ready(function () {
             })
             .done(function( data, textStatus, jqXHR ) {
                     ubic=JSON.parse(data);
-                    console.log(data);
+                    //console.log(data);
                     $('#h2local').html(ubic['loc']);
                     initMap1()
             })
@@ -55,12 +55,16 @@ $(document).ready(function () {
     //   var ubiprovi=sessionStorage.getItem('provincia');
      //console.log(sessionStorage.getItem('provincia'));
       function initMap1() {
+        //console.log(val);
             if(provi==='null'){
                 zoom=6;
             }else if((local===null)&&(provi!='null')){
                 zoom=8;
             }else if((local!=null)&&(provi!=null)){
-                zoom=11;
+                zoom=13;
+            }
+            if((val!='null')&&(val)){
+              zoom=15;
             }
             console.log(zoom);
             map = new google.maps.Map(document.getElementById('mapa_ubi'), {
@@ -171,7 +175,7 @@ $(document).ready(function () {
       // anchored on the marker for the hotel that the user selected.
       function showInfoWindow() {
             var marker = this;
-            console.log(marker);
+            //console.log(marker);
             infoWindow.open(map,marker);
             buildIWContent(marker.placeResult);
       }

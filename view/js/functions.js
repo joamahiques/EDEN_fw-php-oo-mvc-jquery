@@ -1,31 +1,30 @@
 ////url
 function tryurl(){
-	if(window.location.href==='http://localhost/www/EDEN/'){
-        url1='';
-    }else{
-        url1='../../';
-	}
-	return url1;
+    if(window.location.href==='http://localhost/www/EDEN/'){
+          url1='';
+      }else{
+          url1='../../';
+    }
+    return url1;
 }
 
 ///pretty url
 function amigable(url) {
-  var link="";
-  url = url.replace("?", "");
-  url = url.split("&");
-  cont = 0;
-  for (var i=0;i<url.length;i++) {
-    cont++;
-      var aux = url[i].split("=");
-     
-      if (cont == 2) {
-        link +=  "/"+aux[1]+"/";	
-      }else{
-        link +=  "/"+aux[1];
-      }
+    var link="";
+    url = url.replace("?", "");
+    url = url.split("&");
+    cont = 0;
+    for (var i=0;i<url.length;i++) {
+        cont++;
+        var aux = url[i].split("=");
       
-  }
-  return "http://localhost/www/EDEN" + link;
+        if (cont == 2) {
+          link +=  "/"+aux[1]+"/";	
+        }else{
+          link +=  "/"+aux[1];
+        }
+    }
+    return "http://localhost/www/EDEN" + link;
 }
 ///FUNCTION FOR EXTERN VARIABLES
 function getQueryVariable(variable) {
@@ -47,26 +46,24 @@ function getQueryVariable(variable) {
     return num;
     }
 ////protect url
-  function protecturl() {
-      /////////protect url
-      $.ajax({
-        type : 'GET',
-        //url  : 'model/functions.php?op=controluser',
-        url  : 'components/login/controller/controller-login.php?&op=controluser',
-        //dataType: 'json',
+function protecturl() {
+    $.ajax({
+        type : 'POST',
+        url:amigable('?module=login&function=controluser'),
+        data :{'token':token},
+        dataType: 'json',
     })
-      .done(function(data){			
-        console.log(data)		
-        if(data=="okay"){
-            setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
-        }else if (data=="ok"){
-          loginauto();
-              //setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
-              
+    .done(function(data){			
+        if (data != 'error') {
+          if ((data[0].type === 'client_rs')||(data[0].type === 'client')) {
+              setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
           }
-      })
-      .fail( function(response){console.log(response)	});
-      }
+        }else{
+            setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
+        }
+    })
+    .fail( function(response){console.log(response)	});
+    }
  ///////////eliminar acentos     
  function quitaAcentos(str){ 
         for (var i=0;i<str.length;i++){ 
@@ -139,25 +136,17 @@ toastr.options = {
     "hideMethod": "fadeOut"
   }
 /////////// MENU
-      urlgen=tryurl();
-      //console.log(urlgen+'login/controluser');
-      
+      urlgen=tryurl();      
       var token = localStorage.getItem("id_token");
       if (token) {
           $.ajax({
             type : 'POST',
             url:amigable('?module=login&function=controluser'),
-            //url  : urlgen+'login/controluser',
             data :{'token':token},
             dataType: 'json',
           })
           .done(function(data){	
-            console.log(localStorage.getItem("id_token"));
-            console.log(data);
-            //localStorage.setItem("id_token", data[1]);
-            //console.log(localStorage.getItem("id_token"));
                 if (data != 'error') {
-                    console.log(data[0].type);
                     if ((data[0].type === 'client_rs')||(data[0].type === 'client')) {
                       console.log('menuuuuu');
                       $('.sf-menu').empty();
@@ -165,25 +154,23 @@ toastr.options = {
                         '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+							
                         '<li><a href="'+amigable('?module=shop&function=list_shop')+'" data-tr="Tienda" id="btnshop"></a></li>'+
                         '<li><a href="'+amigable('?module=contact&function=list_contact')+'" data-tr="Contacto"></a></li>'+
-                       '<li><a href="'+amigable('?module=cart&function=view')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
-                       '<li><a id="menuprofile">  <img id="avatar"></a>'+
+                        '<li><a href="'+amigable('?module=cart&function=list_cart')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
+                        '<li><a id="menuprofile">  <img id="avatar"></a>'+
                           '<ul id="submenu">'+
                             '<li><a id="btnprofile" href="'+amigable('?module=profile&function=view')+'" data-tr="Perfil"></a></li>'+
                             '<li><a id="btnlogout" data-tr="Salir"></a></li>'+
                           '</ul>'+
                         '</li>'
-                      );
-
-                       
+                      );  
                      }
                      if(data[0].type === 'admin'){
                         $('.sf-menu').empty();
                         $('.sf-menu').html(
                           '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+
-                          '<li><a href="'+amigable('?module=crud&functions=list')+'" data-tr="CRUD"></a></li>'+
+                          '<li><a href="'+amigable('?module=crud&functions=list_crud')+'" data-tr="CRUD"></a></li>'+
                           '<li><a href="'+amigable('?module=shop&function=list_shop')+'" data-tr="Tienda" id="btnshop"></a></li>'+
                           '<li><a href="'+amigable('?module=contact&function=list_contact')+'" data-tr="Contacto"></a></li>'+
-                          '<li><a href="'+amigable('?module=cart&function=view')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
+                          '<li><a href="'+amigable('?module=cart&function=list_cart')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
                           '<li><a id="menuprofile">  <img id="avatar"></a>'+
                             '<ul id="submenu">'+
                               '<li><a id="btnprofile" href="'+amigable('?module=profile&function=view')+'" data-tr="Perfil"></a></li>'+
@@ -214,14 +201,13 @@ toastr.options = {
   setInterval(function(){ 
 		$.ajax({
 			type : 'POST',
-      //url  : urlgen+'login/actividad',
       url: amigable('?module=login&function=actividad'),
 			success :  function(response){
         response=response.trim();						
 				if(response=="inactivo"){
-                    alert("Se ha cerrado la cuenta por inactividad");
-                    logoutauto();
-					//setTimeout('window.location.href = "components/login/controller/controller-login.php?&op=logout";',1000);
+              alert("Se ha cerrado la cuenta por inactividad");
+              logoutauto();
+					    setTimeout('window.location.href = "components/login/controller/controller-login.php?&op=logout";',1000);
 				}
 			}
 		});

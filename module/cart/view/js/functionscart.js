@@ -1,4 +1,3 @@
-
 var cart = [];
 // $(".fa-shopping-cart").children('span').show();
 $(function () {
@@ -140,11 +139,15 @@ function confirmPurchase(){
     DelCart();////eliminamos localstorage cart
     $.ajax({
         type : 'POST',
-        url  : 'module/cart/controller/controller-cart.php?&op=confirmpurchase',
+        url  : amigable('?module=cart&functions=confirm_purchase'),
+        data: {
+             tok: localStorage.getItem("id_token")
+            },
         
     })
     .done(function(data){
-        console.log(data);
+        $data=JSON.parse(data);
+        localStorage.setItem('id_token',$data['tok']);
     })
 
 }
@@ -153,32 +156,37 @@ function deletelogout(){
     console.log("logout!!");
     $.ajax({
         type : 'POST',
-        url  : 'module/cart/controller/controller-cart.php?&op=insertcart',
+        url:amigable('?module=cart&function=insert_cart'),
+        //url  : 'module/cart/controller/controller-cart.php?&op=insertcart',
         data: {
-        cart: cart
-        },
+            cart: cart, tok: localStorage.getItem("id_token")
+            },
         
     })
-    .done(function(data){console.log("guardao")});
-
-    cart.splice(0,cart.length);//vaciamos array
-    showCart();
-    DelCart();////eliminamos localstorage cart
+    .done(function(data){
+        $data=JSON.parse(data);
+        localStorage.setItem('id_token',$data['tok']);
+        console.log("guardao")
+    });
+        //localStorage.setItem('id_token',$data['tok']);
+            cart.splice(0,cart.length);//vaciamos array
+            showCart();
+            DelCart();////eliminamos localstorage cart
 }
 
 /// add to cart of bbdd when login
 function logincart(){
+    console.log('carttt');
     $.ajax({
         type : 'POST',
-        url  : 'module/cart/controller/controller-cart.php?&op=readcart',///leemos ya de bbdd con los precios reales
+        url: amigable('?module=cart&function=read_cart'),
         dataType: "json",
-        
+        data : {tok:localStorage.getItem("id_token")}
         
     })
     .done(function(data){
         console.log(data);
         for (var i in data) {
-            // create JavaScript Object
             var item = { Home: data[i].nombre,  Price: data[i].precio, Qty: data[i].cantidad, Total: data[i].total }; 
             cart.push(item);
             saveCart();
@@ -188,6 +196,12 @@ function logincart(){
 
 }
 $(document).ready(function () {
+    
+    ///////go back
+    $("#volverbtn").on("click", function () {
+        window.history.back();
+        
+    });
 
     ///////////purchase:
     $("#comprarbtn").on("click", function () {
@@ -196,32 +210,34 @@ $(document).ready(function () {
 
         }else{
         
-                if(localStorage.getItem("user")===null){
+                if(localStorage.getItem("id_token")===null){
                     loginauto();
                 }else{
                     ///to purchase
                     console.log(cart);
                     $.ajax({
                         type : 'POST',
-                        url  : 'module/cart/controller/controller-cart.php?&op=insertcart',
+                        url  : amigable('?module=cart&function=insert_cart'),
                         data: {
-                        cart: cart
+                        cart: cart, tok: localStorage.getItem("id_token")
                         },
                         
                     })
                     .done(function(data){
-                        console.log(data);
+                        $data=JSON.parse(data);
+                        localStorage.setItem('id_token',$data['tok']);
                         ///////// modal confirm purchase (bbdd data)
                         $.ajax({
                             type : 'POST',
-                            url  : 'module/cart/controller/controller-cart.php?&op=readcart',///leemos ya de bbdd con los precios reales
+                            url  : amigable('?module=cart&function=read_cart'),
                             dataType: "json",
-                            
+                            data : {tok:localStorage.getItem("id_token")}
                             
                         })
                         .done(function(data){
                             var pricetotalf=0;
-                            // console.log(data);
+                            console.log(data);
+                            $("#contentcompra").empty();
                             for (var i in data) {
                                 var item = data[i];
                                 var row = "<tr><td style='width: 30%'>" + item.nombre + "</td>"+
@@ -230,7 +246,6 @@ $(document).ready(function () {
                                             "<td>" +item.total+ "</td><tr>";
                                 $("#contentcompra").append(row);
                                 pricetotalf=pricetotalf+parseInt(item.total);
-                                console.log(pricetotalf);
                                 setTimeout(function(){
                                 $("#pricetotalfinal").html(pricetotalf);}, 500);
                             }
@@ -239,11 +254,12 @@ $(document).ready(function () {
                         
                         })
                         .fail(function(data){
-                            console.log(data);
-
+                            
                         })
                     })
                     .fail(function(data){
+                        $data=JSON.parse(data);
+                        localStorage.setItem('id_token',$data['tok']);
                         console.log(data);
                     })
                 }//end if

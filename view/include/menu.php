@@ -12,7 +12,7 @@
 								<li><a href="<?php amigable('?module=contact&function=list_contact'); ?>" data-tr="Contacto"></a></li>
 								<!-- <li><a href="index.php?page=controller-login&op=view" data-tr="Login"></a></li> --> 
 								<li><a data-tr="Login" class="main-nav"></a></li>
-								<li><a href="index.php?page=controller-cart&op=view"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>
+								<li><a href="<?php amigable('?module=cart&function=list_cart'); ?>"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>
 							</ul>
 						</nav>
 						<div class="clear"></div>
