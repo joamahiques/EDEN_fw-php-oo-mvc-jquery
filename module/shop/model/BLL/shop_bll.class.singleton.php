@@ -1,13 +1,4 @@
 <?php
-// echo json_encode("shop_bll.class.singleton.php");
-// exit;
-
-// $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/';
-// // define('SITE_ROOT', $path);
-// define('MODEL_PATH', SITE_ROOT . 'model/');
-
-// require(MODEL_PATH . "db.class.singleton.php");
-// require(SITE_ROOT . "module/shop/model/DAO/shop_DAO.class.singleton.php");
 
 class shop_bll{
     private $dao;

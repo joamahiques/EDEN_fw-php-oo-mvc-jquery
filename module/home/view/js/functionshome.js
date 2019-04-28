@@ -5,17 +5,11 @@ var url1             =   '';
 //console.log(window.location.href);
 $(document).ready(function(){
 
-    // if(window.location.href=='http://localhost/www/EDEN/'){
-    //     url1='home/scroll_home';
-    // }else if(window.location.href=='http://localhost/www/EDEN/home/list_home/'){
-    //     url1='../../home/scroll_home';
-    // }
     url1=tryurl();
     $('.load').fadeIn(500);
     $.ajax({
         type:"post",
-        //url:url1,
-        url: url1+'home/scroll_home',
+        url : amigable('?module=home&function=scroll_home'),
         dataType:"json",
         data:'p='+current_page,
         success: function(data) {///array: totalcount and results

@@ -47,6 +47,7 @@ function getQueryVariable(variable) {
     }
 ////protect url
 function protecturl() {
+  var token = localStorage.getItem("id_token");
     $.ajax({
         type : 'POST',
         url:amigable('?module=login&function=controluser'),
@@ -56,10 +57,10 @@ function protecturl() {
     .done(function(data){			
         if (data != 'error') {
           if ((data[0].type === 'client_rs')||(data[0].type === 'client')) {
-              setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
+            window.location.href = amigable('?module=home&function=list_home'); 
           }
         }else{
-            setTimeout(' window.location.href = "index.php?page=controllerhome&op=list"; ',1000);
+            window.location.href = amigable('?module=home&function=list_home');       
         }
     })
     .fail( function(response){console.log(response)	});
@@ -207,7 +208,7 @@ toastr.options = {
 				if(response=="inactivo"){
               alert("Se ha cerrado la cuenta por inactividad");
               logoutauto();
-					    setTimeout('window.location.href = "components/login/controller/controller-login.php?&op=logout";',1000);
+              setTimeout(function(){window.location.href = amigable('?module=components&function=login&aux=logout'); }, 1000);
 				}
 			}
 		});

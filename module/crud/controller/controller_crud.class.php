@@ -2,20 +2,61 @@
      class controller_crud {
        
 		function __construct() {
-                include(FUNCTIONS_MODULE . "utils.inc.php");
-                echo "<script>";
-                echo "protecturl();";
-                echo "</script>";
+                //include(FUNCTIONS_MODULE . "utils.inc.php");
+               
 				$_SESSION['module'] = "crud";
         }
 
-        function list_crud() {
+        function list_crud(){
             require_once(VIEW_PATH_INC . "top-page.php");
-            require_once(VIEW_PATH_INC . "header-home.php");
+            require_once(VIEW_PATH_INC . "header.php");
             require_once(VIEW_PATH_INC . "menu.php");
             include(MODULE_VIEW_PATH . "list_homes.php");
             require_once(VIEW_PATH_INC . "footer.php");
+             echo "<script>";
+                echo "protecturl();";
+                echo "</script>";
         }
+
+        function lista(){
+            try{
+                $arrValue = loadModel(MODEL_MODULE,'crud_model','select_all_homes');
+            }catch (Exception $e){
+                echo 'error';
+            }
+            
+            if(!$arrValue){
+                echo 'error de conexión';
+            }else{
+                echo json_encode($arrValue);
+            }
+        }
+
+        function delete(){
+            require_once(VIEW_PATH_INC . "top-page.php");
+            require_once(VIEW_PATH_INC . "header.php");
+            require_once(VIEW_PATH_INC . "menu.php");
+            include(MODULE_VIEW_PATH . "deleteHome.php");
+            require_once(VIEW_PATH_INC . "footer.php");
+            
+        }
+
+        function delete_home(){
+                    try{
+                       $home=$_POST['home'];
+                        $arrValue = loadModel(MODEL_MODULE,'crud_model','delete_home',$home);
+                    }catch (Exception $e){
+                        echo ("error de conexion");
+                    }
+                    //print_r($rdo);
+                    if($arrValue){
+                        echo json_encode($arrValue);
+                    }else{
+                        echo json_encode($arrValue);
+                    }
+        }
+            
+        
     }
 //     $path = $_SERVER['DOCUMENT_ROOT'] . '/www/EDEN/'; ///opt/lampp/htdocs
 //     include($path . "module/homes/model/DAOhomes.php");

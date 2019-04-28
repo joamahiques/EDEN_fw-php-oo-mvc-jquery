@@ -154,29 +154,25 @@ function confirmPurchase(){
 //si  nos deslogueamos y hay cosas en el carro
 function deletelogout(){
     console.log("logout!!");
+    if(cart.length>0){
     $.ajax({
         type : 'POST',
         url:amigable('?module=cart&function=insert_cart'),
-        //url  : 'module/cart/controller/controller-cart.php?&op=insertcart',
-        data: {
-            cart: cart, tok: localStorage.getItem("id_token")
-            },
-        
+        data: {cart: cart, tok: localStorage.getItem("id_token")},  
     })
     .done(function(data){
         $data=JSON.parse(data);
         localStorage.setItem('id_token',$data['tok']);
-        console.log("guardao")
     });
-        //localStorage.setItem('id_token',$data['tok']);
-            cart.splice(0,cart.length);//vaciamos array
-            showCart();
-            DelCart();////eliminamos localstorage cart
+    }
+    cart.splice(0,cart.length);//vaciamos array
+    showCart();
+    DelCart();////eliminamos localstorage cart
 }
 
 /// add to cart of bbdd when login
 function logincart(){
-    console.log('carttt');
+    //console.log('carttt');
     $.ajax({
         type : 'POST',
         url: amigable('?module=cart&function=read_cart'),

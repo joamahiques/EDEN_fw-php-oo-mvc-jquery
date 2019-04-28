@@ -1,5 +1,5 @@
 <?php
-class Log {
+class log {
     private $path;
     static $_instance;
 

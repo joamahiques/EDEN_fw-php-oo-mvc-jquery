@@ -49,7 +49,6 @@ function response_code($code = NULL) {
         return $return=array('code'=>$code, 'text'=>$text);
     }
     
-    
      
     function ErrorHandler($errno, $errstr, $errfile, $errline) {
         $error = "";
@@ -71,9 +70,8 @@ function response_code($code = NULL) {
                 break;
         }
         $msg = "ERROR: [$errno] $errstr\r\n" . "$error on line $errline in file $errfile\r\n";
-         
-        $log = Log::getInstance();
-        $log->add_log_general($msg, $_SESSION['module'], "response ".http_response_code()); //$text, $controller, $function
-        $log->add_log_user($msg, $_SESSION['mail'], $_SESSION['module'], "response ".http_response_code()); //$msg, $username = "", $controller, $function
+        $log = log::getInstance();
+        $log->add_log_general($msg, $_SESSION['module'], "response " . http_response_code()); //$text, $controller, $function
+        $log->add_log_user($msg, $_SESSION['mail'], $_SESSION['module'], "response " . http_response_code()); //$msg, $username = "", $controller, $function
     }
     

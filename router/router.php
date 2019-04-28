@@ -84,14 +84,7 @@ function handlerModule($URI_module, $URI_function) {
                     require_once(VIEW_PATH_INC ."header.php");
                 } 
                
-                //if(!isset($_SESSION['type'])){
-                    require_once(VIEW_PATH_INC ."menu.php");
-                //}else if ($_SESSION['type']==='client'){
-                //     require_once(VIEW_PATH_INC ."menuuser.php");   
-                // }else if($_SESSION['type']==='admin'){
-                //     require_once(VIEW_PATH_INC ."menuadmin.php");   
-                // } 
-                
+                require_once(VIEW_PATH_INC ."menu.php"); 
                 require_once(VIEW_PATH_INC_ERROR . "error404.php");
                 require_once(VIEW_PATH_INC . "footer.php");
             }
@@ -102,14 +95,7 @@ function handlerModule($URI_module, $URI_function) {
     if (!$exist) {
         require_once(VIEW_PATH_INC ."top-page.php");
         require_once(VIEW_PATH_INC . "header.php");
-
-        //if(!isset($_SESSION['type'])){
-            require_once(VIEW_PATH_INC ."menu.php");
-        // }else if ($_SESSION['type']==='client'){
-        //     require_once(VIEW_PATH_INC ."menuuser.php");   
-        // }else if($_SESSION['type']==='admin'){
-        //     require_once(VIEW_PATH_INC ."menuadmin.php");   
-        // } 
+        require_once(VIEW_PATH_INC ."menu.php"); 
         require_once(VIEW_PATH_INC_ERROR . "error404.php");
         require_once(VIEW_PATH_INC . "footer.php");
     }
@@ -129,13 +115,7 @@ function handlerFunction($module, $obj, $URI_function) {
     if (!$exist) {
         require_once(VIEW_PATH_INC ."top-page.php");
         require_once(VIEW_PATH_INC . "header.php");
-        //if(!isset($_SESSION['type'])){
-            require_once(VIEW_PATH_INC ."menu.php");
-        // }else if ($_SESSION['type']==='client'){
-        //     require_once(VIEW_PATH_INC ."menuuser.php");   
-        // }else if($_SESSION['type']==='admin'){
-        //     require_once(VIEW_PATH_INC ."menuadmin.php");   
-        // } 
+        require_once(VIEW_PATH_INC ."menu.php"); 
         require_once(VIEW_PATH_INC_ERROR . "error404.php");
         require_once(VIEW_PATH_INC . "footer.php");
     } else {

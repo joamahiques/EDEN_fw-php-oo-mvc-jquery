@@ -5,16 +5,20 @@
         <uri>list_crud</uri>
     </function>
     <function>
-        <name>insert_cart</name>
-        <uri>insert_cart</uri>
+        <name>lista</name>
+        <uri>lista</uri>
     </function>
     <function>
-        <name>read_cart</name>
-        <uri>read_cart</uri>
+        <name>delete</name>
+        <uri>delete</uri>
     </function>
     <function>
-        <name>confirm_purchase</name>
-        <uri>confirm_purchase</uri>
+        <name>delete_home</name>
+        <uri>delete_home</uri>
+    </function>
+    <function>
+        <name>delete_all_homes</name>
+        <uri>delete_all_homes</uri>
     </function>
     
 </functions>

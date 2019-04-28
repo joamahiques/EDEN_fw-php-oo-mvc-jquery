@@ -88,7 +88,7 @@ $(document).ready(function () {
            $.ajax({
               type: "POST",
               dataType: "json",
-              url:'../../shop/productsmap',
+              url:amigable('?module=shop&functions=productsmap'),
               data:{searchmap}
           })
           .done(function( data, textStatus, jqXHR ) {

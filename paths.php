@@ -33,8 +33,8 @@ define('MEDIA_PATH', SITE_ROOT . 'media/');
 //utils
 define('UTILS', SITE_ROOT . 'utils/');
 //LOGS
-define('USER_LOG_DIR',SITE_ROOT.'log/user/Site_User_errors.log');
-define('GENERAL_LOG_DIR',SITE_ROOT.'log/general/Site_General_errors.log');
+define('USER_LOG_DIR',SITE_ROOT . 'log/user/Site_User_errors.log');
+define('GENERAL_LOG_DIR',SITE_ROOT . 'log/general/Site_General_errors.log');
 ///MODULES
 define('FUNCTIONS_MODULE', SITE_ROOT . 'module/'.$_GET['module'].'/utils/');
 define('MODEL_PATH_MODULE', SITE_ROOT . 'module/'.$_GET['module'].'/model/');

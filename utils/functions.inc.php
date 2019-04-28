@@ -1,7 +1,7 @@
 <?php
 
 function generate_JWK($name){
-    require_once "classes/JWT.class.singleton.php";
+    //require_once "classes/JWT.class.singleton.php";
     $header = '{"typ":"JWT", "alg":"HS256"}';
     $secret = 'ettelefonomicasa';
     //$secret = rand(0, 1) ? 'maytheforcebewithyou' : 'ettelefonomicasa';
@@ -17,7 +17,7 @@ function generate_JWK($name){
         "name":'.$name.'
        }';
 
-    $JWT = new JWT;
+    $JWT = new jwt;
     $token = $JWT->encode($header, $payload, $secret);
     $json = $JWT->decode($token, $secret);
     // echo 'JWT sandomera: '.$token."\n\n"; echo '<br>';

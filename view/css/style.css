@@ -134,7 +134,7 @@ a:hover {
 	color: #ce9f56;
 }
 
-a.btn , a.read{
+a.btn , a.read, a.delete, a.update{
     color: #a09f85;
     font-size: 18px;
     /* margin-top: 27px; */
@@ -166,7 +166,7 @@ a.btn1 {
     margin-top: 8px;
 }
 
-a.btn:hover,a.btn1:hover, a.read:hover {
+a.btn:hover,a.btn1:hover, a.read:hover, a.delete:hover, a.update:hover {
     color: #ce9f56;
 }
 div.grid .read{
