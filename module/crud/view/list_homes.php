@@ -2,15 +2,15 @@
     <div class="container_12">
     	<div class="flex">
                 <h3>LISTA DE CASAS</h3>
-                <a class="btn1" href="index.php?page=controller_homes&op=create">Añadir Casa</a>
+                <a class="btn1" href="<?php amigable('?module=crud&function=create'); ?>">Añadir Casa</a>
     	</div>
     	<div class="list">
     		<!-- DATATABLE -->
             
         </div>
         <div class="flex">
-                <a class="btn1" href="index.php?page=homepage">INICIO</a>
-                <a class="btn1" href="index.php?page=controller_homes&op=deleteall">Borrar todo</a>
+                <a class="btn1" href="<?php amigable('?module=home&function=list_home'); ?>">INICIO</a>
+                <a class="btn1" href="<?php amigable('?module=crud&function=delete_all'); ?>">Borrar todo</a>
     	</div>
     </div>
 </div>

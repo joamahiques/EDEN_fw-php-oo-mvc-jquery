@@ -37,17 +37,8 @@ class profile_model {
     public function delete_favo($arrArgument) {
         return $this->bll->delete_favo_BLL($arrArgument);
     }
-
-    // public function obtain_countries($url){
-    //     return $this->bll->obtain_countries_BLL($url);
-    // }
-
-    // public function obtain_provinces(){
-    //     return $this->bll->obtain_provinces_BLL();
-    // }
-
-    // public Function obtain_cities($arrArgument){
-    //     return $this->bll->obtain_cities_BLL($arrArgument);
-    // }
+    public function update_pass_pro($arrArgument){
+        return $this->bll->update_pass_pro_BLL($arrArgument);
+    }
 
 }

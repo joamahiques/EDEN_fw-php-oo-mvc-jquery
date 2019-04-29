@@ -29,7 +29,7 @@
             $result_prodpic['data'] = $_SESSION['result_prodpic'];
         }
         
-        $result=validate_profile();
+        $result=validate_profile($_POST['propassword']);
         
        if ($result[0]=='ok'){
             set_error_handler('ErrorHandler');
@@ -67,6 +67,33 @@
             exit;
         }
     }
+
+    function update_pass_pro(){
+        $result=validate_profile($_POST['old-pass']);
+        
+        if ($result[0]=='ok'){
+            set_error_handler('ErrorHandler');
+                $arrArgument = array(
+                    'password'=>$_POST['newpass1'],
+                    'tok'=>$result[1]
+                );
+                $arrValue = false;
+                $arrValue = loadModel(MODEL_MODULE, "profile_model", "update_pass_pro", $arrArgument);
+            restore_error_handler();
+            if ($arrValue){
+                echo json_encode($arrValue);
+                exit;
+            }
+        }else if ($result[0]!='ok'){
+            $message2 = array(
+                '0' => 'bad',
+                '1'=>$result[1] 
+            );
+            echo json_encode($message2);
+            exit;
+        }
+}
+
 
     function load_data_user(){
         set_error_handler('ErrorHandler');

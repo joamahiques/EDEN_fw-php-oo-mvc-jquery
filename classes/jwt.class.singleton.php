@@ -54,13 +54,13 @@ class jwt {
             case 'a':
                 $this->alg = 'plaintext';
                 break;
-            case 2:
+            case '2':
                 $hash = 'sha256';
                 break;
-            case 3:
+            case '3':
                 $hash = 'sha384';
                 break;
-            case 5:
+            case '5':
                 $hash = 'sha512';
                 break;
         }

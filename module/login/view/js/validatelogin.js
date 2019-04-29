@@ -19,7 +19,7 @@ function valide_password(){
 	//Repeat Password
 	if(document.newpass.rpassword.value.length === 0){
 		$('#rpassword').addClass('has-error').next('span').addClass('is-visible').html("LA CONTRASEÑA ES REQUERIDA");
-		document.formregister.rpassword.focus();
+		document.newpass.rpassword.focus();
 		return 0;
 	}
 	$('#rpassword').removeClass('has-error').next().next('span').removeClass('is-visible');
@@ -382,7 +382,7 @@ $(document).ready(function(){
 							}
 				})
 	});
-	//////////////////forgot password
+	//////////////////update password if forgot
 	$("#newpass").submit(function (e) {
 			e.preventDefault();
 			if (valide_password() != 0) {

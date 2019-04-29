@@ -286,3 +286,69 @@ Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton
 ERROR: [8] Use of undefined constant a - assumed 'a'
 Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
  | 29.04.2019 07:21:56  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 24 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:37:05  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 24 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:39:09  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 101 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:39:20  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 22 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:39:20  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 101 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:40:46  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 22 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:40:46  |  User:   | cart | response 200
+ERROR: [8] Undefined variable: user
+Notice on line 60 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:41:16  |  User:   | profile | response 200
+ERROR: [8] Undefined variable: token
+Notice on line 60 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:41:16  |  User:   | profile | response 200
+ERROR: [8] Undefined variable: user
+Notice on line 60 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:45:58  |  User:   | profile | response 200
+ERROR: [8] Undefined variable: token
+Notice on line 60 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:45:58  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 101 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:47:39  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 22 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:47:39  |  User:   | cart | response 200
+ERROR: [8] Undefined variable: user
+Notice on line 60 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:48:56  |  User:   | profile | response 200
+ERROR: [8] Undefined variable: token
+Notice on line 60 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:48:56  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 101 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:49:53  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 22 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 10:49:53  |  User:   | cart | response 200
+ERROR: [8] Undefined variable: token
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:55:22  |  User:   | profile | response 200
+ERROR: [8] Undefined variable: token
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:57:16  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 24 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 10:59:07  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 24 in file /opt/lampp/htdocs/www/EDEN/module/profile/model/DAO/profile_dao.class.singleton.php
+ | 29.04.2019 11:01:08  |  User:   | profile | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 101 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 11:01:16  |  User:   | cart | response 200
+ERROR: [8] Undefined offset: 0
+Notice on line 22 in file /opt/lampp/htdocs/www/EDEN/module/cart/model/DAO/cart_dao.class.singleton.php
+ | 29.04.2019 11:01:16  |  User:   | cart | response 200

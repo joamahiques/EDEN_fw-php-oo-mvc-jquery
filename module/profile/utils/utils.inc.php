@@ -1,5 +1,5 @@
 <?php
-function validate_profile(){
+function validate_profile($password){
 
     set_error_handler('ErrorHandler');
         $user = $_POST['tok'];
@@ -11,7 +11,7 @@ function validate_profile(){
             exit();
         }else{
              
-            if (password_verify($_POST['propassword'],$arrValue[0][0]['password'])) {
+            if (password_verify($password,$arrValue[0][0]['password'])) {
                 return array ('ok',$arrValue[1]);
 		    }else {
 				return array ('',$arrValue[1]);

@@ -7,7 +7,7 @@
         </ul>
         <div class="tab-container">
                 <div id='myprofile' class="tab_content">
-                        <form class="cd-form" name="formprofile"" id="formprofile">
+                        <form class="cd-form" name="formprofile" id="formprofile">
                            <div class="divpro">
                                 <p class="fieldset">
                                         <label class="image-replace cd-username" for="signup-username"></label>
@@ -76,20 +76,21 @@
         <div id="cd-change-password"> <!-- reset password form -->
                 <p class="cd-form-message">Quieres cambiar la contraseña? Primero introduce la actual y después la nueva.</p>
     
-                <form class="cd-form">
+                <form class="cd-form" name="profilepass" id="profilepass">
                     <p class="fieldset">
                         <label class="image-replace cd-password" for="reset-email"></label>
-                        <input class="full-width has-padding has-border" id="old-pass" type="text" placeholder="Contraseña actual">
+                        <input class="full-width has-padding has-border" name="old-pass" id="old-pass" type="text" placeholder="Contraseña actual">
+                        <span class="cd-error-message">Error message here!</span>
+                        <span id="error_update_pass"><span class="cd-error-message"></span></span>
+                    </p>
+                    <p class="fieldset">
+                        <label class="image-replace cd-password" for="reset-email"></label>
+                        <input class="full-width has-padding has-border" name="newpass1" id="newpass1" type="text" placeholder="Contraseña Nueva">
                         <span class="cd-error-message">Error message here!</span>
                     </p>
                     <p class="fieldset">
                         <label class="image-replace cd-password" for="reset-email"></label>
-                        <input class="full-width has-padding has-border" id="new-pass" type="text" placeholder="Contraseña Nueva">
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
-                    <p class="fieldset">
-                        <label class="image-replace cd-password" for="reset-email"></label>
-                        <input class="full-width has-padding has-border" id="new-pass2" type="text" placeholder="Repite Contraseña">
+                        <input class="full-width has-padding has-border"name="newpass2" id="newpass2" type="text" placeholder="Repite Contraseña">
                         <span class="cd-error-message">Error message here!</span>
                     </p>
     

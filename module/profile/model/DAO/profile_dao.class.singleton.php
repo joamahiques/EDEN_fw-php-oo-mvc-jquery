@@ -51,6 +51,17 @@ class profile_dao {
         return array ($res, $newtok); 
          
     }
+    public function update_pass_pro_DAO($db, $arrArgument){
+        $passw=$arrArgument['password'];
+        $tok=$arrArgument['tok'];
+        $user='newpass';
+        $hashed_pass = password_hash($passw, PASSWORD_DEFAULT);
+        $sql = "UPDATE users2 set password ='$hashed_pass' WHERE token='$tok'";
+        $res = $db->ejecutar($sql);
+        $newtok=$this->update_token_DAO($db,$user,$tok);
+        return array ($res, $newtok);
+
+    }
     public function delete_favo_DAO($db, $arrArgument){
         $user = $arrArgument['tok'];
         $home = $arrArgument['home'];
@@ -63,8 +74,6 @@ public function update_token_DAO($db,$nombre,$tok){
        
         $token= generate_JWK($nombre);
         $sql = "UPDATE users2 set token ='$token' WHERE token='$tok'";
-        //$sql = "UPDATE users2 set token ='$token' WHERE user='$nombre'";
-
         $stmt = $db->ejecutar($sql);
         return $token;
         //return $db->listar($stmt);

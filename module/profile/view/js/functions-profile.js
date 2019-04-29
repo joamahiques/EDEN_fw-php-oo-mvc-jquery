@@ -54,6 +54,38 @@ function valide_update_profile(){
 	
 	
 }
+///updaet pass profile
+function valide_pass(){
+			if(document.profilepass.newpass1.value.length === 0){
+				$('#newpass1').addClass('has-error').next('span').addClass('is-visible').html("LA CONTRASEÑA ES REQUERIDA");
+				document.profilepass.newpass1.focus();
+				return 0;
+			}
+			$('#newpass1').removeClass('has-error').next('span').removeClass('is-visible');
+
+			if(document.profilepass.newpass1.value.length < 6){
+				$('#newpass1').addClass('has-error').next('span').addClass('is-visible').html("MÁS DE 6 CARACTERES");
+				document.profilepass.newpass1.focus();
+				return 0;
+			}
+			$('#newpass1').removeClass('has-error').next('span').removeClass('is-visible');
+
+			//Repeat Password
+			if(document.profilepass.newpass2.value.length === 0){
+				$('#newpass2').addClass('has-error').next('span').addClass('is-visible').html("LA CONTRASEÑA ES REQUERIDA");
+				document.profilepass.newpass2.focus();
+				return 0;
+			}
+			$('#newpass2').removeClass('has-error').next().next('span').removeClass('is-visible');
+
+			if(document.profilepass.newpass2.value != document.profilepass.newpass1.value){
+				$('#newpass2').addClass('has-error').next('span').addClass('is-visible').html("LAS CONTRASEÑAS NO SON IGUALES");
+				document.profilepass.newpass2.focus();
+				return 0;
+			}
+			$('#newpass2').removeClass('has-error').next('span').removeClass('is-visible');
+
+}
 ///////////////// coger datos del ususarios de la bd y pintarlos
 function myprofile(){
 
@@ -345,19 +377,16 @@ $(document).ready(function(){
 								}
 							})
 							.done(function( response, jqXHR ) {
-								console.log(response);
+								//console.log(response);
 								var data=JSON.parse(response);
-								
-								console.log(data);
+								//console.log(data);
 								 if (data[0]=='bad'){
-									console.log('badbad')
 									localStorage.setItem('id_token',data[1]);
 									$("#error_update").fadeIn(1000, function(){						
 											$("#error_update").addClass('has-error').children('span').addClass('is-visible').append("LA CONSTRASEÑA NO ES VÁLIDA");
 										});
 								 }else{
-									//if (data[0]==true)
-									console.log(data[1]);
+									//console.log(data[1]);
 									//var data=JSON.parse(response);
 									localStorage.setItem('id_token',data[1]);
 									myprofile();
@@ -372,5 +401,45 @@ $(document).ready(function(){
 					
 					};///end if
 	 });/// submit update
+
+	 $("#profilepass").submit(function (e) {
+				console.log('superprofile!!')
+				e.preventDefault();
+				if(valide_pass() != 0){
+						var data = $("#profilepass").serialize();	
+						var datos='datos=&'+data+'&tok='+localStorage.getItem('id_token');
+						//console.log(datos);
+						$.ajax({
+							type : 'POST',
+							url:amigable('?module=profile&function=update_pass_pro'),
+							data:datos,
+								beforeSend: function(){	
+									$("#error_update").fadeOut();
+								}
+							})
+							.done(function( response, jqXHR ) {
+								console.log(response);
+
+								var data=JSON.parse(response);
+								 if (data[0]=='bad'){
+									localStorage.setItem('id_token',data[1]);
+									$("#error_update_pass").fadeIn(1000, function(){						
+											$("#error_update_pass").addClass('has-error').children('span').addClass('is-visible').append("LA CONSTRASEÑA NO ES VÁLIDA");
+										});
+								 }else{
+									//console.log(data[1]);
+									//var data=JSON.parse(response);
+									$('.cd-pass-modal').removeClass('is-visible');
+									localStorage.setItem('id_token',data[1]);
+									myprofile();
+								 	toastr["info"]("Perfil actualizado correctamente"),{"iconClass":'toast-info'};
+								}
+							})
+							.fail(function( data, textStatus, jqXHR ) {
+								//console.log(data);
+								toastr["info"]("NO SE HAN PODIDO ACTUALIZAR LOS DATOS, PRUEBE MAS TARDE"),{"iconClass":'toast-info'};
+							});
+		}
+	 });
    
 })///document ready

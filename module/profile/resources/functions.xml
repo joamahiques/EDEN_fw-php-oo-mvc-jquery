@@ -45,4 +45,8 @@
         <name>delete</name>
         <uri>delete</uri>
     </function>
+    <function>
+        <name>update_pass_pro</name>
+        <uri>update_pass_pro</uri>
+    </function>
 </functions>
