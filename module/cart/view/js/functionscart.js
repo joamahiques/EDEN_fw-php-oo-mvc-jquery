@@ -1,5 +1,5 @@
 var cart = [];
-// $(".fa-shopping-cart").children('span').show();
+
 $(function () {
     if (localStorage.cart){
         cart = JSON.parse(localStorage.cart);
@@ -13,7 +13,6 @@ function addToCart() {
     var qty = $("#quantity").val();
     var total = (price*qty);
     toastr["info"]("Producto añadido al carrito correctamente"),{"iconClass":'toast-info'};
-    $(".fa-shopping-cart").children('span').html(cart.length);
     // update qty if product is already present
     for (var i in cart) {
         if(cart[i].Home == name){
@@ -27,6 +26,8 @@ function addToCart() {
     // create JavaScript Object
     var item = { Home: name,  Price: price, Qty: qty, Total: total }; 
     cart.push(item);
+    localStorage.setItem('canti',cart.length);
+    $(".fa-shopping-cart").children('span').html(cart.length);
     saveCart();
     showCart();
 }
@@ -37,9 +38,13 @@ function deleteItem(index){
     showCart();
     saveCart();
     if (cart.length == 0) {
+        localStorage.setItem('canti',cart.length);
+        $(".fa-shopping-cart").children('span').html(cart.length);
         showCart();
         return;
     }
+    localStorage.setItem('canti',cart.length);
+    $(".fa-shopping-cart").children('span').html(cart.length);
     
 }
 /// localstorage
@@ -55,9 +60,8 @@ function DelCart(){
 //////showw
 function showCart() {
     var pricetotal=0;
-    console.log(cart);
-   $(".fa-shopping-cart").children('span').html(cart.length);
-
+    //console.log(cart);
+    localStorage.setItem('canti',cart.length);
     if (cart.length == 0) {
         
         var pricetotal=0;
@@ -131,7 +135,7 @@ function modalcart(){
     }
 ////////confirm purchase
 function confirmPurchase(){
-    console.log("vaciar");
+    //console.log("vaciar");
     //$("#cartBody").empty();
     cart.splice(0,cart.length);//vaciamos array
     console.log(cart);

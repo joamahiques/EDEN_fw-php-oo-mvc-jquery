@@ -17,8 +17,6 @@
         }
 
         function send_form(){
-			// $data_mail = array();
-			// $data_mail = json_decode($_POST['fin_data'],true);
 			$name =$_POST["name"];
         	$mail =$_POST["email"];
             $option = $_POST["opcontact"];
@@ -31,17 +29,14 @@
 				'inputSubject' => $option,
 				'inputMessage' => $message
 			);
-			// print_r($arrArgument);
-			// exit;
-			//set_error_handler('ErrorHandler');
-			try{
-				//echo "<div class='alert alert-success'>".enviar_email($arrArgument)." </div>";
-				enviar_email($arrArgument);
-				echo json_encode('Mensaje enviado');
-			} catch (Exception $e) {
-				echo json_encode('Server error. Try later...');//"<div class='alert alert-error'>Server error. Try later...</div>";
-			}
-			//restore_error_handler();
+			set_error_handler('ErrorHandler');
+				try{
+					enviar_email($arrArgument);
+					echo json_encode('Mensaje enviado');
+				} catch (Exception $e) {
+					echo json_encode('Server error. Try later...');
+				}
+			restore_error_handler();
 
 			$arrArgument = array(
 				'type' => 'admin',
@@ -51,12 +46,13 @@
 				'inputSubject' => $option,
 				'inputMessage' => $message
 			);
+			set_error_handler('ErrorHandler');
 			try{
 	            enviar_email($arrArgument);
 			} catch (Exception $e) {
 				echo json_encode('Server error. Try later...');
-				//echo "<div class='alert alert-error'>Server error. Try later...</div>";
 			}
+			restore_error_handler();
 		}
     }
 ?>  

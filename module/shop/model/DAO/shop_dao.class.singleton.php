@@ -1,6 +1,4 @@
 <?php
-// echo json_encode("shop_dao.class.singleton.php");
-// exit;
 
 class shop_dao {
     static $_instance;
@@ -31,10 +29,7 @@ class shop_dao {
         if ($local=='null'){
             $local='';
         }
-        //$sql = "SELECT count(*) as totalcasas FROM casas";
         $sql = "SELECT count(*)as total FROM casas WHERE provincia LIKE '%" . $provi . "%' AND localidad like '%" . $local . "%' AND nombre LIKE '%" . $val . "%'";
-        // echo($sql);
-        // exit;
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
         
@@ -69,8 +64,7 @@ class shop_dao {
         // }else if(($provi=='null') &&($local=='null') && ($val!='null')){//por valor del autocomplete
         //     $sql = "SELECT * FROM casas WHERE nombre LIKE '".$val. "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC";// LIMIT $start, $records_per_page";
         // }
-        // echo json_encode($sql);
-        // exit;
+        
         
         $stmp = $db->ejecutar($sql);
         return $db->listar($stmp);
@@ -90,7 +84,6 @@ class shop_dao {
             $local='';
         }
         $sql = "SELECT * FROM casas WHERE provincia LIKE '%" . $provi . "%' AND localidad like '%" . $local . "%' AND nombre LIKE '%" . $val . "%' ORDER BY provincia ASC, localidad ASC, capacidad ASC";
-        
         $stmp = $db->ejecutar($sql);
         return $db->listar($stmp);
     }

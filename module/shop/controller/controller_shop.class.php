@@ -42,10 +42,12 @@ class controller_shop{
                     'provi'=>$provi,
                     'local'=>$local
                 );
-                
+               
                 $totalResults = loadModel(MODEL_MODULE, "shop_model", "count", $arrArgument);/// to count the total of houses
                 $arrValue = loadModel(MODEL_MODULE, "shop_model", "alldrops", $arrArgument);
                 $result= array('totalcount'=>$totalResults,'results' => $arrValue);
+                // echo json_encode($arrValue);
+                // exit;
             restore_error_handler();
             if(($totalResults)&&($arrValue)){
                 echo json_encode($result);
@@ -57,11 +59,11 @@ class controller_shop{
     }
     
     function ubication(){
-                set_error_handler('ErrorHandler');
+                //set_error_handler('ErrorHandler');
                     $direccion = $_POST['muni'].','.$_POST['ubi'].',ESPAÑA';
                     // Obtener los resultados JSON de la peticion.
                     $geo = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?key='.apikeymap.'&address='.urlencode($direccion));
-                restore_error_handler(); 
+                //restore_error_handler(); 
                 // Convertir el JSON en array.
                 $geo = json_decode($geo, true);
                 // Si todo esta bien
@@ -82,7 +84,7 @@ class controller_shop{
     function productsmap(){
         $search= json_decode($_POST['searchmap'],true);
             set_error_handler('ErrorHandler');
-            try{
+            
             $val                    =   ($search['val']);
             $provi                  =   ($search['provi']);
             $local                  =   ($search['local']);
@@ -93,9 +95,6 @@ class controller_shop{
             );
             
             $arrValue = loadModel(MODEL_MODULE, "shop_model", "productsmap", $arrArgument);
-            }catch(Exception $e) {
-                echo json_encode($e);
-            }
             restore_error_handler();
             echo json_encode($arrValue);
     }

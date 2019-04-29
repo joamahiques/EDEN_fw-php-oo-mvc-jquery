@@ -15,7 +15,7 @@ class controller_home {
     }
 
 function scroll_home() {
-    
+    set_error_handler('ErrorHandler');
         $totalResults = loadModel(MODEL_MODULE, "home_model", "count");/// to count the total of houses
         if( isset($_POST['p']) ){
             $page					=	intval($_POST['p']);//number of page
@@ -27,15 +27,18 @@ function scroll_home() {
                 'records'=>$records_per_page
             );
             $arrValue = loadModel(MODEL_MODULE, "home_model", "select_scroll", $arrArgument);
+    restore_error_handler();
             $result= array('totalcount'=>$totalResults,'results' => $arrValue);
             echo json_encode($result);
             exit;
         }
 }
-
+///////////active a 1
 function active_user(){
     if(isset($_GET['aux'])){
+        set_error_handler('ErrorHandler');
         loadModel(MODEL_MODULE,"home_model","active_user",$_GET['aux']);
+        restore_error_handler();
         header('Location: '. SITE_PATH);
     }
 }

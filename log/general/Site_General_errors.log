@@ -88,3 +88,201 @@ Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton
 28/04/19 07:27:53 PM | ERROR: [8] Use of undefined constant a - assumed 'a'
 Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
  | profile | response 200
+29/04/19 10:24:41 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:24:41 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:24:41 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:24:41 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:24:41 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:24:41 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:25:42 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:25:42 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:25:42 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:25:42 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:25:42 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:25:42 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | profile | response 200
+29/04/19 10:26:43 AM | ERROR: [8] Undefined index: muni
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 11:20:55 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:20:55 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:20:55 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:20:55 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:20:55 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:20:55 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:04 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:04 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:04 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:04 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:04 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:04 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 11:37:24 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 11:37:24 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 11:37:24 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 11:37:24 AM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 11:37:24 AM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 11:37:24 AM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 11:56:01 AM | ERROR: [8] Undefined index: muni
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:51:16 PM | ERROR: [8] Undefined index: muni
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:51:48 PM | ERROR: [8] Undefined index: muni
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:52:21 PM | ERROR: [8] Undefined index: muni
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:56:39 PM | ERROR: [8] Undefined index: muni
+Notice on line 61 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:33 PM | ERROR: [8] Undefined variable: search
+Notice on line 86 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:33 PM | ERROR: [8] Undefined variable: search
+Notice on line 87 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:33 PM | ERROR: [8] Undefined variable: search
+Notice on line 88 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:41 PM | ERROR: [8] Undefined variable: search
+Notice on line 86 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:41 PM | ERROR: [8] Undefined variable: search
+Notice on line 87 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:41 PM | ERROR: [8] Undefined variable: search
+Notice on line 88 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:53 PM | ERROR: [8] Undefined variable: search
+Notice on line 86 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:53 PM | ERROR: [8] Undefined variable: search
+Notice on line 87 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:53 PM | ERROR: [8] Undefined variable: search
+Notice on line 88 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:59 PM | ERROR: [8] Undefined variable: search
+Notice on line 86 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:59 PM | ERROR: [8] Undefined variable: search
+Notice on line 87 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 04:59:59 PM | ERROR: [8] Undefined variable: search
+Notice on line 88 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:00:34 PM | ERROR: [8] Undefined variable: search
+Notice on line 86 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:00:34 PM | ERROR: [8] Undefined variable: search
+Notice on line 87 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:00:34 PM | ERROR: [8] Undefined variable: search
+Notice on line 88 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:00:44 PM | ERROR: [8] Undefined variable: search
+Notice on line 86 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:00:44 PM | ERROR: [8] Undefined variable: search
+Notice on line 87 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:00:44 PM | ERROR: [8] Undefined variable: search
+Notice on line 88 in file /opt/lampp/htdocs/www/EDEN/module/shop/controller/controller_shop.class.php
+ | shop | response 200
+29/04/19 05:43:42 PM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 05:43:42 PM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 05:43:42 PM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 05:43:42 PM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 05:43:42 PM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 05:43:42 PM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | login | response 200
+29/04/19 07:21:56 PM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 07:21:56 PM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 07:21:56 PM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 07:21:56 PM | ERROR: [8] Use of undefined constant n - assumed 'n'
+Notice on line 36 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 07:21:56 PM | ERROR: [8] Use of undefined constant H - assumed 'H'
+Notice on line 39 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200
+29/04/19 07:21:56 PM | ERROR: [8] Use of undefined constant a - assumed 'a'
+Notice on line 54 in file /opt/lampp/htdocs/www/EDEN/classes/jwt.class.singleton.php
+ | cart | response 200

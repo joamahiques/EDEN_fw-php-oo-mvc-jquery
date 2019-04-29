@@ -137,8 +137,10 @@ toastr.options = {
     "hideMethod": "fadeOut"
   }
 /////////// MENU
-      urlgen=tryurl();      
+      //urlgen=tryurl();
       var token = localStorage.getItem("id_token");
+      //$(".fa-shopping-cart").children('span').html(localStorage.getItem('canti'));
+      //console.log(localStorage.getItem('canti'));
       if (token) {
           $.ajax({
             type : 'POST',
@@ -149,13 +151,12 @@ toastr.options = {
           .done(function(data){	
                 if (data != 'error') {
                     if ((data[0].type === 'client_rs')||(data[0].type === 'client')) {
-                      console.log('menuuuuu');
                       $('.sf-menu').empty();
                       $('.sf-menu').html(
                         '<li><a href="'+amigable('?module=home&function=list_home')+'" data-tr="Inicio"></a></li>'+							
                         '<li><a href="'+amigable('?module=shop&function=list_shop')+'" data-tr="Tienda" id="btnshop"></a></li>'+
                         '<li><a href="'+amigable('?module=contact&function=list_contact')+'" data-tr="Contacto"></a></li>'+
-                        '<li><a href="'+amigable('?module=cart&function=list_cart')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
+                        '<li><a href="'+amigable('?module=cart&function=list_cart')+'"><i class="fa fa-shopping-cart"><span>'+localStorage.getItem('canti')+'</span></i></a></li>'+
                         '<li><a id="menuprofile">  <img id="avatar"></a>'+
                           '<ul id="submenu">'+
                             '<li><a id="btnprofile" href="'+amigable('?module=profile&function=view')+'" data-tr="Perfil"></a></li>'+
@@ -171,7 +172,7 @@ toastr.options = {
                           '<li><a href="'+amigable('?module=crud&functions=list_crud')+'" data-tr="CRUD"></a></li>'+
                           '<li><a href="'+amigable('?module=shop&function=list_shop')+'" data-tr="Tienda" id="btnshop"></a></li>'+
                           '<li><a href="'+amigable('?module=contact&function=list_contact')+'" data-tr="Contacto"></a></li>'+
-                          '<li><a href="'+amigable('?module=cart&function=list_cart')+'"><i class="fa fa-shopping-cart"><span>0</span></i></a></li>'+
+                          '<li><a href="'+amigable('?module=cart&function=list_cart')+'"><i class="fa fa-shopping-cart"><span>'+localStorage.getItem('canti')+'</span></i></a></li>'+
                           '<li><a id="menuprofile">  <img id="avatar"></a>'+
                             '<ul id="submenu">'+
                               '<li><a id="btnprofile" href="'+amigable('?module=profile&function=view')+'" data-tr="Perfil"></a></li>'+

@@ -3,21 +3,16 @@ $(document).ready(function(){
 
 ///////////////  AJAX FOR ALL SEARCH
      function ajaxForSearch(provi, local, val) {
-         //var data=durl;
          var search = JSON.stringify({'page_num':1,'provi':provi,'local':local,'val':val});
-          //console.log(provi);
          $.ajax({
-            
             type: "POST",
             dataType: "json",
-            url:'../../shop/products',
-            //data:'page_num=1'+data,
+            url:amigable('?module=shop&function=products'),//'../../shop/products',
             data:{search}
         })
         .done(function( data, textStatus, jqXHR ) {
-             //console.log(data);
             total_pages=Math.ceil(parseInt(data.totalcount[0].total) / parseInt(6))
-           
+
             if(total_pages<2){
                 $("#pagination").hide();
             }
@@ -25,11 +20,11 @@ $(document).ready(function(){
                 $('#inicioshop').empty();
                 $('<div><h3>Su búsqueda no dió resultados.</h3></div>').attr('id','list').appendTo('#inicioshop');
            }else{
-                //console.log(data);
+                console.log(data);
                 $('#inicioshop').empty();
                 $.each(data.results, function(index, list) {
-                    // console.log(data);
-                    // console.log(index);
+                    //  console.log(data);
+                    //  console.log(index);
                     $('#inicioshop').append(
                         '<div class="grid">'+ 
                         '<div class="text1 flex">'+ list.nombre + '<a class="corazon" id="'+list.nombre+'"><i class="far fa-heart" ></i></a></div>'+
@@ -47,26 +42,23 @@ $(document).ready(function(){
                     $("#pagination").bootpag({
                         total: total_pages,
                         page: 1,
-                        maxVisible: 3,
+                        maxVisible: 6,
                         leaps: true,
                         next: '>>',
                         prev: '<<',
                         // href: '#result-page-{{number}}'
                     }).on("page", function (e, num) {
-                        console.log(num);
+                        //console.log(num);
                         e.preventDefault();
                         var search = JSON.stringify({'page_num':num,'provi':provi,'local':local,'val':val})
                         $.ajax({
             
                             type: "post",
                             dataType: "json",
-                            url:'../../shop/products',
-                            //data:'page_num='+ num,
+                            url:amigable('?module=shop&function=products'),
                             data: {search}
                         })
                         .done(function( data, textStatus, jqXHR ) {
-                            total_pages=Math.ceil(parseInt(data.totalcount) / parseInt(6))//total pages=round total houses/6
-                            //console.log(data);
                            if(data.results.length==0){
                                 $('#inicioshop').empty();
                                 $('<div><h3>Su búsqueda no dió resultados.</h3></div>').attr('id','list').appendTo('#inicioshop');
@@ -75,8 +67,8 @@ $(document).ready(function(){
                                 $('#inicioshop').empty();
                                 
                                 $.each(data.results, function(index, list) {
-                                    // console.log(data);
-                                    // console.log(index);
+                                    //  console.log(data);
+                                    //  console.log(index);
                                     $('#inicioshop').append(
                                         '<div class="grid">'+ 
                                         '<div class="text1 flex">'+ list.nombre + '<a class="corazon" id="'+list.nombre+'"><i class="far fa-heart" ></i></a></div>'+
