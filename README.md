@@ -1,17 +1,30 @@
-# 1er Proyecto MVC, PHP, JS, JQ, HTML, CSS  
+# FRAMEWORK PHP OO MVC, JS, JQ, HTML, CSS  
 
-##### Proyecto de casas rurales, con buscador, carrito, favoritos, login
+##### Continuación del proyecto EDEN MVC: 
+##### Proyecto Buscador de casas rurales, con buscador, carrito, favoritos, login...
 
 ###### **Funcionalidad de la aplicación:**
-
+* ORM
+* PATHS
+* ROUTING
+* PRETTIES URLs CLIENTE/SERVIDOR
+* AUTOLOAD
+* JWT
+* LOGS
+* MAILGUN (alta, cambioContraseña, contacto, nuevaContraseña, admin, compra)
 * Arquitectura MVC
 * CRUD
-* Login y registro
-* Carrito, con js y php (guardado de carro logout y autorelleno en login)
-* Control de acceso par favoritos y compra.
-* Cambio de tabla en bbdd al comprar.
-* Diferente menú en relación al usuario
-* Logout, session destroy
+* Login y registro (desde aplicación y redes sociales con Auth0)
+* Perfil (Actualización de datos, dropzone, lista d favoritos, lista de compras(con descarga de PDF))
+* Tienda con lista o vista en mapa (posibilidad e filtrado con el buscador)
+* Carrito, con js y php (guardado de carro logout y read en login)
+* token y tokenMail
+* Funcion general Generate_token, función update_token(login, profile, cart)
+* Update de token en acciones conflictivas.
+* Respaldo en xml en fallo de APIs.
+* Cambio de tabla en bbdd al confirmpurchase.
+* Diferente menú en relación al usuario(js)
+* Logout(session destroy, insert_cart, delete_token)
 * validación contra base de datos, PHP,
 * validación en js (con radios y checkbox),
 * 404 y 503
@@ -23,8 +36,9 @@
 * Logout inactividad.
 * Módulos:
     * Home
-    * Homes(CRUD)
-    * Userfavorites( favoritos para cada usuario )
+    * CRUD (solo migrado el list y el delete)
+    * Login (aplicacion y Auth0)
+    * Profile 
     * Shop
     * Contact
     * Cart
@@ -39,19 +53,22 @@
 * Hash password y verify password
 * API [Clubrural.com](https://www.clubrural.com/api.php) (Por geolocalización y por provincias)
 * API [geoapi.es](https://geoapi.es/documentacion)
-* Google Maps
+* Google Maps (ubicacion, localización de casas)
 * Slider en páguina Home en jq (sin plugin)
 * Toastr, [Code-Seven](https://github.com/CodeSeven/toastr)
 * Css
+* DropZone
 * Constantes js para Keys
+* Constantes php para Keys
 * [Gravatar](https://es.gravatar.com/)
 * Moesif CORS.
+* Auth0(https://auth0.com/)
+* Mailgun(https://www.mailgun.com/)
 * Componenetes:
     * Modal
     * Favoritos
     * APIs
     * Buscador
-    * Login y register
 
 * * *
 

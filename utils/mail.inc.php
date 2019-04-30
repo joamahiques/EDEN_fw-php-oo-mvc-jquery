@@ -9,27 +9,24 @@
         switch ($arr['type']) {
             case 'alta':////mail para enviar el token y darse de alta
                 $subject = 'Tu Alta en EDEN';
-                //$ruta = "<a href='" . amigable("?module=home&function=active_user&aux=" . $arr['token'], true) . "'>aqu&iacute;</a>";
                 $ruta = "<a href=http://localhost/www/EDEN/home/active_user/" . $arr['token'] . ">aqu&iacute;</a>";
                 $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
                 break;
     
             case 'changepass':///para cambiarse la contraseña
-                $subject = 'Tu Nuevo Password en EDEN';
+                $subject = 'Cambio de Password en EDEN';
                 $ruta = "<a href=http://localhost/www/EDEN/login/changepass/" . $arr['token'] . ">aqu&iacute;</a>";
                 $body = 'Para cambiar tu password pulsa ' . $ruta;
                 break;
                 
             case 'contact':///el form del contact
                 $subject = 'Tus comentarios a EDEN han sido enviados';
-                //$ruta = '<a href=' . 'http://localhost/www/EDEN/home/list_home/'. '>aqu&iacute;</a>';
                 $ruta = "<a href='" . amigable("?module=home&function=list_home", true) . "'>aqu&iacute;</a>";
                 $body = 'Para visitar nuestra web, pulsa ' . $ruta;
                 break;
 
             case 'newpass':///new pass para el registro por redes sociales
                 $subject = 'Tu Contraseña en EDEN';
-                //$ruta = '<a href=' . 'http://localhost/www/EDEN/home/list_home/'. '>aqu&iacute;</a>';
                 $ruta = "<a href='" . amigable("?module=home&function=list_home", true) . "'>aqu&iacute;</a>";
                 $body = 'Para visitar nuestra web, pulsa ' . $ruta;
                 break;
